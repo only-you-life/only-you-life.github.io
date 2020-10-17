@@ -5,14 +5,21 @@
   
 
   
-  <title>Hexo</title>
+  <title>PHP(一） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="什么是PHP?PHP即“超文本预处理器”，是一种通用开源脚本语言。PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言,与C语言类似，是常用的网站编程语言。PHP独特的语法混合了C、Java、Perl以及 PHP 自创的语法。  基本的PHP语法PHP脚本可以放在文档中的任何位置;PHP文件的默认文件扩展名是”.php”。【语法格式】          除此之外，PHP文件通常包含HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP(一）">
+<meta property="og:url" content="http://example.com/2020/10/17/my-second-blog/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是PHP?PHP即“超文本预处理器”，是一种通用开源脚本语言。PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言,与C语言类似，是常用的网站编程语言。PHP独特的语法混合了C、Java、Perl以及 PHP 自创的语法。  基本的PHP语法PHP脚本可以放在文档中的任何位置;PHP文件的默认文件扩展名是”.php”。【语法格式】          除此之外，PHP文件通常包含HTML">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-17T10:38:47.000Z">
+<meta property="article:modified_time" content="2020-10-17T11:52:06.118Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="tag1">
+<meta property="article:tag" content="tag2">
+<meta property="article:tag" content="tag3">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,9 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-my-second-blog" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-my-second-blog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/17/my-second-blog/" class="article-date">
   <time datetime="2020-10-17T10:38:47.000Z" itemprop="datePublished">2020-10-17</time>
@@ -77,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/17/my-second-blog/">PHP(一）</a>
+    <h1 class="article-title" itemprop="name">
+      PHP(一）
     </h1>
   
 
@@ -174,104 +179,19 @@ print "我要学习 PHP!";
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-my-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/17/my-first-blog/" class="article-date">
-  <time datetime="2020-10-17T03:13:48.000Z" itemprop="datePublished">2020-10-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">默认分类</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/17/my-first-blog/">HTTP基础知识</a>
-    </h1>
+    <a href="/2020/10/17/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTP基础知识</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>http是无状态的，只有请求之后才会响应，然后完成，连接关闭。<br>HTTP请求方法<br>    有8种，分别为<br>    1.GET—-请求指定的页面的资源，并返回实体主体。（如果请求资源为php、jsp等，则解析后进行展示）<br>    2.HEAD—用于获取报头，类似于get请求，只不过返回的响应中没有具体的内容。（常用于扫描）<br>    3.POST—向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。常用于向服务器发送大量数据。（如请求login.php，并传递账户密码等信息）<br>    4.PUT—客户端向服务器传送的数据取代指定的内容。（可以在服务器端创建，一般会禁用此方法）<br>    5.DELETE—请求服务器删除指定的页面。（可以在服务器端删除，一般会禁用此方法）<br>    6.CONNECT—HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>    7.OPYIONS—允许客户端查看服务器的性能。（可以查看服务器端允许的请求方法，可以用来收集信息）<br>    8.TRACE—回显服务器收到的请求，主要用于测试或诊断。<br>HTTP状态码<br>    常见的HTTP状态码有8种，分别为<br>     200—请求成功<br>     301— 资源（网页等）被永久转移到其它URL<br>     302—重定向<br>     400—请求语法错误<br>     401—请求未经授权<br>     403—服务器拒绝提供服务<br>     404—请求的资源（网页等）不存在<br>     500—内部服务器错误<br>http消息头（字段）<br>      普通头有3种，分别为date消息产生的时间日期、connection指定连接的选项（连续的或不连续的）、cache-control缓存指令。<br> 请求头：<br>      host—域名<br>      user-agent—客户端信息<br>      referer—上一个页面<br>      cookie—表示请求身份<br>      range—请求实体的部分内容<br>      x-forward-for—xff头，表示请求端的ip<br>      accept—客户端希望接收的消息类型<br>      accept-charset—客户端希望接收的字符类型<br> 响应：<br>      server—Web服务器的名称<br>      set-cookie—向客户端设置cookie<br>      last-modified—资源上次修改时间<br>      location—重定向的页面位置<br>      refresh—定向刷新浏览器<br>实体头：<br>      content-type—告知客户端尸体的类型<br>      content-encoding—应用到实体正文中附加内容的编码<br>      content-length—实体正文的长度<br>      last-modified—资源上次修改时间<br>截取HTTP请求<br>     工具：burpsuite、fiddler<br>搜索引擎劫持<br>      现象：直接输入自己网站的域名可直接登录，但是从搜索引擎搜到页面点击时，会跳转到其他页面</p>
-<pre><code>  http头中有一个字段referer，可记录用户从哪个页面点击过来的，黑客通过user-agent字段实现搜索到从百度等搜索引擎跳转过来的访问请求时，构造一个location字段跳转到其他页面。    </code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/17/my-first-blog/" data-id="ckgd69det0000egwr0w3gewm9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yag3/" rel="tag">yag3</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/15/hello-world/" class="article-date">
-  <time datetime="2020-10-15T00:09:59.135Z" itemprop="datePublished">2020-10-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/15/hello-world/" data-id="ckga2ugfa0000qowr1dh86870" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
