@@ -5,13 +5,17 @@
   
 
   
-  <title>Archives: 2020 | Hexo</title>
+  <title>PHP补充 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+  <meta name="description" content="（一） echo, print,  print_r, var_dump的区别 &lt;1&gt;. echo       输出一个或者多个字符串。 &lt;2&gt;. print       和 echo 最主要的区别：print 仅支持一个参数，同时总是返回 1. &lt;3&gt;. print_r       打印关于变量的易于理解的信息。如果我们给出的是 string, integer或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP补充">
+<meta property="og:url" content="http://example.com/2020/10/22/PHP%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="（一） echo, print,  print_r, var_dump的区别 &lt;1&gt;. echo       输出一个或者多个字符串。 &lt;2&gt;. print       和 echo 最主要的区别：print 仅支持一个参数，同时总是返回 1. &lt;3&gt;. print_r       打印关于变量的易于理解的信息。如果我们给出的是 string, integer或">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-22T08:28:02.000Z">
+<meta property="article:modified_time" content="2020-10-22T10:12:21.712Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,154 +66,55 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/" class="archive-article-date">
-  <time datetime="2020-10-22T08:28:02.000Z" itemprop="datePublished">Oct 22</time>
+        <section id="main"><article id="post-PHP补充" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/" class="article-date">
+  <time datetime="2020-10-22T08:28:02.000Z" itemprop="datePublished">2020-10-22</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/">PHP补充</a>
+    <h1 class="article-title" itemprop="name">
+      PHP补充
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/22/PHP-%E4%B8%89/" class="archive-article-date">
-  <time datetime="2020-10-22T08:23:16.000Z" itemprop="datePublished">Oct 22</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/22/PHP-%E4%B8%89/">PHP(三)</a>
-    </h1>
-  
+        <p>（一） echo, print,  print_r, var_dump的区别<br> &lt;1&gt;. echo<br>       输出一个或者多个字符串。<br> &lt;2&gt;. print<br>       和 echo 最主要的区别：print 仅支持一个参数，同时总是返回 1.<br> &lt;3&gt;. print_r<br>       打印关于变量的易于理解的信息。如果我们给出的是 string, integer或是 float,将打印变量本身。<br>如果给出的是 array,将会按照一定的格式显示键和元素。object与数组类似。<br>PS: print_r()将把数组的指针移到最后边。使用reset()可让指针回到开始的地方。<br> &lt;4&gt;.var_dump<br>        此函数显示关于一个或多个表达式的结构信息，其中包含表达式的类型与值。数组将递归展开值，<br>通过缩进显示其结构。<br> &lt;5&gt;.var_dump和 print_r的区别<br>        var_dump 返回表达式的类型与值<br>        但print_r仅返回结果，相比之下，调试代码使用 var_dump 更便于阅读。<br> （二) PHP 变量作用域<br>   变量的作用域是脚本中变量可被引用和使用的部分。<br>   PHP 中有四种不同的变量作用域:<br>&lt;1&gt;local（本地的）—— 局部变量的作用域<br>在 PHP 函数内部声明的变量是局部变量，仅能在函数内部访问,没有外部输出结果。</p>
+<p>&lt;2&gt;global（总体的）—— 全局变量的作用域<br>在所有函数外部定义的变量是全局变量，除了函数外，全局变量可以被脚本中的任何部分访问、<br>要在一个函数中访问一个全局变量，需要使用 global 关键字。</p>
+<p>&lt;3&gt;static（静态的）—— static 作用域<br>当一个函数执行完成时，它的所有变量通常都会被删除。<br>然而，有时需要局部变量不要被删除，要做到这一点，我们在第一次声明变量时使用 static 关键字。<br>然后，每次调用函数完， 该变量将会保留请前函的前被调用的值一次。</p>
+<p>&lt;4&gt;parameter（参数）——参数作用域<br>参数是通过调用代码将值传递给函数的局部变量。<br>关于局部变量和全局变量的优先级，<br>因为在PHP中函数都有自己单独的作用域，所以在局部变量的优先级要大于全局变量（在你不声明这个变量之前），<br>声明之后此变量就变成了局部变量如果修改值那么全局变量的值也会改变。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/18/my-fourth-blog/" class="archive-article-date">
-  <time datetime="2020-10-18T15:33:41.000Z" itemprop="datePublished">Oct 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/18/my-fourth-blog/">my-fourth-blog</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/18/my-third-blog/" class="archive-article-date">
-  <time datetime="2020-10-18T10:35:37.000Z" itemprop="datePublished">Oct 18</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/22/PHP%E8%A1%A5%E5%85%85/" data-id="ckgko4z0r000068wrfp71h1h3" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/18/my-third-blog/">PHP(二）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/17/my-second-blog/" class="archive-article-date">
-  <time datetime="2020-10-17T10:38:47.000Z" itemprop="datePublished">Oct 17</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/17/my-second-blog/">PHP(一）</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/17/my-first-blog/" class="archive-article-date">
-  <time datetime="2020-10-17T03:13:48.000Z" itemprop="datePublished">Oct 17</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/17/my-first-blog/">HTTP基础知识</a>
-    </h1>
   
+    <a href="/2020/10/22/PHP-%E4%B8%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP(三)</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/15/hello-world/" class="archive-article-date">
-  <time datetime="2020-10-15T00:09:59.135Z" itemprop="datePublished">Oct 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
