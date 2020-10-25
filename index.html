@@ -64,6 +64,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP-四" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/PHP-%E5%9B%9B/" class="article-date">
+  <time datetime="2020-10-25T14:42:25.000Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/25/PHP-%E5%9B%9B/">PHP-四</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（一）PHP 类型比较<br>  我们经常需要对 PHP 变量进行比较，有两种比较方法：<br>&lt;1&gt;松散比较<br>使用两个等号==比较，只比较值，不比较类型。<br>&lt;2&gt;严格比较<br>用三个等号===比较，除了比较值，也比较类型。<br>eg.<br>“42”是一个字符串而42是一个整数。FALSE是一个布尔值而“false”是一个字符串。</p>
+<p>（二）PHP 常量<br>常量是一个简单值的标识符。这个值在脚本中不能改变。<br>一个变量由英文字母、下划线和数字组成<br>但数字不能作为首字母出现。<br>PS:(1)常量名不需要加$修饰符<br>（2)常量在整个脚本中都可以使用<br>（3)常量被定义后，在脚本的其他任何地方都不能被改变</p>
+<p>（三）设置 PHP 常量<br>设置常量时，我们要使用define()函数<br>该函数有三个参数：<br>&lt;1&gt; name: 必选参数，常量名称，即标识符<br>&lt;2&gt; value: 必选参数，常量的值<br>&lt;3&gt; case_insensitive: 可选参数，如果设置为 TRUE，<br>该常量对大小写不敏感。默认是对大小写敏感的。</p>
+<p>（四） 常量是全局的<br>常量在定义后，默认是全局变量，可以在整个运行脚PHP本的任何地方使用<br>即使常量定义在函数外也可以正常使用常量<br>PS:使用常量时，不能在常量前添加$符号，不然会将常量转换成新的未定义变量使用，<br>否则会导致报错。</p>
+<p>（五）PHP 字符串变量<br>字符串变量用于存储并处理文本<br>字符串变量用于包含有字符的值<br>在创建字符串之后我们就可以对他进行操作。<br>我们可以直接在函数中使用字符串，或者把它存储在变量中<br>PS:当我们赋一个文本值给变量时，要给文本值加上单引号或者双引号</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/PHP-%E5%9B%9B/" data-id="ckgpbh8s70000r0wrh63mex7o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-PHP补充" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/" class="article-date">
@@ -502,6 +543,10 @@ print "我要学习 PHP!";
       <ul>
         
           <li>
+            <a href="/2020/10/25/PHP-%E5%9B%9B/">PHP-四</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/">PHP补充</a>
           </li>
         
@@ -515,10 +560,6 @@ print "我要学习 PHP!";
         
           <li>
             <a href="/2020/10/18/my-third-blog/">PHP(二）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/17/my-second-blog/">PHP(一）</a>
           </li>
         
       </ul>
