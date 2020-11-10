@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8">
   
-
-  
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
@@ -15,63 +13,449 @@
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/http://oayoilchh.bkt.clouddn.com/2016/07/27/18:05:26%20">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
   
   
 <link rel="stylesheet" href="/css/style.css">
 
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
-
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="img/head.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  target="_blank" rel="noopener" href="http://bestwing.me">博客首页</a></li>
+                        
+                            <li><a  href="/archives">文章归档</a></li>
+                        
+                            <li><a  href="/CTFStudy">学习导航</a></li>
+                        
+                            <li><a  href="/PWNABLE">PWNABLE</a></li>
+                        
+                            <li><a  href="/resume">个人简历</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail"  target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=kvH99PT39-Dn_efS5PvivOPjvPH9-w" title="mail">mail</a>
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/WinMin" title="github">github</a>
+                            
+                                <a class="fl zhihu"  target="_blank" href="https://www.zhihu.com/people/Swings" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="http://weibo.com/2672317963/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/tag1/" style="font-size: 20px;">tag1</a> <a href="/tags/tag2/" style="font-size: 20px;">tag2</a> <a href="/tags/tag3/" style="font-size: 15px;">tag3</a> <a href="/tags/yag3/" style="font-size: 10px;">yag3</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://ring3.xyz/">Yllen</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://mxny.org/">麦香浓郁</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://whereisk0shl.top/">K0sh1</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.ycjcl.cc/">信鑫</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://bystudent.com/">ByStundet表哥</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.jarviswang.me/">汪神_Jarvis</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://sh3ll.me/">Chu</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.hackfun.org/">4ido10n</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.cnblogs.com/iamstudy">L3m0n</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://o0xmuhe.me/">muhe</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.nuptzj.cn/">_画船听雨</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.virzz.com/index.html">Virink</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.sqlsec.com/">国光</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.bodkin.ren/">老锥</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.cizel.cn/">C1zel</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://1phan.cc">1phan</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.liuil.top/">liuil</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.cnblogs.com/Ox9A82/">Ox9A82</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://burnegg.com/">burnegg</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://jwrsec.cn/">jwr-sec</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://sudalover.cn/">苏打</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.binklac.com">VeroFess</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.bendawang.site/">bendawang</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://weeklyalgo.codes/">hook</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.flier.net.cn/">Flier&#39;blog</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mutepig.club">mutepig</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.iret.xyz/list.aspx">Silver</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://simp1e.leanote.com/">Simple</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://processor.pub/">Processor</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一只淹死在二进制海洋里的二进制狗</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a target="_blank" rel="noopener" href="http://bestwing.me">博客首页</a></li>
+                
+                    <li><a href="/archives">文章归档</a></li>
+                
+                    <li><a href="/CTFStudy">学习导航</a></li>
+                
+                    <li><a href="/PWNABLE">PWNABLE</a></li>
+                
+                    <li><a href="/resume">个人简历</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=kvH99PT39-Dn_efS5PvivOPjvPH9-w" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/WinMin" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/Swings" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/2672317963/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-表单" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/11/10/%E8%A1%A8%E5%8D%95/" class="article-date">
+      <time datetime="2020-11-10T12:09:10.000Z" itemprop="datePublished">2020-11-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/10/%E8%A1%A8%E5%8D%95/">表单</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="PHP-表单和用户输入"><a href="#PHP-表单和用户输入" class="headerlink" title="PHP 表单和用户输入"></a>PHP 表单和用户输入</h1><h2 id="PHP-表单处理"><a href="#PHP-表单处理" class="headerlink" title="PHP 表单处理"></a>PHP 表单处理</h2><p>当我们处理 HTML 表单时，PHP 能把来自HTML页面的bi表单元素自动变换为供PHP使用的脚本使用。</p>
+<p>通过浏览器演示：</p>
+<p><img src="/.com//Blog\source_posts\表单\form1.gif"></p>
+<h2 id="PHP-获取下拉菜单的数据"><a href="#PHP-获取下拉菜单的数据" class="headerlink" title="PHP 获取下拉菜单的数据"></a>PHP 获取下拉菜单的数据</h2><ul>
+<li><h3 id="PHP-下拉菜单单选"><a href="#PHP-下拉菜单单选" class="headerlink" title="PHP 下拉菜单单选"></a>PHP 下拉菜单单选</h3><p>表单使用 GET 方式获取数据，而action 属性值为空表示提交到当前脚本。我们也可以通过 select 的name 属性获取下拉菜单的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q &#x3D; isset($_GET[&#39;q&#39;])? htmlspecialchars($_GET[&#39;q&#39;]) : &#39;&#39;;</span><br><span class="line">if($q) &#123;</span><br><span class="line">        if($q &#x3D;&#x3D;&#39;RUNOOB&#39;) &#123;</span><br><span class="line">                echo &#39;菜鸟教程&lt;br&gt;http:&#x2F;&#x2F;www.runoob.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;GOOGLE&#39;) &#123;</span><br><span class="line">                echo &#39;Google 搜索&lt;br&gt;http:&#x2F;&#x2F;www.google.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;TAOBAO&#39;) &#123;</span><br><span class="line">                echo &#39;淘宝&lt;br&gt;http:&#x2F;&#x2F;www.taobao.com&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;get&quot;&gt; </span><br><span class="line">    &lt;select name&#x3D;&quot;q&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&quot;&gt;选择一个站点:&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;RUNOOB&quot;&gt;Runoob&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;GOOGLE&quot;&gt;Google&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;TAOBAO&quot;&gt;Taobao&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><h3 id="PHP-下拉菜单多选"><a href="#PHP-下拉菜单多选" class="headerlink" title="PHP 下拉菜单多选"></a>PHP 下拉菜单多选</h3></li>
+</ul>
+<p>我们通过将设置 select name=“q[]” 以数组的方式获取，或者使用POST 方式提交，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q &#x3D; isset($_POST[&#39;q&#39;])? $_POST[&#39;q&#39;] : &#39;&#39;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites &#x3D; array(</span><br><span class="line">            &#39;RUNOOB&#39; &#x3D;&gt; &#39;菜鸟教程: http:&#x2F;&#x2F;www.runoob.com&#39;,</span><br><span class="line">            &#39;GOOGLE&#39; &#x3D;&gt; &#39;Google 搜索: http:&#x2F;&#x2F;www.google.com&#39;,</span><br><span class="line">            &#39;TAOBAO&#39; &#x3D;&gt; &#39;淘宝: http:&#x2F;&#x2F;www.taobao.com&#39;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        &#x2F;&#x2F; PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt; </span><br><span class="line">    &lt;select multiple&#x3D;&quot;multiple&quot; name&#x3D;&quot;q[]&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&quot;&gt;选择一个站点:&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;RUNOOB&quot;&gt;Runoob&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;GOOGLE&quot;&gt;Google&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;TAOBAO&quot;&gt;Taobao&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="单选按钮表单"><a href="#单选按钮表单" class="headerlink" title="单选按钮表单"></a>单选按钮表单</h2><p>name属性的值是一致的，而 value 的值不同的</p>
+<h2 id="checkbox-复选框"><a href="#checkbox-复选框" class="headerlink" title="checkbox 复选框"></a>checkbox 复选框</h2><p>他也可以选择多个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$q &#x3D; isset($_POST[&#39;q&#39;])? $_POST[&#39;q&#39;] : &#39;&#39;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites &#x3D; array(</span><br><span class="line">            &#39;RUNOOB&#39; &#x3D;&gt; &#39;菜鸟教程: http:&#x2F;&#x2F;www.runoob.com&#39;,</span><br><span class="line">            &#39;GOOGLE&#39; &#x3D;&gt; &#39;Google 搜索: http:&#x2F;&#x2F;www.google.com&#39;,</span><br><span class="line">            &#39;TAOBAO&#39; &#x3D;&gt; &#39;淘宝: http:&#x2F;&#x2F;www.taobao.com&#39;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        &#x2F;&#x2F; PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;RUNOOB&quot;&gt; Runoob&lt;br&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;GOOGLE&quot;&gt; Google&lt;br&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;TAOBAO&quot;&gt; Taobao&lt;br&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><p>我们应该将表单的数据传给当前页面（如果能用异步提交的方式更好），而不是跳转到不同的页面。这样用户就可以在同一张表单中得到错误的信息，更容易去发现错误。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>验证规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名字</td>
+<td>必须。 +只能包含字母和空格</td>
+</tr>
+<tr>
+<td>E-mail</td>
+<td>必须。 + 必须是一个有效的电子邮件地址（包含‘@’和’.’）</td>
+</tr>
+<tr>
+<td>网址</td>
+<td>可选。如果存在，它必须包含一个有效的URL</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>可选。多行输入字段（文本域）</td>
+</tr>
+<tr>
+<td>性别</td>
+<td>必须。 必须选择一个</td>
+</tr>
+</tbody></table>
+<ul>
+<li><h3 id="文本字段"><a href="#文本字段" class="headerlink" title="文本字段"></a>文本字段</h3></li>
+</ul>
+<p>其中名字，邮箱，网址为文本输入元素；备注字段是 textarea。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">“名字”: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;name&quot;&gt;</span><br><span class="line">E-mail: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;email&quot;&gt;</span><br><span class="line">网址: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;website&quot;&gt;</span><br><span class="line">备注: &lt;textarea name&#x3D;&quot;comment&quot; rows&#x3D;&quot;5&quot; cols&#x3D;&quot;40&quot;&gt;&lt;&#x2F;textarea&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h3></li>
+</ul>
+
+      
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-PHP-8-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/PHP-8-1/" class="article-date">
-  <time datetime="2020-11-07T07:54:56.000Z" itemprop="datePublished">2020-11-07</time>
-</a>
     
   </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP-8-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/11/07/PHP-8-1/" class="article-date">
+      <time datetime="2020-11-07T07:54:56.000Z" itemprop="datePublished">2020-11-07</time>
+</a>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -83,9 +467,11 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <h1 id="一-PHP-函数"><a href="#一-PHP-函数" class="headerlink" title="(一) PHP 函数"></a>(一) PHP 函数</h1><ul>
 <li><h4 id="创建-PHP-函数"><a href="#创建-PHP-函数" class="headerlink" title="创建 PHP 函数"></a>创建 PHP 函数</h4></li>
 </ul>
@@ -234,26 +620,42 @@
 <p>2、 命名空间中后备的全局函数/常量。</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/PHP-8-1/" data-id="ckh7e8nr30000dwwrfdazb1so" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-PHP-七" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/03/PHP-%E4%B8%83/" class="article-date">
-  <time datetime="2020-11-03T12:52:12.000Z" itemprop="datePublished">2020-11-03</time>
+  
+    <div class="article-meta">
+      <a href="/2020/11/03/PHP-%E4%B8%83/" class="article-date">
+      <time datetime="2020-11-03T12:52:12.000Z" itemprop="datePublished">2020-11-03</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -265,9 +667,11 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>[TOC]</p>
 <h1 id="（一）PHP-超级全局变量"><a href="#（一）PHP-超级全局变量" class="headerlink" title="（一）PHP 超级全局变量"></a>（一）PHP 超级全局变量</h1><p>在PHP中预定义几个超级全局变量，意味着他们在一个脚本的全部作用域中都可用。<br>无需特殊说明就可使用</p>
 <ul>
@@ -364,26 +768,42 @@
 
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/03/PHP-%E4%B8%83/" data-id="ckh7e41cu0001m4wre5v74vrq" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-PHP-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/31/PHP-1/" class="article-date">
-  <time datetime="2020-10-31T03:06:35.000Z" itemprop="datePublished">2020-10-31</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/31/PHP-1/" class="article-date">
+      <time datetime="2020-10-31T03:06:35.000Z" itemprop="datePublished">2020-10-31</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -395,34 +815,52 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>(一）PHP 条件语句<br>&lt;1&gt; if语句—–在条件成立时执行代码<br>&lt;2&gt; if…else 语句—–在条件成立时执行一块代码，条件不成立时执行另一块代码<br>&lt;3&gt; if…elseif…else语句—–在若干条件之一成立时执行一个代码块<br>&lt;4&gt; switch 语句—–在若干条件之一成立时执行一个代码块</p>
 <p>（二）PHP 数组<br>&lt;1&gt;数组是一个能在单个变量中存储多个值的特殊变量<br>&lt;2&gt;在PHP中，我们用array()函数创建数组<br>三种类型的数组：<br>*数值数组—–带有数字 ID 键的数组<br>*关联数组—–带有指定的键的数组，每个键关联一个值<br>*多维数组—–包含一个或多个数组的数组<br>&lt;3&gt;PHP 数值数组<br>1.自动分配 ID 键 （ID键总是从0开始）<br>2.人工分配 ID 键<br>&lt;4&gt;获取数组的长度-count()函数<br>count()函数用于返回数组的长度 （元素的数量）<br>&lt;5&gt;遍历数值数组<br>遍历并打印数值数组中的所有值，我们可以使用 for 循环<br>&lt;6&gt;遍历关联数组<br>遍历并打印关联数组中的所有值，我们可以使用 foreach 循环<br>&lt;7&gt;PHP关联数组<br>关联数组是使用我们分配给数组的指定的键的数组</p>
 <p>（三） PHP 数组排序<br>数组中的元素可以按字母或数字顺序进行降序或升序排列<br>&lt;1&gt; sort()—–对数组进行升序排列<br>&lt;2&gt; rsort()—–对数组进行降序排列<br>&lt;3&gt; asort()—–根据关联数组的值，对数组进行升序排列<br>&lt;4&gt; ksort()—–根据关联数组的键，对数组进行升序排列<br>&lt;5&gt; arsort()—–根据关联数组的值，对数组进行降序排列<br>&lt;6&gt;krsort()—–根据关联数组的键，对数组进行降序排列</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/31/PHP-1/" data-id="ckh7e41cn0000m4wr9ht05zix" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-PHP" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/26/PHP/" class="article-date">
-  <time datetime="2020-10-26T13:13:24.000Z" itemprop="datePublished">2020-10-26</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/26/PHP/" class="article-date">
+      <time datetime="2020-10-26T13:13:24.000Z" itemprop="datePublished">2020-10-26</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -434,9 +872,11 @@
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>（一）PHP 并置运算符<br>在PHP中，只有一个字符串运算符。<br>并置运算符（.)用于把两个字符串值连接起来。<br>PS：<br>若我们要使用两次并置运算符，我们需要在两个字符串之间插入一个空格。<br>eg.    echo $txt1 . “ “ . $txt2</p>
 <p>（二）PHP strlen()函数<br>我们知道有时字符串的长度是很有用的<br>strlen()函数返回字符串的长度，即字节数<br>PS:<br>strlen()常常用在循环和其他函数中，因为那时确定字符串何时结束是很重要</p>
 <p>（三）PHP strpos()函数<br>strpos()函数用在字符串内查找一个字符或一段指定的文本<br>如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。<br>如果未找到匹配，则返回FALSE.</p>
@@ -451,26 +891,42 @@ a . b            并置                 连接两个字符串    “Hi” . “H
 <p>PHP 赋值运算符<br>运算符                等同于                描述<br>x = y                   x = y                左操作数被设置为右侧表达式的值<br>x += y                x = x + y            加<br>x -= y                 x = x - y             减<br>x *= y                 x = x * y             乘<br>x /= y                 x = x / y              除<br>x %= y               x = x % y         模（除法的余数）<br>a .= b                 a = a . b           连接两个字符串</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/26/PHP/" data-id="ckh7e41cw0003m4wrg18xbu6z" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-PHP-四" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/25/PHP-%E5%9B%9B/" class="article-date">
-  <time datetime="2020-10-25T14:42:25.000Z" itemprop="datePublished">2020-10-25</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/25/PHP-%E5%9B%9B/" class="article-date">
+      <time datetime="2020-10-25T14:42:25.000Z" itemprop="datePublished">2020-10-25</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -482,9 +938,11 @@ a . b            并置                 连接两个字符串    “Hi” . “H
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>（一）PHP 类型比较<br>  我们经常需要对 PHP 变量进行比较，有两种比较方法：<br>&lt;1&gt;松散比较<br>使用两个等号==比较，只比较值，不比较类型。<br>&lt;2&gt;严格比较<br>用三个等号===比较，除了比较值，也比较类型。<br>eg.<br>“42”是一个字符串而42是一个整数。FALSE是一个布尔值而“false”是一个字符串。</p>
 <p>（二）PHP 常量<br>常量是一个简单值的标识符。这个值在脚本中不能改变。<br>一个变量由英文字母、下划线和数字组成<br>但数字不能作为首字母出现。<br>PS:(1)常量名不需要加$修饰符<br>（2)常量在整个脚本中都可以使用<br>（3)常量被定义后，在脚本的其他任何地方都不能被改变</p>
 <p>（三）设置 PHP 常量<br>设置常量时，我们要使用define()函数<br>该函数有三个参数：<br>&lt;1&gt; name: 必选参数，常量名称，即标识符<br>&lt;2&gt; value: 必选参数，常量的值<br>&lt;3&gt; case_insensitive: 可选参数，如果设置为 TRUE，<br>该常量对大小写不敏感。默认是对大小写敏感的。</p>
@@ -492,26 +950,42 @@ a . b            并置                 连接两个字符串    “Hi” . “H
 <p>（五）PHP 字符串变量<br>字符串变量用于存储并处理文本<br>字符串变量用于包含有字符的值<br>在创建字符串之后我们就可以对他进行操作。<br>我们可以直接在函数中使用字符串，或者把它存储在变量中<br>PS:当我们赋一个文本值给变量时，要给文本值加上单引号或者双引号</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/25/PHP-%E5%9B%9B/" data-id="ckh7e41cy0005m4wravk9bqc6" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-PHP补充" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/" class="article-date">
-  <time datetime="2020-10-22T08:28:02.000Z" itemprop="datePublished">2020-10-22</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/22/PHP%E8%A1%A5%E5%85%85/" class="article-date">
+      <time datetime="2020-10-22T08:28:02.000Z" itemprop="datePublished">2020-10-22</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -523,35 +997,53 @@ a . b            并置                 连接两个字符串    “Hi” . “H
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>（一） echo, print,  print_r, var_dump的区别<br> &lt;1&gt;. echo<br>       输出一个或者多个字符串。<br> &lt;2&gt;. print<br>       和 echo 最主要的区别：print 仅支持一个参数，同时总是返回 1.<br> &lt;3&gt;. print_r<br>       打印关于变量的易于理解的信息。如果我们给出的是 string, integer或是 float,将打印变量本身。<br>如果给出的是 array,将会按照一定的格式显示键和元素。object与数组类似。<br>PS: print_r()将把数组的指针移到最后边。使用reset()可让指针回到开始的地方。<br> &lt;4&gt;.var_dump<br>        此函数显示关于一个或多个表达式的结构信息，其中包含表达式的类型与值。数组将递归展开值，<br>通过缩进显示其结构。<br> &lt;5&gt;.var_dump和 print_r的区别<br>        var_dump 返回表达式的类型与值<br>        但print_r仅返回结果，相比之下，调试代码使用 var_dump 更便于阅读。<br> （二) PHP 变量作用域<br>   变量的作用域是脚本中变量可被引用和使用的部分。<br>   PHP 中有四种不同的变量作用域:<br>&lt;1&gt;local（本地的）—— 局部变量的作用域<br>在 PHP 函数内部声明的变量是局部变量，仅能在函数内部访问,没有外部输出结果。</p>
 <p>&lt;2&gt;global（总体的）—— 全局变量的作用域<br>在所有函数外部定义的变量是全局变量，除了函数外，全局变量可以被脚本中的任何部分访问、<br>要在一个函数中访问一个全局变量，需要使用 global 关键字。</p>
 <p>&lt;3&gt;static（静态的）—— static 作用域<br>当一个函数执行完成时，它的所有变量通常都会被删除。<br>然而，有时需要局部变量不要被删除，要做到这一点，我们在第一次声明变量时使用 static 关键字。<br>然后，每次调用函数完， 该变量将会保留请前函的前被调用的值一次。</p>
 <p>&lt;4&gt;parameter（参数）——参数作用域<br>参数是通过调用代码将值传递给函数的局部变量。<br>关于局部变量和全局变量的优先级，<br>因为在PHP中函数都有自己单独的作用域，所以在局部变量的优先级要大于全局变量（在你不声明这个变量之前），<br>声明之后此变量就变成了局部变量如果修改值那么全局变量的值也会改变。</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/22/PHP%E8%A1%A5%E5%85%85/" data-id="ckh7e41cx0004m4wr5wan7zv9" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-PHP-三" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/22/PHP-%E4%B8%89/" class="article-date">
-  <time datetime="2020-10-22T08:23:16.000Z" itemprop="datePublished">2020-10-22</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/22/PHP-%E4%B8%89/" class="article-date">
+      <time datetime="2020-10-22T08:23:16.000Z" itemprop="datePublished">2020-10-22</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -563,9 +1055,11 @@ a . b            并置                 连接两个字符串    “Hi” . “H
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>一）PHP 字符串<br> 一个字符串就是一串字符的序列，就像“Hello girls!”.<br> 因此，你可以将任何文本放在单引号和双引号中。</p>
 <p>（二） PHP 整形<br>  整数是一个没有小数的数字。<br>  整数的规则：<br>  &lt;1&gt;整数必须至少有一个数字（0-9）    就像1，2…….<br>  &lt;2&gt;整数不能包含逗号或空格<br>  &lt;3&gt;整数是没有小数点的<br>  &lt;4&gt;整数可以是正数，也可以是负数<br>  &lt;5&gt;整数可以用三种格式来表示: 十进制，十六进制（以0x为前缀）或者八进制（前缀为0）<br> PS:在PHP中用 var_dump()函数来返回变量的数据类型和值。</p>
 <pre><code>(三)  PHP 浮点型
@@ -580,26 +1074,42 @@ a . b            并置                 连接两个字符串    “Hi” . “H
 <p>   (七) PHP NULL 值<br>  NULL值表示变量没有值。 NULL是数据类型为NULL值的区别。<br>  我们可以通过设置变量为NULL 来清空变量的数据类型</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/22/PHP-%E4%B8%89/" data-id="ckh7e41cw0002m4wr7c8a1ob1" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-    </footer>
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-my-third-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/18/my-third-blog/" class="article-date">
-  <time datetime="2020-10-18T10:35:37.000Z" itemprop="datePublished">2020-10-18</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/18/my-third-blog/" class="article-date">
+      <time datetime="2020-10-18T10:35:37.000Z" itemprop="datePublished">2020-10-18</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -611,9 +1121,11 @@ a . b            并置                 连接两个字符串    “Hi” . “H
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>（一）变量<br>  变量是用于存储信息的”容器”（就像水杯等容器一样）；<br>实例：<br>！[实例]（my-third-blog/7.jpg)</p>
 <p>  与代数类似：<br>  在代数中，我们使用字母（如 x），并给它赋值（如 5）。<br>  从上面的表达式 z=x+y ，我们可以计算出 z 的值为 11。<br>  在 PHP 中，这些字母被称为变量</p>
 <p>  可以给 PHP 变量赋予某个值（x=5）或者表达式（z=x+y）。</p>
@@ -633,28 +1145,46 @@ a . b            并置                 连接两个字符串    “Hi” . “H
 <p>  （八）参数作用域<br> 参数是通过调用代码将值传递给函数的局部变量。<br>参数是在参数列表中声明的，作为函数声明的一部分。</p>
 
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/18/my-third-blog/" data-id="ckh7e41dc000nm4wrhvlc94ey" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag3/" rel="tag">tag3</a></li></ul>
 
-    </footer>
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag3/" rel="tag">tag3</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
+
+
+
+
+
+
+
   
     <article id="post-my-second-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/17/my-second-blog/" class="article-date">
-  <time datetime="2020-10-17T10:38:47.000Z" itemprop="datePublished">2020-10-17</time>
+  
+    <div class="article-meta">
+      <a href="/2020/10/17/my-second-blog/" class="article-date">
+      <time datetime="2020-10-17T10:38:47.000Z" itemprop="datePublished">2020-10-17</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -666,9 +1196,11 @@ a . b            并置                 连接两个字符串    “Hi” . “H
   
 
       </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <ol>
 <li><p>什么是PHP?<br>PHP即“超文本预处理器”，是一种通用开源脚本语言。<br>PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言,与C语言类似，是常用的网站编程语言。<br>PHP独特的语法混合了C、Java、Perl以及 PHP 自创的语法。</p>
 </li>
@@ -747,183 +1279,155 @@ print "我要学习 PHP!";
 <p>print $txt1;<br>print “<br>“;<br>print “在 $txt2 学习 PHP “;<br>print “<br>“;<br>print “我车的品牌是 {$cars[0]}”;<br>?&gt;<br>运行结果：<br>学习 PHP<br>在 RUNOOB.COM 学习 PHP<br>我车的品牌是 Volvo</p>
 </2></1>
       
+      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/17/my-second-blog/" data-id="ckh7e41d3000am4wr9kc4do8z" class="article-share-link">Share</a>
+    
+    <div class="article-info article-info-index">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag3/" rel="tag">tag3</a></li></ul>
 
-    </footer>
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag3/" rel="tag">tag3</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
 
-  
-    <article id="post-my-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/17/my-first-blog/" class="article-date">
-  <time datetime="2020-10-17T03:13:48.000Z" itemprop="datePublished">2020-10-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">默认分类</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/17/my-first-blog/">HTTP基础知识</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>http是无状态的，只有请求之后才会响应，然后完成，连接关闭。<br>HTTP请求方法<br>    有8种，分别为<br>    1.GET—-请求指定的页面的资源，并返回实体主体。（如果请求资源为php、jsp等，则解析后进行展示）<br>    2.HEAD—用于获取报头，类似于get请求，只不过返回的响应中没有具体的内容。（常用于扫描）<br>    3.POST—向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。常用于向服务器发送大量数据。（如请求login.php，并传递账户密码等信息）<br>    4.PUT—客户端向服务器传送的数据取代指定的内容。（可以在服务器端创建，一般会禁用此方法）<br>    5.DELETE—请求服务器删除指定的页面。（可以在服务器端删除，一般会禁用此方法）<br>    6.CONNECT—HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>    7.OPYIONS—允许客户端查看服务器的性能。（可以查看服务器端允许的请求方法，可以用来收集信息）<br>    8.TRACE—回显服务器收到的请求，主要用于测试或诊断。<br>HTTP状态码<br>    常见的HTTP状态码有8种，分别为<br>     200—请求成功<br>     301— 资源（网页等）被永久转移到其它URL<br>     302—重定向<br>     400—请求语法错误<br>     401—请求未经授权<br>     403—服务器拒绝提供服务<br>     404—请求的资源（网页等）不存在<br>     500—内部服务器错误<br>http消息头（字段）<br>      普通头有3种，分别为date消息产生的时间日期、connection指定连接的选项（连续的或不连续的）、cache-control缓存指令。<br> 请求头：<br>      host—域名<br>      user-agent—客户端信息<br>      referer—上一个页面<br>      cookie—表示请求身份<br>      range—请求实体的部分内容<br>      x-forward-for—xff头，表示请求端的ip<br>      accept—客户端希望接收的消息类型<br>      accept-charset—客户端希望接收的字符类型<br> 响应：<br>      server—Web服务器的名称<br>      set-cookie—向客户端设置cookie<br>      last-modified—资源上次修改时间<br>      location—重定向的页面位置<br>      refresh—定向刷新浏览器<br>实体头：<br>      content-type—告知客户端尸体的类型<br>      content-encoding—应用到实体正文中附加内容的编码<br>      content-length—实体正文的长度<br>      last-modified—资源上次修改时间<br>截取HTTP请求<br>     工具：burpsuite、fiddler<br>搜索引擎劫持<br>      现象：直接输入自己网站的域名可直接登录，但是从搜索引擎搜到页面点击时，会跳转到其他页面</p>
-<pre><code>  http头中有一个字段referer，可记录用户从哪个页面点击过来的，黑客通过user-agent字段实现搜索到从百度等搜索引擎跳转过来的访问请求时，构造一个location字段跳转到其他页面。    </code></pre>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/17/my-first-blog/" data-id="ckh7e41cz0006m4wrf2hkd1fo" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yag3/" rel="tag">yag3</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
+
 
 
   
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/">默认分类</a></li></ul>
-    </div>
-  </div>
-
-
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tag3/" rel="tag">tag3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yag3/" rel="tag">yag3</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/tag1/" style="font-size: 20px;">tag1</a> <a href="/tags/tag2/" style="font-size: 20px;">tag2</a> <a href="/tags/tag3/" style="font-size: 15px;">tag3</a> <a href="/tags/yag3/" style="font-size: 10px;">yag3</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/11/07/PHP-8-1/">PHP-8</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/03/PHP-%E4%B8%83/">PHP((七)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/31/PHP-1/">PHP</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/26/PHP/">PHP</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/25/PHP-%E5%9B%9B/">PHP-四</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
+</div>
       <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="http://bestwing.me" target="_blank">Sw'blog</a> by Swing
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
-  </div>
 </footer>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
 
+<script src="/js/main.js"></script>
 
 
-<script src="/js/script.js"></script>
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
 
 
 
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
 
   </div>
 </body>
