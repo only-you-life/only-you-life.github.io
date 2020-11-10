@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PHP(一） | Hexo</title>
+  <title>表单 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是PHP?PHP即“超文本预处理器”，是一种通用开源脚本语言。PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言,与C语言类似，是常用的网站编程语言。PHP独特的语法混合了C、Java、Perl以及 PHP 自创的语法。  基本的PHP语法PHP脚本可以放在文档中的任何位置;PHP文件的默认文件扩展名是”.php”。【语法格式】          除此之外，PHP文件通常包含HTML">
+  <meta name="description" content="PHP 表单和用户输入PHP 表单处理当我们处理 HTML 表单时，PHP 能把来自HTML页面的bi表单元素自动变换为供PHP使用的脚本使用。 PHP 获取下拉菜单的数据 PHP 下拉菜单单选表单使用 GET 方式获取数据，而action 属性值为空表示提交到当前脚本。我们也可以通过 select 的name 属性获取下拉菜单的值 12345678910111213141516171819202">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP(一）">
-<meta property="og:url" content="http://example.com/2020/10/17/my-second-blog/index.html">
+<meta property="og:title" content="表单">
+<meta property="og:url" content="http://example.com/2020/11/10/%E8%A1%A8%E5%8D%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是PHP?PHP即“超文本预处理器”，是一种通用开源脚本语言。PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言,与C语言类似，是常用的网站编程语言。PHP独特的语法混合了C、Java、Perl以及 PHP 自创的语法。  基本的PHP语法PHP脚本可以放在文档中的任何位置;PHP文件的默认文件扩展名是”.php”。【语法格式】          除此之外，PHP文件通常包含HTML">
+<meta property="og:description" content="PHP 表单和用户输入PHP 表单处理当我们处理 HTML 表单时，PHP 能把来自HTML页面的bi表单元素自动变换为供PHP使用的脚本使用。 PHP 获取下拉菜单的数据 PHP 下拉菜单单选表单使用 GET 方式获取数据，而action 属性值为空表示提交到当前脚本。我们也可以通过 select 的name 属性获取下拉菜单的值 12345678910111213141516171819202">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-17T10:38:47.000Z">
-<meta property="article:modified_time" content="2020-10-17T11:52:06.118Z">
+<meta property="article:published_time" content="2020-11-10T13:31:50.000Z">
+<meta property="article:modified_time" content="2020-11-10T13:32:27.595Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="tag1">
-<meta property="article:tag" content="tag2">
-<meta property="article:tag" content="tag3">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -334,11 +331,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-my-second-blog" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-表单" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/10/17/my-second-blog/" class="article-date">
-      <time datetime="2020-10-17T10:38:47.000Z" itemprop="datePublished">2020-10-17</time>
+      <a href="/2020/11/10/%E8%A1%A8%E5%8D%95/" class="article-date">
+      <time datetime="2020-11-10T13:31:50.000Z" itemprop="datePublished">2020-11-10</time>
 </a>
     </div>
   
@@ -351,7 +348,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PHP(一）
+      表单
     </h1>
   
 
@@ -361,10 +358,6 @@
         
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/" rel="tag">tag1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag2/" rel="tag">tag2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag3/" rel="tag">tag3</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -372,83 +365,84 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <ol>
-<li><p>什么是PHP?<br>PHP即“超文本预处理器”，是一种通用开源脚本语言。<br>PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言,与C语言类似，是常用的网站编程语言。<br>PHP独特的语法混合了C、Java、Perl以及 PHP 自创的语法。</p>
+        <h1 id="PHP-表单和用户输入"><a href="#PHP-表单和用户输入" class="headerlink" title="PHP 表单和用户输入"></a>PHP 表单和用户输入</h1><h2 id="PHP-表单处理"><a href="#PHP-表单处理" class="headerlink" title="PHP 表单处理"></a>PHP 表单处理</h2><p>当我们处理 HTML 表单时，PHP 能把来自HTML页面的bi表单元素自动变换为供PHP使用的脚本使用。</p>
+<h2 id="PHP-获取下拉菜单的数据"><a href="#PHP-获取下拉菜单的数据" class="headerlink" title="PHP 获取下拉菜单的数据"></a>PHP 获取下拉菜单的数据</h2><ul>
+<li><h3 id="PHP-下拉菜单单选"><a href="#PHP-下拉菜单单选" class="headerlink" title="PHP 下拉菜单单选"></a>PHP 下拉菜单单选</h3><p>表单使用 GET 方式获取数据，而action 属性值为空表示提交到当前脚本。我们也可以通过 select 的name 属性获取下拉菜单的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$q &#x3D; isset($_GET[&#39;q&#39;])? htmlspecialchars($_GET[&#39;q&#39;]) : &#39;&#39;;</span><br><span class="line">if($q) &#123;</span><br><span class="line">        if($q &#x3D;&#x3D;&#39;RUNOOB&#39;) &#123;</span><br><span class="line">                echo &#39;菜鸟教程&lt;br&gt;http:&#x2F;&#x2F;www.runoob.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;GOOGLE&#39;) &#123;</span><br><span class="line">                echo &#39;Google 搜索&lt;br&gt;http:&#x2F;&#x2F;www.google.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;TAOBAO&#39;) &#123;</span><br><span class="line">                echo &#39;淘宝&lt;br&gt;http:&#x2F;&#x2F;www.taobao.com&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;get&quot;&gt; </span><br><span class="line">    &lt;select name&#x3D;&quot;q&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&quot;&gt;选择一个站点:&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;RUNOOB&quot;&gt;Runoob&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;GOOGLE&quot;&gt;Google&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;TAOBAO&quot;&gt;Taobao&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 </li>
-<li><p>基本的PHP语法<br>PHP脚本可以放在文档中的任何位置;PHP文件的默认文件扩展名是”.php”。<br>【语法格式】</p>
-<!DOCTYPE html>
-<html>
-<body>
+</ul>
+<ul>
+<li><h3 id="PHP-下拉菜单多选"><a href="#PHP-下拉菜单多选" class="headerlink" title="PHP 下拉菜单多选"></a>PHP 下拉菜单多选</h3></li>
+</ul>
+<p>我们通过将设置 select name=“q[]” 以数组的方式获取，或者使用POST 方式提交，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$q &#x3D; isset($_POST[&#39;q&#39;])? $_POST[&#39;q&#39;] : &#39;&#39;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites &#x3D; array(</span><br><span class="line">            &#39;RUNOOB&#39; &#x3D;&gt; &#39;菜鸟教程: http:&#x2F;&#x2F;www.runoob.com&#39;,</span><br><span class="line">            &#39;GOOGLE&#39; &#x3D;&gt; &#39;Google 搜索: http:&#x2F;&#x2F;www.google.com&#39;,</span><br><span class="line">            &#39;TAOBAO&#39; &#x3D;&gt; &#39;淘宝: http:&#x2F;&#x2F;www.taobao.com&#39;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        &#x2F;&#x2F; PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt; </span><br><span class="line">    &lt;select multiple&#x3D;&quot;multiple&quot; name&#x3D;&quot;q[]&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&quot;&gt;选择一个站点:&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;RUNOOB&quot;&gt;Runoob&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;GOOGLE&quot;&gt;Google&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;TAOBAO&quot;&gt;Taobao&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
 
-</body></html></li>
-</ol>
-<?php
- //  PHP  代码
-？>
+<h2 id="单选按钮表单"><a href="#单选按钮表单" class="headerlink" title="单选按钮表单"></a>单选按钮表单</h2><p>name属性的值是一致的，而 value 的值不同的</p>
+<h2 id="checkbox-复选框"><a href="#checkbox-复选框" class="headerlink" title="checkbox 复选框"></a>checkbox 复选框</h2><p>他也可以选择多个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$q &#x3D; isset($_POST[&#39;q&#39;])? $_POST[&#39;q&#39;] : &#39;&#39;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites &#x3D; array(</span><br><span class="line">            &#39;RUNOOB&#39; &#x3D;&gt; &#39;菜鸟教程: http:&#x2F;&#x2F;www.runoob.com&#39;,</span><br><span class="line">            &#39;GOOGLE&#39; &#x3D;&gt; &#39;Google 搜索: http:&#x2F;&#x2F;www.google.com&#39;,</span><br><span class="line">            &#39;TAOBAO&#39; &#x3D;&gt; &#39;淘宝: http:&#x2F;&#x2F;www.taobao.com&#39;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        &#x2F;&#x2F; PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;RUNOOB&quot;&gt; Runoob&lt;br&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;GOOGLE&quot;&gt; Google&lt;br&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;TAOBAO&quot;&gt; Taobao&lt;br&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><p>我们应该将表单的数据传给当前页面（如果能用异步提交的方式更好），而不是跳转到不同的页面。这样用户就可以在同一张表单中得到错误的信息，更容易去发现错误。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>验证规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名字</td>
+<td>必须。 +只能包含字母和空格</td>
+</tr>
+<tr>
+<td>E-mail</td>
+<td>必须。 + 必须是一个有效的电子邮件地址（包含‘@’和’.’）</td>
+</tr>
+<tr>
+<td>网址</td>
+<td>可选。如果存在，它必须包含一个有效的URL</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>可选。多行输入字段（文本域）</td>
+</tr>
+<tr>
+<td>性别</td>
+<td>必须。 必须选择一个</td>
+</tr>
+</tbody></table>
+<ul>
+<li><h3 id="文本字段"><a href="#文本字段" class="headerlink" title="文本字段"></a>文本字段</h3></li>
+</ul>
+<p>其中名字，邮箱，网址为文本输入元素；备注字段是 textarea。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">“名字”: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;name&quot;&gt;</span><br><span class="line">E-mail: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;email&quot;&gt;</span><br><span class="line">网址: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;website&quot;&gt;</span><br><span class="line">备注: &lt;textarea name&#x3D;&quot;comment&quot; rows&#x3D;&quot;5&quot; cols&#x3D;&quot;40&quot;&gt;&lt;&#x2F;textarea&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4><p>$_SERVER[“PHP_SELF”]是超级全局变量，返回当前正在执行脚本的文件名，与 document root相关。（有可能会被黑客使用）（会被植入脚本，因为跨网站脚本是附在执行文件的路径后面的，因此$_SERVER[“PHP_SELF”]的字符串就会包含HTTP链接后面的JavaScript程序代码）</p>
+<hr>
+<p>XSS又叫 CSS (Cross-Site Script) ,跨站脚本攻击。恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</p>
+<hr>
+<p>因此， $_SERVER[“PHP_SELF”] 会发送表单数据到当前页面，而不是跳转到不同的页面。</p>
+<p>htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体。</p>
+<p>预定义的字符是：</p>
+<ul>
+<li>&amp; （和号） 成为 &amp;</li>
+<li>“ （双引号） 成为 &quot;</li>
+<li>‘ （单引号） 成为 &#039;</li>
+<li>&lt; （小于） 成为 &lt;</li>
+<li>&gt; （大于） 成为 &gt;</li>
+</ul>
+<hr>
+<h2 id="如何避免-SERVER-“PHP-SELF”-被利用"><a href="#如何避免-SERVER-“PHP-SELF”-被利用" class="headerlink" title="如何避免 $_SERVER[“PHP_SELF”] 被利用?"></a>如何避免 $_SERVER[“PHP_SELF”] 被利用?</h2><p>可以通过 htmlspecialchars() 函数来避免被利用</p>
+<p>form 代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method&#x3D;&quot;post&quot; action&#x3D;&quot;&lt;?php echo htmlspecialchars($_SERVER[&quot;PHP_SELF&quot;]);?&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>htmlspecialchars() 把一些预定义的字符转换为 HTML 实体。现在如果用户想利用 PHP_SELF 变量, 结果将输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method&#x3D;&quot;post&quot; action&#x3D;&quot;test_form.php&#x2F;&quot;&gt;&lt;script&gt;alert(&#39;hacked&#39;)&lt;&#x2F;script&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 
-除此之外，PHP文件通常包含HTML标签和一些PHP
-PS：(1)PHP 中的每个代码行都必须以分号结束。(分号是一种分隔符，用于把指令集区分开来。)
-(2)通过 PHP，有两种在浏览器输出文本的基础指令：echo 和 print。
-
-3. PHP中的注释
-实例：
-<!DOCTYPE html>
-<html>
-<body>
-
-<?php
- //  这是 PHP 单行注释
-/*
-这是
-PHP 多行
-注释
-*/
-？>
-</body>
-</html>
-
-4. echo和print语法
-（1）区别：
-         echo---可以输出一个或多个字符串
-         print---只允许输出一个字符串，返回值总为1
-         PS：echo输出的速度比print快， echo 没有返回值，print有返回值1
-  (2)  echo 语句
-         echo 是一个语言结构，使用的时候可以不用加括号，也可以加上括号： echo 或 echo()。
-    <1>显示字符串
-    下面实例演示了如何使用echo命令输出字符串（包含HTML标签）
-    实例：
-<?php
-echo "<h2>PHP 很有趣！;
-echo"Hello world!<br>";
-echo"我要学  PHP!<br>";
-echo"这是一个"，"字符串","使用了","多个","参数”；
-？>
-运行结果：
-Hello world!
-我要学 PHP!
-这是一个字符串，使用了多个参数。
-    <2>显示变量
-    下面实例演示了如何使用echo命令输出变量和字符串；
-    实例：
-<?php
-$txt1="学习 PHP";
-$txt2="RUNOOB.COM";
-$cars=array("Volvo","BMW","Toyota");
-
-echo $txt1;
-echo "<br>";
-echo "在 $txt2 学习 PHP ";
-echo "<br>";
-echo "我车的品牌是 {$cars[0]}";
-?>
-<p>运行结果：<br>学习 PHP<br>在 RUNOOB.COM 学习 PHP<br>我车的品牌是 Volvo<br>   (3) print语句<br>    print和echo是同一语言结构，可以使用括号，也可以不使用括号： print 或 print()。<br>    &lt;1&gt;显示字符串<br>    下面实例演示了如何使用print命令输出字符串（包含HTML标签）<br>  实例：<br><?php
-print "<h2>PHP 很有趣!";
-print "Hello world!<br>";
-print "我要学习 PHP!";
-?><br>运行结果：<br>Hello world!<br>我要学习 PHP!<br>      &lt;2&gt;显示变量<br>      下面实例演示了如何使用print命令输出变量和字符串；<br>实例：<br>&lt;?php<br>$txt1=”学习 PHP”;<br>$txt2=”RUNOOB.COM”;<br>$cars=array(“Volvo”,”BMW”,”Toyota”);</p>
-<p>print $txt1;<br>print “<br>“;<br>print “在 $txt2 学习 PHP “;<br>print “<br>“;<br>print “我车的品牌是 {$cars[0]}”;<br>?&gt;<br>运行结果：<br>学习 PHP<br>在 RUNOOB.COM 学习 PHP<br>我车的品牌是 Volvo</p>
-</2></1>
       
       
         <div class="page-reward">
@@ -503,13 +497,13 @@ print "我要学习 PHP!";
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2020/10/17/my-second-blog/">PHP(一）</a></p>
+        <p><span>本文标题:</span><a href="/2020/11/10/%E8%A1%A8%E5%8D%95/">表单</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2020年10月17日 - 18时38分</p>
-        <p><span>最后更新:</span>2020年10月17日 - 19时52分</p>
+        <p><span>发布时间:</span>2020年11月10日 - 21时31分</p>
+        <p><span>最后更新:</span>2020年11月10日 - 21时32分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2020/10/17/my-second-blog/" title="PHP(一）">http://example.com/2020/10/17/my-second-blog/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://example.com/2020/10/17/my-second-blog/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/11/10/%E8%A1%A8%E5%8D%95/" title="表单">http://example.com/2020/11/10/%E8%A1%A8%E5%8D%95/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2020/11/10/%E8%A1%A8%E5%8D%95/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -522,18 +516,9 @@ print "我要学习 PHP!";
 
 <nav id="article-nav">
   
-    <a href="/2020/10/18/my-third-blog/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          PHP(二）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/10/17/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HTTP基础知识</div>
+    <a href="/2020/11/07/PHP-8-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP-8</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -544,7 +529,7 @@ print "我要学习 PHP!";
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-%E8%A1%A8%E5%8D%95%E5%92%8C%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">PHP 表单和用户输入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">PHP 表单处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-%E8%8E%B7%E5%8F%96%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.</span> <span class="toc-text">PHP 获取下拉菜单的数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E5%8D%95%E9%80%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">PHP 下拉菜单单选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E5%A4%9A%E9%80%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">PHP 下拉菜单多选</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E8%A1%A8%E5%8D%95"><span class="toc-number">1.3.</span> <span class="toc-text">单选按钮表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checkbox-%E5%A4%8D%E9%80%89%E6%A1%86"><span class="toc-number">1.4.</span> <span class="toc-text">checkbox 复选框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="toc-number">1.5.</span> <span class="toc-text">表单验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%AD%97%E6%AE%B5"><span class="toc-number">1.5.1.</span> <span class="toc-text">文本字段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">补充：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D-SERVER-%E2%80%9CPHP-SELF%E2%80%9D-%E8%A2%AB%E5%88%A9%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">如何避免 $_SERVER[“PHP_SELF”] 被利用?</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -613,13 +598,11 @@ print "我要学习 PHP!";
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/10/18/my-third-blog/" title="上一篇: PHP(二）">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2020/10/17/my-first-blog/" title="下一篇: HTTP基础知识">
+            <a href="/2020/11/07/PHP-8-1/" title="下一篇: PHP-8">
                 <i class="fa fa-angle-right"></i>
             </a>
         
