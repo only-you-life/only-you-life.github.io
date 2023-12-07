@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>appweb-aria2 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AppWeb认证绕过漏洞（CVE-2018-8715）简介介绍AppWeb是Embedthis Software LLC公司负责开发维护的一个基于GPL开源协议的嵌入式Web Server。他使用C&#x2F;C++来编写，能够运行在几乎先进所有流行的操作系统上。当然他最主要的应用场景还是为嵌入式设备提供Web Application容器。 AppWeb可以进行认证配置，其认证方式包括以下三种：  basi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="appweb-aria2">
+<meta property="og:url" content="http://example.com/2023/11/15/appweb-aria2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AppWeb认证绕过漏洞（CVE-2018-8715）简介介绍AppWeb是Embedthis Software LLC公司负责开发维护的一个基于GPL开源协议的嵌入式Web Server。他使用C&#x2F;C++来编写，能够运行在几乎先进所有流行的操作系统上。当然他最主要的应用场景还是为嵌入式设备提供Web Application容器。 AppWeb可以进行认证配置，其认证方式包括以下三种：  basi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115160232478.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115160303955.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115160513956.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115160702017.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115160804913.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115161943525.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115161925642.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115164230367.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115172256768.png">
+<meta property="og:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115172928927.png">
+<meta property="article:published_time" content="2023-11-15T07:48:56.000Z">
+<meta property="article:modified_time" content="2023-11-15T09:29:30.149Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="appweb aria2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/11/15/appweb-aria2/image-20231115160232478.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-appweb-aria2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/11/15/appweb-aria2/" class="article-date">
+  	<time datetime="2023-11-15T07:48:56.000Z" itemprop="datePublished">2023-11-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      appweb-aria2
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/appweb-aria2/" rel="tag">appweb aria2</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AppWeb认证绕过漏洞（CVE-2018-8715）"><a href="#AppWeb认证绕过漏洞（CVE-2018-8715）" class="headerlink" title="AppWeb认证绕过漏洞（CVE-2018-8715）"></a>AppWeb认证绕过漏洞（CVE-2018-8715）</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>AppWeb是Embedthis Software LLC公司负责开发维护的一个基于GPL开源协议的嵌入式Web Server。他使用C/C++来编写，能够运行在几乎先进所有流行的操作系统上。当然他最主要的应用场景还是为嵌入式设备提供Web Application容器。</p>
+<p>AppWeb可以进行认证配置，其认证方式包括以下三种：</p>
+<ul>
+<li>basic 传统HTTP基础认证</li>
+<li>digest 改进版HTTP基础认证，认证成功后将使用Cookie来保存状态，而不用再传递Authorization头</li>
+<li>form 表单认证</li>
+</ul>
+<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>7.0.3之前的版本</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        其7.0.3之前的版本中，对于digest和form两种认证方式，如果用户传入的密码为<code>null</code>（也就是没有传递密码参数），appweb将因为一个逻辑错误导致直接认证成功，并返回session。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个带有digest认证的Appweb 7.0.1服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231115160232478.png" alt="image-20231115160232478"></p>
+<p>访问<code>http://your-ip:8080</code>，可见需要输入账号密码。</p>
+<p><img src="image-20231115160303955.png" alt="image-20231115160303955"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>利用该漏洞需要知道一个已存在的用户名，当前环境下用户名为<code>admin</code>。</p>
+<p>构造头<code>Authorization: Digest username=admin</code>，并发送如下数据包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F; HTTP&#x2F;1.1</span><br><span class="line">Host: example.com</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Authorization: Digest username&#x3D;admin</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可见，因为没有传入密码字段，所以服务端出现错误，直接返回了200，且包含一个session：</p>
+<p><img src="image-20231115160513956.png" alt="image-20231115160513956"></p>
+<p>设置这个session到浏览器，即可正常访问需要认证的页面：</p>
+<p><img src="image-20231115160702017.png" alt="image-20231115160702017"></p>
+<p><img src="image-20231115160804913.png" alt="image-20231115160804913"></p>
+<h1 id="Aria2-任意文件写入漏洞"><a href="#Aria2-任意文件写入漏洞" class="headerlink" title="Aria2 任意文件写入漏洞"></a>Aria2 任意文件写入漏洞</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>​        Aria2是一个命令行下轻量级、多协议、多来源的下载工具（支持 HTTP/HTTPS、FTP、BitTorrent、Metalink），内建XML-RPC和JSON-RPC接口。</p>
+<p>​        RCE漏洞，可以让攻击通过控制文件下载链接，文件储存路径以及文件名，直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。同时通过Aria2提供的其他功能，诸如save-session等也能轻易地实现任意文件写入指定功能。</p>
+<h3 id="漏洞成因-1"><a href="#漏洞成因-1" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        在有权限的情况下，我们可以使用RPC接口来操作aria2来下载文件，将文件下载至任意目录，造成一个任意文件写入漏洞。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>启动漏洞环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231115161943525.png" alt="image-20231115161943525"></p>
+<p>6800是aria2的rpc服务的默认端口，环境启动后，访问<code>http://your-ip:6800/</code>，发现服务已启动并且返回404页面。</p>
+<p><img src="image-20231115161925642.png" alt="image-20231115161925642"></p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>因为rpc通信需要使用json或者xml，不太方便，所以我们可以借助第三方UI来和目标通信，如 <a target="_blank" rel="noopener" href="http://binux.github.io/yaaw/demo/">http://binux.github.io/yaaw/demo/</a> 。</p>
+<p>打开yaaw，点击配置按钮，填入运行aria2的目标域名：<code>http://your-ip:6800/jsonrpc</code>:(配置Setting，按照下面的内容结合自身的ip地址填写， 最后Base Dir不用填写保存后自动显现。)</p>
+<p><img src="image-20231115164230367.png" alt="image-20231115164230367"></p>
+<p>然后点击Add，增加一个新的下载任务。在Dir的位置填写下载至的目录，File Name处填写文件名。比如，我们通过写入一个crond任务来反弹shell：</p>
+<p><img src="image-20231115172256768.png" alt="image-20231115172256768"></p>
+<p>这时候，arai2会将恶意文件（我指定的URL）下载到/etc/cron.d/目录下，文件名为shell。而在debian中，/etc/cron.d目录下的所有文件将被作为计划任务配置文件（类似crontab）读取，等待一分钟不到即成功反弹shell：</p>
+<p>如果反弹不成功，注意crontab文件的格式，以及换行符必须是<code>\n</code>，且文件结尾需要有一个换行符。</p>
+<p><img src="image-20231115172928927.png" alt="image-20231115172928927"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/16/bash-cacti/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          bash-cacti
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/10/apisix/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">apisix</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

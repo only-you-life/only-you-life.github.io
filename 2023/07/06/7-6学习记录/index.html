@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>7-6学习记录 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="7.6学习记录数组能够在单个变量中存储多个值，可以根据键访问其中的值 创建数组array()array() 函数用于创建数组 类型：  数值数组 - 带有数字 ID 键的数组 关联数组 - 带有指定的键的数组，每个键关联一个值 多维数组 - 包含一个或多个数组的数组  获取数组长度–count()函数count() 函数用于返回数组的长度（元素的数量） 遍历数值数组使用for循环 123456$c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7-6学习记录">
+<meta property="og:url" content="http://example.com/2023/07/06/7-6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="7.6学习记录数组能够在单个变量中存储多个值，可以根据键访问其中的值 创建数组array()array() 函数用于创建数组 类型：  数值数组 - 带有数字 ID 键的数组 关联数组 - 带有指定的键的数组，每个键关联一个值 多维数组 - 包含一个或多个数组的数组  获取数组长度–count()函数count() 函数用于返回数组的长度（元素的数量） 遍历数值数组使用for循环 123456$c">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-06T08:57:36.000Z">
+<meta property="article:modified_time" content="2023-07-06T09:03:05.504Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-7-6学习记录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/07/06/7-6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  	<time datetime="2023-07-06T08:57:36.000Z" itemprop="datePublished">2023-07-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      7-6学习记录
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="7-6学习记录"><a href="#7-6学习记录" class="headerlink" title="7.6学习记录"></a>7.6学习记录</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>能够在单个变量中存储多个值，可以根据键访问其中的值</p>
+<h3 id="创建数组array"><a href="#创建数组array" class="headerlink" title="创建数组array()"></a>创建数组array()</h3><p>array() 函数用于创建数组</p>
+<p><strong>类型：</strong></p>
+<ul>
+<li><strong>数值数组</strong> - 带有数字 ID 键的数组</li>
+<li><strong>关联数组</strong> - 带有指定的键的数组，每个键关联一个值</li>
+<li><strong>多维数组</strong> - 包含一个或多个数组的数组</li>
+</ul>
+<h3 id="获取数组长度–count-函数"><a href="#获取数组长度–count-函数" class="headerlink" title="获取数组长度–count()函数"></a>获取数组长度–count()函数</h3><p>count() 函数用于返回数组的长度（元素的数量）</p>
+<h3 id="遍历数值数组"><a href="#遍历数值数组" class="headerlink" title="遍历数值数组"></a>遍历数值数组</h3><p>使用for循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$cars&#x3D;array(&quot;vvv&quot;,&quot;bbb&quot;,&quot;ttt&quot;);</span><br><span class="line">for($x&#x3D;0;$x&lt;count($cars);$x++)</span><br><span class="line">&#123;</span><br><span class="line">    echo $cars[$x];</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关联数组"><a href="#关联数组" class="headerlink" title="关联数组"></a>关联数组</h3><p>是使用我们分配给数组的指定的键的数组</p>
+<p>创建关联数组的方法有两种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$age&#x3D;array(&quot;Peter&quot;&#x3D;&gt;&quot;35&quot;,&quot;Ben&quot;&#x3D;&gt;&quot;37&quot;,&quot;Joe&quot;&#x3D;&gt;&quot;43&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$age[&#39;Peter&#39;]&#x3D;&quot;35&quot;;</span><br><span class="line">$age[&#39;Ben&#39;]&#x3D;&quot;37&quot;;</span><br><span class="line">$age[&#39;Joe&#39;]&#x3D;&quot;43&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历关联数组"><a href="#遍历关联数组" class="headerlink" title="遍历关联数组"></a>遍历关联数组</h3><p>使用foreach循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$age&#x3D;array(&quot;Peter&quot;&#x3D;&gt;&quot;35&quot;,&quot;Ben&quot;&#x3D;&gt;&quot;37&quot;,&quot;Joe&quot;&#x3D;&gt;&quot;43&quot;);</span><br><span class="line">foreach($age as $x&#x3D;&gt;$x_value)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;Key&#x3D;&quot; . $x . &quot;, Value&#x3D;&quot; . $x_value;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><p>可以按字母或数字顺序进行降序或升序排列。</p>
+<h3 id="数组排序函数"><a href="#数组排序函数" class="headerlink" title="数组排序函数"></a>数组排序函数</h3><ul>
+<li>sort() - 对数组进行升序排列</li>
+<li>rsort() - 对数组进行降序排列</li>
+<li>asort() - 根据关联数组的<strong>值</strong>，对数组进行<strong>升序</strong>排列</li>
+<li>ksort() - 根据关联数组的<strong>键</strong>，对数组进行<strong>升序</strong>排列</li>
+<li>arsort() - 根据关联数组的<strong>值</strong>，对数组进行<strong>降序</strong>排列</li>
+<li>krsort() - 根据关联数组的<strong>键</strong>，对数组进行<strong>降序</strong>排列</li>
+</ul>
+<h2 id="超级全局变量"><a href="#超级全局变量" class="headerlink" title="超级全局变量"></a>超级全局变量</h2><p>是PHP系统中自带的变量，在一个脚本的全部作用域中都可用</p>
+<p>在PHP中已经预定义了几个超级全局变量，这意味着它们在一个脚本的全部作用域中都可用。 不需要特别说明，就可以在函数及类中使用。</p>
+<p>PHP 超级全局变量列表:</p>
+<ul>
+<li>$GLOBALS</li>
+<li>$_SERVER</li>
+<li>$_REQUEST</li>
+<li>$_POST</li>
+<li>$_GET</li>
+<li>$_FILES</li>
+<li>$_ENV</li>
+<li>$_COOKIE</li>
+<li>$_SESSION</li>
+</ul>
+<h3 id="GLOBALS"><a href="#GLOBALS" class="headerlink" title="$GLOBALS"></a>$GLOBALS</h3><ul>
+<li><p>是PHP的一个超级全局变量组，在一个PHP脚本的全部作用域中都可以访问。</p>
+</li>
+<li><p>是一个包含了全部变量的全局组合数组。变量的名字就是数组的键。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$x &#x3D; 75; </span><br><span class="line">$y &#x3D; 25;</span><br><span class="line">function addition() </span><br><span class="line">&#123; </span><br><span class="line">    $GLOBALS[&#39;z&#39;] &#x3D; $GLOBALS[&#39;x&#39;] + $GLOBALS[&#39;y&#39;]; </span><br><span class="line">&#125;</span><br><span class="line">addition(); </span><br><span class="line">echo $z; </span><br></pre></td></tr></table></figure>
+
+<h3 id="SERVER"><a href="#SERVER" class="headerlink" title="$_SERVER"></a>$_SERVER</h3><p>是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组。这个数组中的项目由 Web 服务器创建。不能保证每个服务器都提供全部项目；服务器可能会忽略一些，或者提供一些没有在这里列举出来的项目。</p>
+<table>
+<thead>
+<tr>
+<th align="left">元素/代码</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$_SERVER[‘PHP_SELF’]</td>
+<td align="left">当前执行脚本的文件名，与 document root 有关。例如，在地址为 <a href="http://example.com/test.php/foo.bar">http://example.com/test.php/foo.bar</a> 的脚本中使用 $<em>SERVER[‘PHP_SELF’] 将得到 /test.php/foo.bar。__FILE_</em> 常量包含当前(例如包含)文件的完整路径和文件名。 从 PHP 4.3.0 版本开始，如果 PHP 以命令行模式运行，这个变量将包含脚本名。之前的版本该变量不可用。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘GATEWAY_INTERFACE’]</td>
+<td align="left">服务器使用的 CGI 规范的版本；例如，”CGI/1.1”。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_ADDR’]</td>
+<td align="left">当前运行脚本所在的服务器的 IP 地址。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_NAME’]</td>
+<td align="left">当前运行脚本所在的服务器的主机名。如果脚本运行于虚拟主机中，该名称是由那个虚拟主机所设置的值决定。(如: <a target="_blank" rel="noopener" href="http://www.runoob.com/">www.runoob.com</a>)</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_SOFTWARE’]</td>
+<td align="left">服务器标识字符串，在响应请求时的头信息中给出。 (如：Apache/2.2.24)</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_PROTOCOL’]</td>
+<td align="left">请求页面时通信协议的名称和版本。例如，”HTTP/1.0”。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘REQUEST_METHOD’]</td>
+<td align="left">访问页面使用的请求方法；例如，”GET”, “HEAD”，”POST”，”PUT”。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘REQUEST_TIME’]</td>
+<td align="left">请求开始时的时间戳。从 PHP 5.1.0 起可用。 (如：1377687496)</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘QUERY_STRING’]</td>
+<td align="left">query string（查询字符串），如果有的话，通过它进行页面访问。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘HTTP_ACCEPT’]</td>
+<td align="left">当前请求头中 Accept: 项的内容，如果存在的话。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘HTTP_ACCEPT_CHARSET’]</td>
+<td align="left">当前请求头中 Accept-Charset: 项的内容，如果存在的话。例如：”iso-8859-1,*,utf-8”。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘HTTP_HOST’]</td>
+<td align="left">当前请求头中 Host: 项的内容，如果存在的话。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘HTTP_REFERER’]</td>
+<td align="left">引导用户代理到当前页的前一页的地址（如果存在）。由 user agent 设置决定。并不是所有的用户代理都会设置该项，有的还提供了修改 HTTP_REFERER 的功能。简言之，该值并不可信。)</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘HTTPS’]</td>
+<td align="left">如果脚本是通过 HTTPS 协议被访问，则被设为一个非空的值。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘REMOTE_ADDR’]</td>
+<td align="left">浏览当前页面的用户的 IP 地址。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘REMOTE_HOST’]</td>
+<td align="left">浏览当前页面的用户的主机名。DNS 反向解析不依赖于用户的 REMOTE_ADDR。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘REMOTE_PORT’]</td>
+<td align="left">用户机器上连接到 Web 服务器所使用的端口号。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SCRIPT_FILENAME’]</td>
+<td align="left">当前执行脚本的绝对路径。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_ADMIN’]</td>
+<td align="left">该值指明了 Apache 服务器配置文件中的 SERVER_ADMIN 参数。如果脚本运行在一个虚拟主机上，则该值是那个虚拟主机的值。(如：<a href="mailto:&#x73;&#111;&#109;&#101;&#111;&#x6e;&#x65;&#64;&#x72;&#117;&#110;&#111;&#x6f;&#x62;&#46;&#99;&#111;&#109;">&#x73;&#111;&#109;&#101;&#111;&#x6e;&#x65;&#64;&#x72;&#117;&#110;&#111;&#x6f;&#x62;&#46;&#99;&#111;&#109;</a>)</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_PORT’]</td>
+<td align="left">Web 服务器使用的端口。默认值为 “80”。如果使用 SSL 安全连接，则这个值为用户设置的 HTTP 端口。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SERVER_SIGNATURE’]</td>
+<td align="left">包含了服务器版本和虚拟主机名的字符串。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘PATH_TRANSLATED’]</td>
+<td align="left">当前脚本所在文件系统（非文档根目录）的基本路径。这是在服务器进行虚拟到真实路径的映像后的结果。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SCRIPT_NAME’]</td>
+<td align="left">包含当前脚本的路径。这在页面需要指向自己时非常有用。<strong>FILE</strong> 常量包含当前脚本(例如包含文件)的完整路径和文件名。</td>
+</tr>
+<tr>
+<td align="left">$_SERVER[‘SCRIPT_URI’]</td>
+<td align="left">URI 用来指定要访问的页面。例如 “/index.html”。</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">echo $_SERVER[&#39;PHP_SELF&#39;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#39;SERVER_NAME&#39;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#39;HTTP_HOST&#39;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#39;HTTP_REFERER&#39;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#39;HTTP_USER_AGENT&#39;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#39;SCRIPT_NAME&#39;];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;try&#x2F;demo_source&#x2F;demo_global_server.php</span><br><span class="line">nil123.com</span><br><span class="line">www.runoob.com</span><br><span class="line">https:&#x2F;&#x2F;www.runoob.com&#x2F;try&#x2F;showphp.php?filename&#x3D;demo_global_server</span><br><span class="line">Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;114.0.0.0 Safari&#x2F;537.36 Edg&#x2F;114.0.1823.67</span><br><span class="line">&#x2F;try&#x2F;demo_source&#x2F;demo_global_server.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="REQUEST"><a href="#REQUEST" class="headerlink" title="$_REQUEST"></a>$_REQUEST</h3><p>用于收集HTML表单提交的数据,在HTML form标签的指定该属性：”method=”post”。</p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="$_POST"></a>$_POST</h3><p>被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”post”。</p>
+<h3 id="GET"><a href="#GET" class="headerlink" title="$_GET"></a>$_GET</h3><p>被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”get”。</p>
+<p>$_GET 也可以收集URL中发送的数据。</p>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><p>循环执行代码块指定的次数，或者当指定的条件为真时循环执行代码块。</p>
+<p><strong>循环语句：</strong></p>
+<ul>
+<li><strong>while</strong> - 只要指定的条件成立，则循环执行代码块</li>
+<li><strong>do…while</strong> - 首先执行一次代码块，然后在指定的条件成立时重复这个循环</li>
+<li><strong>for</strong> - 循环执行代码块指定的次数</li>
+<li><strong>foreach</strong> - 根据数组中每个元素来循环代码块</li>
+</ul>
+<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><p>将重复执行代码块，直到指定的条件不成立</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (条件)</span><br><span class="line">&#123;</span><br><span class="line">    要执行的代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="do…while语句"><a href="#do…while语句" class="headerlink" title="do…while语句"></a>do…while语句</h3><p>会至少执行一次代码，然后检查条件，只要条件成立，就会重复进行循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">    要执行的代码;</span><br><span class="line">&#125;</span><br><span class="line">while (条件);</span><br></pre></td></tr></table></figure>
+
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>循环执行代码块指定的次数，或者当指定的条件为真时循环执行代码块。</p>
+<p>用于预先知道脚本需要运行的次数的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (初始值; 条件; 增量)</span><br><span class="line">&#123;</span><br><span class="line">    要执行的代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<ul>
+<li><strong>初始值</strong>：主要是初始化一个变量值，用于设置一个计数器（但可以是任何在循环的开始被执行一次的代码）。</li>
+<li><strong>条件</strong>：循环执行的限制条件。如果为 TRUE，则循环继续。如果为 FALSE，则循环结束。</li>
+<li><strong>增量</strong>：主要用于递增计数器（但可以是任何在循环的结束被执行的代码）。</li>
+</ul>
+<p><strong>PS：</strong>初始值和增量参数均可为空，或者有多个表达式(用逗号分隔)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">for ($i&#x3D;1; $i&lt;&#x3D;5; $i++)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;数字为 &quot; . $i . PHP_EOL;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>.PHP_EOL是换行用的</p>
+<h3 id="foreach循环"><a href="#foreach循环" class="headerlink" title="foreach循环"></a>foreach循环</h3><p>用于遍历数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foreach ($array as $value)</span><br><span class="line">&#123;</span><br><span class="line">    要执行代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历关联数组：</p>
+<p>每进行一次循环，当前数组元素的值就会被赋值给 $value 变量（数组指针会逐一地移动），在进行下一次循环时，将看到数组中的下一个值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foreach ($array as $key &#x3D;&gt; $value)</span><br><span class="line">&#123;</span><br><span class="line">    要执行代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一次循环，当前数组元素的键与值就都会被赋值给 $key 和 $value 变量（数字指针会逐一地移动），在进行下一次循环时，你将看到数组中的下一个键与值。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是通过调用函数来执行的，可以在页面的任何位置调用函数。</p>
+<h3 id="创建PHP函数"><a href="#创建PHP函数" class="headerlink" title="创建PHP函数"></a>创建PHP函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function functionName()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 要执行的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数准则：</p>
+<ul>
+<li>函数的名称应该提示出它的功能</li>
+<li>函数名称以字母或下划线开头（不能以数字开头）</li>
+</ul>
+<h3 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h3><p>为了给函数添加更多的功能，可以添加参数，参数类似变量。</p>
+<p>参数就在函数名称后面的一个括号内指定。</p>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>如需让函数返回一个值，请使用 return 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function add($x,$y)</span><br><span class="line">&#123;</span><br><span class="line">    $total&#x3D;$x+$y;</span><br><span class="line">    return $total;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">echo &quot;1 + 16 &#x3D; &quot; . add(1,16);</span><br></pre></td></tr></table></figure>
+
+<h2 id="魔术常量"><a href="#魔术常量" class="headerlink" title="魔术常量"></a>魔术常量</h2><p>它们的值随着它们在代码中的位置改变而改变</p>
+<h3 id="LINE"><a href="#LINE" class="headerlink" title="__LINE__"></a>__LINE__</h3><p>文件中的当前行号。</p>
+<h3 id="FILE"><a href="#FILE" class="headerlink" title="__FILE__"></a>__FILE__</h3><p>文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名。</p>
+<h3 id="DIR"><a href="#DIR" class="headerlink" title="__DIR__"></a>__DIR__</h3><p>文件所在的目录。如果用在被包括文件中，则返回被包括的文件所在的目录。</p>
+<p>它等价于 dirname(__FILE__)。除非是根目录，否则目录中名不包括末尾的斜杠</p>
+<h3 id="FUNCTION"><a href="#FUNCTION" class="headerlink" title="__FUNCTION__"></a>__FUNCTION__</h3><p>函数名称。自 PHP 5 起本常量返回该函数被定义时的名字（区分大小写）</p>
+<h3 id="CLASS"><a href="#CLASS" class="headerlink" title="__CLASS__"></a>__CLASS__</h3><p>类的名称。自 PHP 5 起本常量返回该类被定义时的名字（区分大小写）。</p>
+<p>在 PHP 4 中该值总是小写字母的。类名包括其被声明的作用区域（例如 Foo\Bar）。注意自 PHP 5.4 起 <strong>CLASS</strong> 对 trait 也起作用。当用在 trait 方法中时，<strong>CLASS</strong> 是调用 trait 方法的类的名字。</p>
+<h3 id="TRAIT"><a href="#TRAIT" class="headerlink" title="__TRAIT__"></a>__TRAIT__</h3><p>Trait 的名字。自 PHP 5.4.0 起，PHP 实现了代码复用的一个方法，称为 traits。</p>
+<p>Trait 名包括其被声明的作用区域（例如 Foo\Bar）。</p>
+<p>从基类继承的成员被插入的 SayWorld Trait 中的 MyHelloWorld 方法所覆盖。其行为 MyHelloWorld 类中定义的方法一致。优先顺序是当前类中的方法会覆盖 trait 方法，而 trait 方法又覆盖了基类中的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">    public function sayHello() &#123;</span><br><span class="line">        echo &#39;Hello &#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">trait SayWorld &#123;</span><br><span class="line">    public function sayHello() &#123;</span><br><span class="line">        parent::sayHello();</span><br><span class="line">        echo &#39;World!&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class MyHelloWorld extends Base &#123;</span><br><span class="line">    use SayWorld;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$o &#x3D; new MyHelloWorld();</span><br><span class="line">$o-&gt;sayHello();</span><br></pre></td></tr></table></figure>
+
+<p>输出：Hello World!</p>
+<h3 id="METHOD"><a href="#METHOD" class="headerlink" title="__METHOD__"></a>__METHOD__</h3><p>类的方法名。返回该方法被定义时的名字（区分大小写）。</p>
+<h3 id="NAMESPACE"><a href="#NAMESPACE" class="headerlink" title="__NAMESPACE__"></a>__NAMESPACE__</h3><p>当前命名空间的名称（区分大小写）。此常量是在编译时定义的</p>
+<h2 id="表单和用户输入"><a href="#表单和用户输入" class="headerlink" title="表单和用户输入"></a>表单和用户输入</h2><p> $_GET 和 $_POST 变量用于检索表单中的信息，比如用户输入。</p>
+<h3 id="表单处理"><a href="#表单处理" class="headerlink" title="表单处理"></a>表单处理</h3><p>当处理 HTML 表单时，PHP 能把来自 HTML 页面中的表单元素自动变成可供 PHP 脚本使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;&quot;welcome.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">名字: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;fname&quot;&gt;</span><br><span class="line">年龄: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;age&quot;&gt;</span><br><span class="line">&lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">welcome.php 文件代码：</span><br><span class="line">欢迎&lt;?php echo $_POST[&quot;fname&quot;]; ?&gt;!&lt;br&gt;</span><br><span class="line">你的年龄是 &lt;?php echo $_POST[&quot;age&quot;]; ?&gt;  岁。</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取下拉菜单的数据"><a href="#获取下拉菜单的数据" class="headerlink" title="获取下拉菜单的数据"></a>获取下拉菜单的数据</h3><p>多选使用$_POST,单选使用$_GET</p>
+<h4 id="下拉菜单单选"><a href="#下拉菜单单选" class="headerlink" title="下拉菜单单选"></a>下拉菜单单选</h4><p>设置了下拉菜单三个选项，表单使用 GET 方式获取数据，action 属性值为空表示提交到当前脚本，我们可以通过 select 的 name 属性获取下拉菜单的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q &#x3D; isset($_GET[&#39;q&#39;])? htmlspecialchars($_GET[&#39;q&#39;]) : &#39;&#39;;</span><br><span class="line">if($q) &#123;</span><br><span class="line">        if($q &#x3D;&#x3D;&#39;RUNOOB&#39;) &#123;</span><br><span class="line">                echo &#39;菜鸟教程&lt;br&gt;http:&#x2F;&#x2F;www.runoob.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;GOOGLE&#39;) &#123;</span><br><span class="line">                echo &#39;Google 搜索&lt;br&gt;http:&#x2F;&#x2F;www.google.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;TAOBAO&#39;) &#123;</span><br><span class="line">                echo &#39;淘宝&lt;br&gt;http:&#x2F;&#x2F;www.taobao.com&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;get&quot;&gt; </span><br><span class="line">    &lt;select name&#x3D;&quot;q&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&quot;&gt;选择一个站点:&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;RUNOOB&quot;&gt;Runoob&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;GOOGLE&quot;&gt;Google&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;TAOBAO&quot;&gt;Taobao&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="下拉菜单多选"><a href="#下拉菜单多选" class="headerlink" title="下拉菜单多选"></a>下拉菜单多选</h4><p>如果下拉菜单是多选的（ multiple=”multiple”），我们可以通过将设置 select <strong>name=”q[]”</strong> 以数组的方式获取，以下使用 POST 方式提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q &#x3D; isset($_POST[&#39;q&#39;])? $_POST[&#39;q&#39;] : &#39;&#39;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites &#x3D; array(</span><br><span class="line">            &#39;RUNOOB&#39; &#x3D;&gt; &#39;菜鸟教程: http:&#x2F;&#x2F;www.runoob.com&#39;,</span><br><span class="line">            &#39;GOOGLE&#39; &#x3D;&gt; &#39;Google 搜索: http:&#x2F;&#x2F;www.google.com&#39;,</span><br><span class="line">            &#39;TAOBAO&#39; &#x3D;&gt; &#39;淘宝: http:&#x2F;&#x2F;www.taobao.com&#39;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        &#x2F;&#x2F; PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt; </span><br><span class="line">    &lt;select multiple&#x3D;&quot;multiple&quot; name&#x3D;&quot;q[]&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&quot;&gt;选择一个站点:&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;RUNOOB&quot;&gt;Runoob&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;GOOGLE&quot;&gt;Google&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;TAOBAO&quot;&gt;Taobao&lt;&#x2F;option&gt;</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="单选按钮表单"><a href="#单选按钮表单" class="headerlink" title="单选按钮表单"></a>单选按钮表单</h3><p>PHP 单选按钮表单中 name 属性的值是一致的，value 值是不同的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q &#x3D; isset($_GET[&#39;q&#39;])? htmlspecialchars($_GET[&#39;q&#39;]) : &#39;&#39;;</span><br><span class="line">if($q) &#123;</span><br><span class="line">        if($q &#x3D;&#x3D;&#39;RUNOOB&#39;) &#123;</span><br><span class="line">                echo &#39;菜鸟教程&lt;br&gt;http:&#x2F;&#x2F;www.runoob.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;GOOGLE&#39;) &#123;</span><br><span class="line">                echo &#39;Google 搜索&lt;br&gt;http:&#x2F;&#x2F;www.google.com&#39;;</span><br><span class="line">        &#125; else if($q &#x3D;&#x3D;&#39;TAOBAO&#39;) &#123;</span><br><span class="line">                echo &#39;淘宝&lt;br&gt;http:&#x2F;&#x2F;www.taobao.com&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;get&quot;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;q&quot; value&#x3D;&quot;RUNOOB&quot; &#x2F;&gt;Runoob</span><br><span class="line">    &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;q&quot; value&#x3D;&quot;GOOGLE&quot; &#x2F;&gt;Google</span><br><span class="line">    &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;q&quot; value&#x3D;&quot;TAOBAO&quot; &#x2F;&gt;Taobao</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="checkbox-复选框"><a href="#checkbox-复选框" class="headerlink" title="checkbox 复选框"></a>checkbox 复选框</h3><p>可以选择多个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q &#x3D; isset($_POST[&#39;q&#39;])? $_POST[&#39;q&#39;] : &#39;&#39;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites &#x3D; array(</span><br><span class="line">            &#39;RUNOOB&#39; &#x3D;&gt; &#39;菜鸟教程: http:&#x2F;&#x2F;www.runoob.com&#39;,</span><br><span class="line">            &#39;GOOGLE&#39; &#x3D;&gt; &#39;Google 搜索: http:&#x2F;&#x2F;www.google.com&#39;,</span><br><span class="line">            &#39;TAOBAO&#39; &#x3D;&gt; &#39;淘宝: http:&#x2F;&#x2F;www.taobao.com&#39;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        &#x2F;&#x2F; PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;</span><br><span class="line">?&gt;&lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;post&quot;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;RUNOOB&quot;&gt; Runoob&lt;br&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;GOOGLE&quot;&gt; Google&lt;br&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;q[]&quot; value&#x3D;&quot;TAOBAO&quot;&gt; Taobao&lt;br&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;提交&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="GET、-POST-和-REQUEST-的区别？"><a href="#GET、-POST-和-REQUEST-的区别？" class="headerlink" title="$_GET、$_POST 和 $_REQUEST 的区别？"></a><strong>$_GET、$_POST 和 $_REQUEST 的区别？</strong></h3><p><strong>$_GET</strong> 变量接受所有以 <strong>get</strong> 方式发送的请求，及浏览器地址栏中的 <strong>?</strong> 之后的内容。</p>
+<p><strong>$_POST</strong> 变量接受所有以 post 方式发送的请求，例如，一个 form 以 <strong>method=post</strong> 提交，提交后 php 会处理 post 过来的全部变量。</p>
+<p><strong>$_REQUEST</strong> 支持两种方式发送过来的请求，即 <strong>post</strong> 和 <strong>get</strong> 它都可以接受，显示不显示要看传递方法，get 会显示在 url 中（有字符数限制），post 不会在 url 中显示，可以传递任意多的数据（只要服务器支持）。</p>
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><p>表单验证规则如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">验证规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">名字</td>
+<td align="left">必须。 +只能包含字母和空格</td>
+</tr>
+<tr>
+<td align="left">E-mail</td>
+<td align="left">必须。 + 必须是一个有效的电子邮件地址（包含‘@’和’.’）</td>
+</tr>
+<tr>
+<td align="left">网址</td>
+<td align="left">可选。如果存在，它必须包含一个有效的URL</td>
+</tr>
+<tr>
+<td align="left">备注</td>
+<td align="left">可选。多行输入字段（文本域）</td>
+</tr>
+<tr>
+<td align="left">性别</td>
+<td align="left">必须。 必须选择一个</td>
+</tr>
+</tbody></table>
+<h3 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h3><p>$_SERVER[“PHP_SELF”]是超级全局变量，返回当前正在执行脚本的文件名，与 document root相关。</p>
+<p> $_SERVER[“PHP_SELF”] 会发送表单数据到当前页面，而不是跳转到不同的页面。</p>
+<p>$_SERVER[“PHP_SELF”] 可以通过 htmlspecialchars() 函数来避免被利用</p>
+<h4 id="htmlspecialchars"><a href="#htmlspecialchars" class="headerlink" title="htmlspecialchars()"></a><strong>htmlspecialchars()</strong></h4><p>htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体。</p>
+<p>预定义的字符是：</p>
+<ul>
+<li>&amp; （和号） 成为 &amp;amp;</li>
+<li>“ （双引号） 成为 &amp;quot;</li>
+<li>‘ （单引号） 成为 &amp;#039;</li>
+<li>&lt; （小于） 成为 &amp;lt;</li>
+<li>&gt; （大于） 成为 &amp;gt;</li>
+</ul>
+<p>当用户提交表单时，将做以下两件事情：</p>
+<ol>
+<li>使用 PHP trim() 函数去除用户输入数据中不必要的字符 (如：空格，tab，换行)。</li>
+<li>使用PHP stripslashes()函数去除用户输入数据中的反斜杠 (\)</li>
+</ol>
+<h2 id="必需字段"><a href="#必需字段" class="headerlink" title="必需字段"></a>必需字段</h2><p>加入了一些新的变量: $nameErr, $emailErr, $genderErr, 和 $websiteErr.。这些错误变量将显示在必需字段上。 我们还为每个$_POST变量增加了一个if else语句。 这些语句将检查 $、_POST 变量是 否为空（使用php的 empty() 函数）。如果为空，将显示对应的错误信息。 如果不为空，数据将传递给test_input() 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 定义变量并默认设为空值</span><br><span class="line">$nameErr &#x3D; $emailErr &#x3D; $genderErr &#x3D; $websiteErr &#x3D; &quot;&quot;;</span><br><span class="line">$name &#x3D; $email &#x3D; $gender &#x3D; $comment &#x3D; $website &#x3D; &quot;&quot;;</span><br><span class="line"></span><br><span class="line">if ($_SERVER[&quot;REQUEST_METHOD&quot;] &#x3D;&#x3D; &quot;POST&quot;) &#123;</span><br><span class="line">  if (empty($_POST[&quot;name&quot;])) &#123;</span><br><span class="line">    $nameErr &#x3D; &quot;名字是必需的。&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $name &#x3D; test_input($_POST[&quot;name&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示错误信息"><a href="#显示错误信息" class="headerlink" title="显示错误信息"></a>显示错误信息</h3><p>为每个字段中添加了一些脚本， 各个脚本会在信息输入错误时显示错误信息。(如果用户未填写信息就提交表单则会输出错误信息)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method&#x3D;&quot;post&quot; action&#x3D;&quot;&lt;?php echo htmlspecialchars($_SERVER[&#39;PHP_SELF&#39;]);?&gt;&quot;&gt; </span><br><span class="line">   名字: &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;name&quot;&gt;</span><br><span class="line">   &lt;span class&#x3D;&quot;error&quot;&gt;* &lt;?php echo $nameErr;?&gt;&lt;&#x2F;span&gt;</span><br><span class="line">   &lt;input type&#x3D;&quot;submit&quot; name&#x3D;&quot;submit&quot; value&#x3D;&quot;Submit&quot;&gt; </span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="验证邮箱和URL"><a href="#验证邮箱和URL" class="headerlink" title="验证邮箱和URL"></a>验证邮箱和URL</h2><p>preg_match — 进行正则表达式匹配。</p>
+<p>语法：</p>
+<p><strong>int preg_match ( string $pattern , string $subject [, array $matches [, int $flags ]] )</strong><br>在 subject 字符串中搜索与 pattern 给出的正则表达式相匹配的内容。如果提供了 matches ，则其会被搜索的结果所填充。$matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推。</p>
+<h3 id="验证名称"><a href="#验证名称" class="headerlink" title="验证名称"></a>验证名称</h3><p>来检测 name 字段是否包含字母和空格，如果 name 字段值不合法，将输出错误信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$name &#x3D; test_input($_POST[&quot;name&quot;]);</span><br><span class="line">if (!preg_match(&quot;&#x2F;^[a-zA-Z ]*$&#x2F;&quot;,$name)) &#123;</span><br><span class="line">  $nameErr &#x3D; &quot;只允许字母和空格&quot;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证邮箱"><a href="#验证邮箱" class="headerlink" title="验证邮箱"></a>验证邮箱</h3><p>来检测 e-mail 地址是否合法。如果 e-mail 地址不合法，将输出错误信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$email &#x3D; test_input($_POST[&quot;email&quot;]);</span><br><span class="line">if (!preg_match(&quot;&#x2F;([\w\-]+\@[\w\-]+\.[\w\-]+)&#x2F;&quot;,$email)) &#123;</span><br><span class="line">  $emailErr &#x3D; &quot;非法邮箱格式&quot;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证URL"><a href="#验证URL" class="headerlink" title="验证URL"></a>验证URL</h3><p>检测URL地址是否合法 (以下正则表达式运行URL中含有破折号:”-“)， 如果 URL 地址不合法，将输出错误信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$website &#x3D; test_input($_POST[&quot;website&quot;]);</span><br><span class="line">if (!preg_match(&quot;&#x2F;\b(?:(?:https?|ftp):\&#x2F;\&#x2F;|www\.)[-a-z0-9+&amp;@#\&#x2F;%?&#x3D;~_|!:,.;]*[-a-z0-9+&amp;@#\&#x2F;%&#x3D;~_|]&#x2F;i&quot;,$website)) &#123;</span><br><span class="line">  $websiteErr &#x3D; &quot;非法的 URL 的地址&quot;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GET变量"><a href="#GET变量" class="headerlink" title="$_GET变量"></a>$_GET变量</h2><p>预定义的 $_GET 变量用于收集来自 method=”get” 的表单中的值。从带有 GET 方法的表单发送的信息，对任何人都是可见的（会显示在浏览器的地址栏），并且对发送信息的量也有限制。</p>
+<p>在 HTML 表单中使用 method=”get” 时，所有的变量名和值都会显示在 URL 中。</p>
+<p><strong>PS：</strong></p>
+<ul>
+<li><p>所以在发送密码或其他敏感信息时，不应该使用这个方法！</p>
+</li>
+<li><p>HTTP GET 方法不适合大型的变量值。它的值是不能超过 2000 个字符的。</p>
+</li>
+</ul>
+<h2 id="POST变量"><a href="#POST变量" class="headerlink" title="$_POST变量"></a>$_POST变量</h2><p>预定义的 $_POST 变量用于收集来自 method=”post” 的表单中的值。</p>
+<p>从带有 POST 方法的表单发送的信息，对任何人都是不可见的（不会显示在浏览器的地址栏），并且对发送信息的量也没有限制。</p>
+<p><strong>PS：</strong>默认情况下，POST 方法的发送信息的量最大值为 8 MB（可通过设置 php.ini 文件中的 post_max_size 进行更改）。</p>
+<p>从带有 POST 方法的表单发送的信息，对任何人都是不可见的，并且对发送信息的量也没有限制</p>
+<h2 id="REQUEST-变量"><a href="#REQUEST-变量" class="headerlink" title="$_REQUEST 变量"></a>$_REQUEST 变量</h2><p>预定义的 $_REQUEST 变量包含了 $_GET、$_POST 和 $_COOKIE 的内容。</p>
+<p>$_REQUEST 变量可用来收集通过 GET 和 POST 方法发送的表单数据。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/08/7-8%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          7-8学习记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/05/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">7-5学习记录</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

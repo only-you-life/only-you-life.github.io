@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>7-8学习记录 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PHP多维数组多维数组是包含一个或多个数组的数组 在多维数组中，主数组中的每一个元素也可以是一个数组，子数组中的每一个元素也可以是一个数组。 一个数组中的值可以是另一个数组，另一个数组的值也可以是一个数组，依照这种方式，可以创建二维或者三维数组。 二维数组12345array (    array (elements...),    array (elements...),    ...)  三维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7-8学习记录">
+<meta property="og:url" content="http://example.com/2023/07/08/7-8%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PHP多维数组多维数组是包含一个或多个数组的数组 在多维数组中，主数组中的每一个元素也可以是一个数组，子数组中的每一个元素也可以是一个数组。 一个数组中的值可以是另一个数组，另一个数组的值也可以是一个数组，依照这种方式，可以创建二维或者三维数组。 二维数组12345array (    array (elements...),    array (elements...),    ...)  三维">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-08T07:13:45.000Z">
+<meta property="article:modified_time" content="2023-07-08T08:36:09.617Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php;mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-7-8学习记录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/07/08/7-8%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  	<time datetime="2023-07-08T07:13:45.000Z" itemprop="datePublished">2023-07-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      7-8学习记录
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-mysql/" rel="tag">php;mysql</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h1 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h1><p>多维数组是包含一个或多个数组的数组</p>
+<p>在多维数组中，主数组中的每一个元素也可以是一个数组，子数组中的每一个元素也可以是一个数组。</p>
+<p>一个数组中的值可以是另一个数组，另一个数组的值也可以是一个数组，依照这种方式，可以创建二维或者三维数组。</p>
+<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array (</span><br><span class="line">    array (elements...),</span><br><span class="line">    array (elements...),</span><br><span class="line">    ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">array (</span><br><span class="line">    array (</span><br><span class="line">        array (elements...),</span><br><span class="line">        array (elements...),</span><br><span class="line">        ...</span><br><span class="line">    ),</span><br><span class="line">    array (</span><br><span class="line">        array (elements...),</span><br><span class="line">        array (elements...),</span><br><span class="line">        ...</span><br><span class="line">    ),</span><br><span class="line">    ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h1 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h1><h2 id="date-函数"><a href="#date-函数" class="headerlink" title="date()函数"></a>date()函数</h2><p>用于格式化时间/日期。</p>
+<p>可把时间戳格式化为可读性更好的日期和时间。</p>
+<p><strong>PS：</strong>时间戳是一个字符序列，表示一定的事件发生的日期/时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string date ( string $format [, int $timestamp ] )</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<ul>
+<li>format: 必需。规定时间戳的格式。</li>
+<li>timestamp: 可选。规定时间戳。默认是当前的日期和时间。</li>
+</ul>
+<h2 id="格式化日期"><a href="#格式化日期" class="headerlink" title="格式化日期"></a>格式化日期</h2><p>format规定了如何格式化日期/时间</p>
+<p>一些可用的字符：</p>
+<ul>
+<li>d -代表月中的天(01-31)</li>
+<li>m -代表月(01-12)</li>
+<li>Y -代表年（四位数）</li>
+</ul>
+<p>可以在字母之间插入其他字符，比如 “/“、”.” 或者 “-“，这样就可以增加附加格式了</p>
+<table>
+<thead>
+<tr>
+<th><em>日</em></th>
+<th>说明</th>
+<th>返回值例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>d</em></td>
+<td>月份中的第几天，有前导零的 2 位数字</td>
+<td><em>01</em> 到 <em>31</em></td>
+</tr>
+<tr>
+<td><em>D</em></td>
+<td>星期中的第几天，文本表示，3 个字母</td>
+<td><em>Mon</em> 到 <em>Sun</em></td>
+</tr>
+<tr>
+<td><em>j</em></td>
+<td>月份中的第几天，没有前导零</td>
+<td><em>1</em> 到 <em>31</em></td>
+</tr>
+<tr>
+<td><em>l</em>（”L”的小写字母）</td>
+<td>星期几，完整的文本格式</td>
+<td><em>Sunday</em> 到 <em>Saturday</em></td>
+</tr>
+<tr>
+<td><em>N</em></td>
+<td>ISO-8601 格式数字表示的星期中的第几天</td>
+<td><em>1</em>（表示星期一）到 <em>7</em>（表示星期天）</td>
+</tr>
+<tr>
+<td><em>S</em></td>
+<td>每月天数后面的英文后缀，2 个字符</td>
+<td><em>st</em>，<em>nd</em>，<em>rd</em> 或者 <em>th</em>。可以和 <em>j</em> 一起用</td>
+</tr>
+<tr>
+<td><em>w</em></td>
+<td>星期中的第几天，数字表示</td>
+<td><em>0</em>（表示星期天）到 <em>6</em>（表示星期六）</td>
+</tr>
+<tr>
+<td><em>z</em></td>
+<td>年份中的第几天</td>
+<td><em>0</em> 到 <em>365</em></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><em>星期</em></th>
+<th>说明</th>
+<th>返回值例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>W</em></td>
+<td>ISO-8601 格式年份中的第几周，每周从星期一开始（PHP 4.1.0 新加的）</td>
+<td>例如：<em>42</em>（当年的第 42 周）</td>
+</tr>
+<tr>
+<td><strong>月</strong></td>
+<td><strong>说明</strong></td>
+<td><strong>返回值例子</strong></td>
+</tr>
+<tr>
+<td><em>F</em></td>
+<td>月份，完整的文本格式，例如 January 或者 March</td>
+<td><em>January</em> 到 <em>December</em></td>
+</tr>
+<tr>
+<td><em>m</em></td>
+<td>数字表示的月份，有前导零</td>
+<td><em>01</em> 到 <em>12</em></td>
+</tr>
+<tr>
+<td><em>M</em></td>
+<td>三个字母缩写表示的月份</td>
+<td><em>Jan</em> 到 <em>Dec</em></td>
+</tr>
+<tr>
+<td><em>n</em></td>
+<td>数字表示的月份，没有前导零</td>
+<td><em>1</em> 到 <em>12</em></td>
+</tr>
+<tr>
+<td><em>t</em></td>
+<td>给定月份所应有的天数</td>
+<td><em>28</em> 到 <em>31</em></td>
+</tr>
+<tr>
+<td><strong>年</strong></td>
+<td><strong>说明</strong></td>
+<td><strong>返回值例子</strong></td>
+</tr>
+<tr>
+<td><em>L</em></td>
+<td>是否为闰年</td>
+<td>如果是闰年为 <em>1</em>，否则为 <em>0</em></td>
+</tr>
+<tr>
+<td><em>o</em></td>
+<td>ISO-8601 格式年份数字。这和 <em>Y</em> 的值相同，只除了如果 ISO 的星期数（<em>W</em>）属于前一年或下一年，则用那一年。（PHP 5.1.0 新加）</td>
+<td>Examples: <em>1999</em> or <em>2003</em></td>
+</tr>
+<tr>
+<td><em>Y</em></td>
+<td>4 位数字完整表示的年份</td>
+<td>例如：<em>1999</em> 或 <em>2003</em></td>
+</tr>
+<tr>
+<td><em>y</em></td>
+<td>2 位数字表示的年份</td>
+<td>例如：<em>99</em> 或 <em>03</em></td>
+</tr>
+</tbody></table>
+<h1 id="包含文件"><a href="#包含文件" class="headerlink" title="包含文件"></a>包含文件</h1><p>可以在服务器执行php文件之前在该文件中插入一个文件的内容</p>
+<p>include 和 require 语句用于在执行流中插入写在其他文件中的有用的代码。</p>
+<p><strong>include 和 require 除了处理错误的方式不同之外，在其他方面都是相同的：</strong></p>
+<ul>
+<li>require 生成一个致命错误（E_COMPILE_ERROR），在错误发生后脚本会停止执行。</li>
+<li>include 生成一个警告（E_WARNING），在错误发生后脚本会继续执行。</li>
+</ul>
+<p>如果希望继续执行，并向用户输出结果，即使包含文件已丢失，那就使用include</p>
+<p>在框架、CMS 或者复杂的 PHP 应用程序编程中，请始终使用 require 向执行流引用关键文件,有助于提高应用程序的安全性和完整性，在某个关键文件意外丢失的情况下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">include &#39;filename&#39;;</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">require &#39;filename&#39;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>include 和 require 的区别</strong></p>
+<ul>
+<li><p>require 一般放在 PHP 文件的最前面，程序在执行前就会先导入要引用的文件；</p>
+</li>
+<li><p>include 一般放在程序的流程控制中，当程序执行时碰到才会引用，简化程序的执行流程。</p>
+</li>
+<li><p>require 引入的文件有错误时，执行会中断，并返回一个致命错误；</p>
+</li>
+<li><p>include 引入的文件有错误时，会继续执行，并返回一个警告。</p>
+</li>
+</ul>
+<h1 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h1><h2 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h2><p>fopen() 函数用于在 PHP 中打开文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$file&#x3D;fopen(&quot;文件名&quot;,&quot;打开模式&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数含有要打开的文件的名称，第二个参数规定了使用哪种模式来打开文件</p>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="left">只读。在文件的开头开始。</td>
+</tr>
+<tr>
+<td align="left">r+</td>
+<td align="left">读/写。在文件的开头开始。</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">只写。打开并清空文件的内容；如果文件不存在，则创建新文件。</td>
+</tr>
+<tr>
+<td align="left">w+</td>
+<td align="left">读/写。打开并清空文件的内容；如果文件不存在，则创建新文件。</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">追加。打开并向文件末尾进行写操作，如果文件不存在，则创建新文件。</td>
+</tr>
+<tr>
+<td align="left">a+</td>
+<td align="left">读/追加。通过向文件末尾写内容，来保持文件内容。</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="left">只写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。</td>
+</tr>
+<tr>
+<td align="left">x+</td>
+<td align="left">读/写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。</td>
+</tr>
+</tbody></table>
+<p>**PS:**如果fopen()函数无法打开指定文件，则返回0(false)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$file&#x3D;fopen(&quot;welcome.txt&quot;,&quot;r&quot;) or exit(&quot;Unable to open file!&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h2><p>fclose() 函数用于关闭打开的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose($file);</span><br></pre></td></tr></table></figure>
+
+<h2 id="检测文件末尾-EOF"><a href="#检测文件末尾-EOF" class="headerlink" title="检测文件末尾(EOF)"></a>检测文件末尾(EOF)</h2><p>feof()函数检测是否已到达文件末尾(EOF)</p>
+<p>在循环遍历未知长度的数据时，feof()函数很有用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (feof($file)) echo &quot;文件结尾&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS：</strong>在w、a和x模式下，无法读取打开的文件</p>
+<h2 id="逐行读取文件"><a href="#逐行读取文件" class="headerlink" title="逐行读取文件"></a>逐行读取文件</h2><p>fgets() 函数用于从文件中逐行读取文件。</p>
+<p><strong>PS：</strong>在调用该函数之后，文件指针会移动到下一行</p>
+<h2 id="逐字符读取文件"><a href="#逐字符读取文件" class="headerlink" title="逐字符读取文件"></a>逐字符读取文件</h2><p>fgetc() 函数用于从文件中逐字符地读取文件</p>
+<p><strong>PS：</strong>在调用该函数之后，文件指针会移动到下一个字符</p>
+<h2 id="对逗号分隔符文件（-csv）的处理"><a href="#对逗号分隔符文件（-csv）的处理" class="headerlink" title="对逗号分隔符文件（*.csv）的处理"></a>对逗号分隔符文件（*.csv）的处理</h2><p>fgetcsv()函数用于读取CSV文件，将文本读入后转为数组存储在数组中</p>
+<h2 id="转码函数iconv"><a href="#转码函数iconv" class="headerlink" title="转码函数iconv()"></a>转码函数iconv()</h2><p>如果打开一个文件，文件名为中文，如果系统编程和当前文档编码不一致，会导致文件找不到无法打开，解决方法是用 <strong>iconv</strong> 函数编码转换成一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$fpath&#x3D;iconv(&#39;UTF-8&#39;,&#39;GB2312&#39;,&quot;题库.csv&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>用相对路径打不开子目录中的文件时，可用绝对路径打开，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$file&#x3D;fopen(dirname(__FILE__).&#39;\\files\\tk.csv&#39;,&quot;r&quot;) or exit(&quot;无法打开文件!&quot;);   </span><br></pre></td></tr></table></figure>
+
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>cookie 常用于识别用户。cookie 是一种服务器留在用户计算机上的小文件。每当同一台计算机通过浏览器请求页面时，这台计算机将会发送 cookie。通过 php，能够创建并取回 cookie 的值。</p>
+<h2 id="创建Cookie"><a href="#创建Cookie" class="headerlink" title="创建Cookie"></a>创建Cookie</h2><p>setcookie()函数用于设置cookie</p>
+<p><strong>PS：</strong>setcookie() 函数必须位于 <html> 标签之前。</html></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie(name, value, expire, path, domain);</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看Cookie值"><a href="#查看Cookie值" class="headerlink" title="查看Cookie值"></a>查看Cookie值</h2><p>$_COOKIE 变量用于取回 cookie 的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 输出 cookie 值</span><br><span class="line">echo $_COOKIE[&quot;user&quot;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查看所有 cookie</span><br><span class="line">print_r($_COOKIE);</span><br></pre></td></tr></table></figure>
+
+<p>使用isset()函数来确定是否已设置了cookie</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isset($_COOKIE[&quot;xxxx&quot;])</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除Cookie"><a href="#删除Cookie" class="headerlink" title="删除Cookie"></a>删除Cookie</h2><p>当删除 cookie 时，应当使过期日期变更为过去的时间点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置 cookie 过期时间为过去 1 小时</span><br><span class="line">setcookie(&quot;user&quot;, &quot;&quot;, time()-3600);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$servername &#x3D; &quot;localhost&quot;;</span><br><span class="line">$username &#x3D; &quot;username&quot;;</span><br><span class="line">$password &#x3D; &quot;password&quot;;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 创建连接</span><br><span class="line">$conn &#x3D; new mysqli($servername, $username, $password);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 检测连接</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125; </span><br><span class="line">echo &quot;连接成功&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS：</strong>$connect_error 是在 PHP 5.2.9 和 5.3.0 中添加的</p>
+<p>若要兼容更早的版本，则使用以下的代码替换检测连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 检测连接</span><br><span class="line">if (mysqli_connect_error()) &#123;</span><br><span class="line">    die(&quot;数据库连接失败: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$servername &#x3D; &quot;localhost&quot;;</span><br><span class="line">$username &#x3D; &quot;username&quot;;</span><br><span class="line">$password &#x3D; &quot;password&quot;;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 创建连接</span><br><span class="line">$conn &#x3D; mysqli_connect($servername, $username, $password);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 检测连接</span><br><span class="line">if (!$conn) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;连接成功&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PDO"><a href="#PDO" class="headerlink" title="PDO"></a>PDO</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    $conn &#x3D; new PDO(&quot;数据库名:host&#x3D;$servername;&quot;, $username, $password);</span><br><span class="line">    echo &quot;连接成功&quot;; </span><br><span class="line">&#125;</span><br><span class="line">catch(PDOException $e)</span><br><span class="line">&#123;</span><br><span class="line">    echo $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS：</strong>PDO 在连接过程需要设置数据库名。如果没有指定，则会抛出异常。</p>
+<h2 id="关闭连接"><a href="#关闭连接" class="headerlink" title="关闭连接"></a>关闭连接</h2><p>连接在脚本执行完后会自动关闭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;面向对象</span><br><span class="line">$conn-&gt;close();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;面向过程</span><br><span class="line">mysqli_close($conn);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;PDO</span><br><span class="line">$conn&#x3D;null;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试mysql数据库的连接"><a href="#测试mysql数据库的连接" class="headerlink" title="测试mysql数据库的连接"></a>测试mysql数据库的连接</h2><p>使用函数 <a target="_blank" rel="noopener" href="https://www.runoob.com/php/func-filesystem-parse-ini-file.html">parse_ini_file()</a> 解析配置文件 config.ini 来获得数据库连接参数，</p>
+<p>然后使用 new 关键字对 mysqli 类进行实例化，</p>
+<p>最后使用函数 <a target="_blank" rel="noopener" href="https://www.runoob.com/php/func-mysqli-connect-errno.html">mysqli_connect_errno() </a>来判断是否成功连接上了 MySQL 数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    &#x2F;&#x2F;解析config.ini文件</span><br><span class="line">    $config &#x3D; parse_ini_file(realpath(dirname(__FILE__) . &#39;&#x2F;config&#x2F;config.ini&#39;));</span><br><span class="line">    &#x2F;&#x2F;对mysqli类进行实例化</span><br><span class="line">    $mysqli &#x3D; new mysqli($config[&#39;host&#39;], $config[&#39;username&#39;], $config[&#39;password&#39;], $config[&#39;dbname&#39;]);   </span><br><span class="line">    if(mysqli_connect_errno())&#123;    &#x2F;&#x2F;判断是否成功连接上MySQL数据库</span><br><span class="line">        throw new Exception(&#39;数据库连接错误！&#39;);  &#x2F;&#x2F;如果连接错误，则抛出异常</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &#39;数据库连接成功！&#39;;   &#x2F;&#x2F;打印连接成功的提示</span><br><span class="line">    &#125;</span><br><span class="line">&#125;catch (Exception $e)&#123;        &#x2F;&#x2F;捕获异常</span><br><span class="line">    echo $e-&gt;getMessage();    &#x2F;&#x2F;打印异常信息</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/11/7-11%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          7-11学习记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/06/7-6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">7-6学习记录</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

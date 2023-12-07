@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>7-12学习记录 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SessionPHP session 变量用于存储关于用户会话（session）的信息，或者更改用户会话（session）的设置。Session 变量存储单一用户的信息，并且对于应用程序中的所有页面都是可用的。 变量session 解决了”由于 HTTP 地址无法保持状态，Web 服务器并不知道访问者是谁以及访问者做了什么“这一问题。 它通过在服务器上存储用户信息以便随后使用（比如用户名称、购买商">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7-12学习记录">
+<meta property="og:url" content="http://example.com/2023/07/12/7-12%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SessionPHP session 变量用于存储关于用户会话（session）的信息，或者更改用户会话（session）的设置。Session 变量存储单一用户的信息，并且对于应用程序中的所有页面都是可用的。 变量session 解决了”由于 HTTP 地址无法保持状态，Web 服务器并不知道访问者是谁以及访问者做了什么“这一问题。 它通过在服务器上存储用户信息以便随后使用（比如用户名称、购买商">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-12T08:01:49.000Z">
+<meta property="article:modified_time" content="2023-07-13T08:48:44.040Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-7-12学习记录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/07/12/7-12%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  	<time datetime="2023-07-12T08:01:49.000Z" itemprop="datePublished">2023-07-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      7-12学习记录
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><p>PHP session 变量用于存储关于用户会话（session）的信息，或者更改用户会话（session）的设置。Session 变量存储单一用户的信息，并且对于应用程序中的所有页面都是可用的。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>session 解决了”由于 HTTP 地址无法保持状态，Web 服务器并不知道访问者是谁以及访问者做了什么“这一问题。</p>
+<p>它通过在服务器上存储用户信息以便随后使用（比如用户名称、购买商品等）。然而，会话信息是临时的，在用户离开网站后将被删除。如果需要永久存储信息，可以把数据存储在数据库中</p>
+<p><strong>工作机制：</strong></p>
+<p>为每个访客创建一个唯一的 id (UID)，并基于这个 UID 来存储变量。UID 存储在 cookie 中，或者通过 URL 进行传导。</p>
+<h2 id="Session开始"><a href="#Session开始" class="headerlink" title="Session开始"></a>Session开始</h2><p>把用户信息存储到 PHP session 中之前，首先必须启动会话</p>
+<p>特别注意，<strong>session_start() 函数必须位于 <html> 标签之前</html></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php session_start(); ?&gt;</span><br><span class="line"> </span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>session_start() 函数作用：</strong></p>
+<ul>
+<li><p>会向服务器注册用户的会话，以便可以开始保存用户信息</p>
+</li>
+<li><p>会为用户会话分配一个 UID</p>
+</li>
+</ul>
+<h2 id="存储变量"><a href="#存储变量" class="headerlink" title="存储变量"></a>存储变量</h2><p>存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">&#x2F;&#x2F; 存储 session 数据</span><br><span class="line">$_SESSION[&#39;views&#39;]&#x3D;1;</span><br><span class="line">?&gt;</span><br><span class="line"> </span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 检索 session 数据</span><br><span class="line">echo &quot;浏览量：&quot;. $_SESSION[&#39;views&#39;];</span><br><span class="line">?&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输出：浏览量：1<br>优化：加一个计数器，就是网站访问次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line"> &#x2F;&#x2F;isset() 函数检测是否已设置 &quot;views&quot; 变量</span><br><span class="line"> &#x2F;&#x2F;如果已设置 &quot;views&quot; 变量，我们累加计数器。如果 &quot;views&quot; 不存在，则创建 &quot;views&quot; 变量，并把它设置为 1</span><br><span class="line">if(isset($_SESSION[&#39;views&#39;]))</span><br><span class="line">&#123;</span><br><span class="line">    $_SESSION[&#39;views&#39;]&#x3D;$_SESSION[&#39;views&#39;]+1;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    $_SESSION[&#39;views&#39;]&#x3D;1;</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;浏览量：&quot;. $_SESSION[&#39;views&#39;];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h2><p>如果希望删除某些 session 数据，可以使用 unset() 或 session_destroy() 函数。</p>
+<p><strong>unset() 函数用于释放指定的 session 变量</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">if(isset($_SESSION[&#39;views&#39;]))</span><br><span class="line">&#123;</span><br><span class="line">    unset($_SESSION[&#39;views&#39;]);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过调用 session_destroy() 函数彻底销毁 session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_destroy();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS:</strong></p>
+<p>session_destroy() 将重置 session，您将失去所有已存储的 session 数据。</p>
+<h1 id="E-mail"><a href="#E-mail" class="headerlink" title="E-mail"></a>E-mail</h1><p>允许从脚本直接发送电子邮件。</p>
+<h2 id="mail-函数"><a href="#mail-函数" class="headerlink" title="mail()函数"></a>mail()函数</h2><p>用于从脚本中发送电子邮件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mail(to,subject,message,headers,parameters)</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">to</td>
+<td align="left">必需。规定 email 接收者。</td>
+</tr>
+<tr>
+<td align="left">subject</td>
+<td align="left">必需。规定 email 的主题。<strong>注释：</strong>该参数不能包含任何新行字符。</td>
+</tr>
+<tr>
+<td align="left">message</td>
+<td align="left">必需。定义要发送的消息。应使用 LF (\n) 来分隔各行。每行应该限制在 70 个字符内。</td>
+</tr>
+<tr>
+<td align="left">headers</td>
+<td align="left">可选。规定附加的标题，比如 From、Cc 和 Bcc。应当使用 CRLF (\r\n) 分隔附加的标题。</td>
+</tr>
+<tr>
+<td align="left">parameters</td>
+<td align="left">可选。对邮件发送程序规定额外的参数。</td>
+</tr>
+</tbody></table>
+<p>**PS:**运行邮件函数需要一个已安装且正在运行的邮件系统(如：sendmail、postfix、qmail等)。所用的程序通过在 php.ini 文件中的配置设置进行定义</p>
+<h2 id="mail和表单的结合应用"><a href="#mail和表单的结合应用" class="headerlink" title="mail和表单的结合应用"></a>mail和表单的结合应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">if (isset($_REQUEST[&#39;email&#39;])) &#123; &#x2F;&#x2F; 如果接收到邮箱参数则发送邮件</span><br><span class="line">    &#x2F;&#x2F; 发送邮件</span><br><span class="line">    $email &#x3D; $_REQUEST[&#39;email&#39;] ;</span><br><span class="line">    $subject &#x3D; $_REQUEST[&#39;subject&#39;] ;</span><br><span class="line">    $message &#x3D; $_REQUEST[&#39;message&#39;] ;</span><br><span class="line">    mail(&quot;someone@example.com&quot;, $subject,</span><br><span class="line">    $message, &quot;From:&quot; . $email);</span><br><span class="line">    echo &quot;邮件发送成功&quot;;</span><br><span class="line">&#125; else &#123; &#x2F;&#x2F; 如果没有邮箱参数则显示表单</span><br><span class="line">    echo &quot;&lt;form method&#x3D;&#39;post&#39; action&#x3D;&#39;mailform.php&#39;&gt;</span><br><span class="line">    Email: &lt;input name&#x3D;&#39;email&#39; type&#x3D;&#39;text&#39;&gt;&lt;br&gt;</span><br><span class="line">    Subject: &lt;input name&#x3D;&#39;subject&#39; type&#x3D;&#39;text&#39;&gt;&lt;br&gt;</span><br><span class="line">    Message:&lt;br&gt;</span><br><span class="line">    &lt;textarea name&#x3D;&#39;message&#39; rows&#x3D;&#39;15&#39; cols&#x3D;&#39;40&#39;&gt;</span><br><span class="line">    &lt;&#x2F;textarea&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type&#x3D;&#39;submit&#39;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>首先，检查是否填写了邮件输入框</li>
+<li>如果未填写（比如在页面被首次访问时），输出 HTML 表单</li>
+<li>如果已填写（在表单被填写后），从表单发送电子邮件</li>
+<li>当填写完表单点击提交按钮后，页面重新载入，可以看到邮件输入被重置，同时显示邮件发送成功的消息</li>
+</ul>
+<h1 id="安全E-mail"><a href="#安全E-mail" class="headerlink" title="安全E-mail"></a>安全E-mail</h1><h2 id="防止-E-mail-注入"><a href="#防止-E-mail-注入" class="headerlink" title="防止 E-mail 注入"></a>防止 E-mail 注入</h2><p>防止 e-mail 注入的最好方法是对输入进行验证。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">function spamcheck($field)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; filter_var() 过滤 e-mail</span><br><span class="line">    &#x2F;&#x2F; 使用 FILTER_SANITIZE_EMAIL</span><br><span class="line">    $field&#x3D;filter_var($field, FILTER_SANITIZE_EMAIL);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;filter_var() 过滤 e-mail</span><br><span class="line">    &#x2F;&#x2F; 使用 FILTER_VALIDATE_EMAIL</span><br><span class="line">    if(filter_var($field, FILTER_VALIDATE_EMAIL))</span><br><span class="line">    &#123;</span><br><span class="line">        return TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (isset($_REQUEST[&#39;email&#39;]))</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 如果接收到邮箱参数则发送邮件</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断邮箱是否合法</span><br><span class="line">    $mailcheck &#x3D; spamcheck($_REQUEST[&#39;email&#39;]);</span><br><span class="line">    if ($mailcheck&#x3D;&#x3D;FALSE)</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;非法输入&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;    </span><br><span class="line">        &#x2F;&#x2F; 发送邮件</span><br><span class="line">        $email &#x3D; $_REQUEST[&#39;email&#39;] ;</span><br><span class="line">        $subject &#x3D; $_REQUEST[&#39;subject&#39;] ;</span><br><span class="line">        $message &#x3D; $_REQUEST[&#39;message&#39;] ;</span><br><span class="line">        mail(&quot;someone@example.com&quot;, &quot;Subject: $subject&quot;,</span><br><span class="line">        $message, &quot;From: $email&quot; );</span><br><span class="line">        echo &quot;Thank you for using our mail form&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123; </span><br><span class="line">    &#x2F;&#x2F; 如果没有邮箱参数则显示表单</span><br><span class="line">    echo &quot;&lt;form method&#x3D;&#39;post&#39; action&#x3D;&#39;mailform.php&#39;&gt;</span><br><span class="line">    Email: &lt;input name&#x3D;&#39;email&#39; type&#x3D;&#39;text&#39;&gt;&lt;br&gt;</span><br><span class="line">    Subject: &lt;input name&#x3D;&#39;subject&#39; type&#x3D;&#39;text&#39;&gt;&lt;br&gt;</span><br><span class="line">    Message:&lt;br&gt;</span><br><span class="line">    &lt;textarea name&#x3D;&#39;message&#39; rows&#x3D;&#39;15&#39; cols&#x3D;&#39;40&#39;&gt;</span><br><span class="line">    &lt;&#x2F;textarea&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type&#x3D;&#39;submit&#39;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，使用了 PHP 过滤器来对输入进行验证：</p>
+<ul>
+<li>FILTER_SANITIZE_EMAIL 过滤器从字符串中删除电子邮件的非法字符</li>
+<li>FILTER_VALIDATE_EMAIL 过滤器验证电子邮件地址的值</li>
+</ul>
+<h1 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h1><p>默认的错误处理很简单。一条错误消息会被发送到浏览器，这条消息带有文件名、行号以及描述错误的消息。</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>在创建脚本和 Web 应用程序时，错误处理是一个重要的部分。如果代码缺少错误检测编码，那么程序看上去很不专业，也为安全风险敞开了大门。</p>
+<p>不同的错误处理方法：</p>
+<ul>
+<li>简单的 “die()” 语句</li>
+<li>自定义错误和错误触发器</li>
+<li>错误报告</li>
+</ul>
+<h2 id="基本的错误处理：使用die-函数"><a href="#基本的错误处理：使用die-函数" class="headerlink" title="基本的错误处理：使用die()函数"></a>基本的错误处理：使用die()函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(!file_exists(&quot;welcome.txt&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    die(&quot;文件不存在&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    $file&#x3D;fopen(&quot;welcome.txt&quot;,&quot;r&quot;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果文件不存在，就会得到类似的错误消息：文件不存在</p>
+<h2 id="创建自定义错误处理器"><a href="#创建自定义错误处理器" class="headerlink" title="创建自定义错误处理器"></a>创建自定义错误处理器</h2><p>创建一个自定义的错误处理器非常简单。简单地创建了一个专用函数，可以在 PHP 中发生错误时调用该函数。</p>
+<p>该函数必须有能力处理至少两个参数 (error level 和 error message)，但是可以接受最多五个参数（可选的：file, line-number 和 error context）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error_function(error_level,error_message,</span><br><span class="line">error_file,error_line,error_context)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">error_level</td>
+<td align="left">必需。为用户定义的错误规定错误报告级别。必须是一个数字。参见下面的表格：错误报告级别。</td>
+</tr>
+<tr>
+<td align="left">error_message</td>
+<td align="left">必需。为用户定义的错误规定错误消息。</td>
+</tr>
+<tr>
+<td align="left">error_file</td>
+<td align="left">可选。规定错误发生的文件名。</td>
+</tr>
+<tr>
+<td align="left">error_line</td>
+<td align="left">可选。规定错误发生的行号。</td>
+</tr>
+<tr>
+<td align="left">error_context</td>
+<td align="left">可选。规定一个数组，包含了当错误发生时在用的每个变量以及它们的值。</td>
+</tr>
+</tbody></table>
+<h2 id="错误报告级别"><a href="#错误报告级别" class="headerlink" title="错误报告级别"></a>错误报告级别</h2><p>是用户自定义的错误处理程序处理的不同类型的错误</p>
+<table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">常量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2</td>
+<td align="left">E_WARNING</td>
+<td align="left">非致命的 run-time 错误。不暂停脚本执行。</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">E_NOTICE</td>
+<td align="left">run-time 通知。在脚本发现可能有错误时发生，但也可能在脚本正常运行时发生。</td>
+</tr>
+<tr>
+<td align="left">256</td>
+<td align="left">E_USER_ERROR</td>
+<td align="left">致命的用户生成的错误。这类似于程序员使用 PHP 函数 trigger_error() 设置的 E_ERROR。</td>
+</tr>
+<tr>
+<td align="left">512</td>
+<td align="left">E_USER_WARNING</td>
+<td align="left">非致命的用户生成的警告。这类似于程序员使用 PHP 函数 trigger_error() 设置的 E_WARNING。</td>
+</tr>
+<tr>
+<td align="left">1024</td>
+<td align="left">E_USER_NOTICE</td>
+<td align="left">用户生成的通知。这类似于程序员使用 PHP 函数 trigger_error() 设置的 E_NOTICE。</td>
+</tr>
+<tr>
+<td align="left">4096</td>
+<td align="left">E_RECOVERABLE_ERROR</td>
+<td align="left">可捕获的致命错误。类似 E_ERROR，但可被用户定义的处理程序捕获。（参见 set_error_handler()）</td>
+</tr>
+<tr>
+<td align="left">8191</td>
+<td align="left">E_ALL</td>
+<td align="left">所有错误和警告。（在 PHP 5.4 中，E_STRICT 成为 E_ALL 的一部分）</td>
+</tr>
+</tbody></table>
+<h2 id="设置错误处理程序"><a href="#设置错误处理程序" class="headerlink" title="设置错误处理程序"></a>设置错误处理程序</h2><p>PHP 的默认错误处理程序是内建的错误处理程序。</p>
+<p>可以修改错误处理程序，使其仅应用到某些错误，这样脚本就能以不同的方式来处理不同的错误。</p>
+<p>希望自定义函数能处理所有错误，set_error_handler() 仅需要一个参数，可以添加第二个参数来规定错误级别。</p>
+<h2 id="触发错误"><a href="#触发错误" class="headerlink" title="触发错误"></a>触发错误</h2><p>在脚本中用户输入数据的位置，当用户的输入无效时触发错误是很有用的。在 PHP 中，这个任务由 trigger_error() 函数完成。</p>
+<h2 id="错误记录"><a href="#错误记录" class="headerlink" title="错误记录"></a>错误记录</h2><p>在默认的情况下，根据在 php.ini 中的 error_log 配置，PHP 向服务器的记录系统或文件发送错误记录。通过使用 error_log() 函数，可以向指定的文件或远程目的地发送错误记录。</p>
+<p>通过电子邮件向自己发送错误消息，是一种获得指定错误的通知的好办法。</p>
+<h3 id="通过-E-Mail-发送错误消息"><a href="#通过-E-Mail-发送错误消息" class="headerlink" title="通过 E-Mail 发送错误消息"></a>通过 E-Mail 发送错误消息</h3><p>如果特定的错误发生，将发送带有错误消息的电子邮件，并结束脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 错误处理函数</span><br><span class="line">function customError($errno, $errstr)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;&lt;b&gt;Error:&lt;&#x2F;b&gt; [$errno] $errstr&lt;br&gt;&quot;;</span><br><span class="line">    echo &quot;已通知网站管理员&quot;;</span><br><span class="line">    error_log(&quot;Error: [$errno] $errstr&quot;,1,</span><br><span class="line">    &quot;someone@example.com&quot;,&quot;From: webmaster@example.com&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 设置错误处理函数</span><br><span class="line">set_error_handler(&quot;customError&quot;,E_USER_WARNING);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 触发错误</span><br><span class="line">$test&#x3D;2;</span><br><span class="line">if ($test&gt;1)</span><br><span class="line">&#123;</span><br><span class="line">    trigger_error(&quot;变量值必须小于等于 1&quot;,E_USER_WARNING);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码的输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error: [512] 变量值必须小于等于 1</span><br><span class="line">已通知网站管理员</span><br></pre></td></tr></table></figure>
+
+<p>接收自以上代码的邮件如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: [512] 变量值必须小于等于 1</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h1><p>异常用于在指定的错误发生时改变脚本的正常流程。</p>
+<h2 id="异常的定义"><a href="#异常的定义" class="headerlink" title="异常的定义"></a>异常的定义</h2><p>异常处理用于在指定的错误（异常）情况发生时改变脚本的正常流程。这种情况称为异常。</p>
+<p>当异常被触发时，通常会发生：</p>
+<ul>
+<li>当前代码状态被保存</li>
+<li>代码执行被切换到预定义（自定义）的异常处理器函数</li>
+<li>根据情况，处理器也许会从保存的代码状态重新开始执行代码，终止脚本执行，或从代码中另外的位置继续执行脚本</li>
+</ul>
+<p>不同的错误处理方法：</p>
+<ul>
+<li>异常的基本使用</li>
+<li>创建自定义的异常处理器</li>
+<li>多个异常</li>
+<li>重新抛出异常</li>
+<li>设置顶层异常处理器</li>
+</ul>
+<p><strong>PS：</strong>异常应该仅仅在错误情况下使用，而不应该用于在一个指定的点跳转到代码的另一个位置。</p>
+<h2 id="异常的基本使用"><a href="#异常的基本使用" class="headerlink" title="异常的基本使用"></a>异常的基本使用</h2><p>当异常被抛出时，其后的代码不会继续执行，PHP 会尝试查找匹配的 “catch” 代码块。</p>
+<p>如果异常没有被捕获，而且又没用使用 set_exception_handler() 作相应的处理的话，那么将发生一个严重的错误（致命错误），并且输出 “Uncaught Exception” （未捕获异常）的错误消息。</p>
+<h2 id="Try、throw-和-catch"><a href="#Try、throw-和-catch" class="headerlink" title="Try、throw 和 catch"></a>Try、throw 和 catch</h2><p>要避免上面实例中出现的错误，需要创建适当的代码来处理异常。</p>
+<p>适当的处理异常代码应该包括：</p>
+<ol>
+<li>Try - 使用异常的函数应该位于 “try” 代码块内。如果没有触发异常，则代码将照常继续执行。但是如果异常被触发，会抛出一个异常。</li>
+<li>Throw - 里规定如何触发异常。每一个 “throw” 必须对应至少一个 “catch”。</li>
+<li>Catch - “catch” 代码块会捕获异常，并创建一个包含异常信息的对象。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F; 创建一个有异常处理的函数</span><br><span class="line">function checkNum($number)</span><br><span class="line">&#123;</span><br><span class="line">    if($number&gt;1)</span><br><span class="line">    &#123;</span><br><span class="line">        throw new Exception(&quot;变量值必须小于等于 1&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">        return true;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">&#x2F;&#x2F; 在 try 块 触发异常</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    checkNum(2);</span><br><span class="line">    &#x2F;&#x2F; 如果抛出异常，以下文本不会输出</span><br><span class="line">    echo &#39;如果输出该内容，说明 $number 变量&#39;;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 捕获异常</span><br><span class="line">catch(Exception $e)</span><br><span class="line">&#123;</span><br><span class="line">    echo &#39;Message: &#39; .$e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码抛出了一个异常，并捕获了它：</p>
+<ol>
+<li>创建 checkNum() 函数。它检测数字是否大于 1。如果是，则抛出一个异常。</li>
+<li>在 “try” 代码块中调用 checkNum() 函数。</li>
+<li>checkNum() 函数中的异常被抛出。</li>
+<li>“catch” 代码块接收到该异常，并创建一个包含异常信息的对象 ($e)。</li>
+<li>通过从这个 exception 对象调用 $e-&gt;getMessage()，输出来自该异常的错误消息。</li>
+</ol>
+<p>为了遵循 “每个 throw 必须对应一个 catch” 的原则，可以设置一个顶层的异常处理器来处理漏掉的错误。</p>
+<h2 id="创建一个自定义的-Exception-类"><a href="#创建一个自定义的-Exception-类" class="headerlink" title="创建一个自定义的 Exception 类"></a>创建一个自定义的 Exception 类</h2><p>创建自定义的异常处理程序非常简单。简单地创建了一个专门的类，当 PHP 中发生异常时，可调用其函数。该类必须是 exception 类的一个扩展。</p>
+<h2 id="多个异常"><a href="#多个异常" class="headerlink" title="多个异常"></a>多个异常</h2><p>可以为一段脚本使用多个异常，来检测多种情况。</p>
+<p>可以使用多个 if..else 代码块，或一个 switch 代码块，或者嵌套多个异常。这些异常能够使用不同的 exception 类，并返回不同的错误消息</p>
+<h2 id="重新抛出异常"><a href="#重新抛出异常" class="headerlink" title="重新抛出异常"></a>重新抛出异常</h2><p>有时，当异常被抛出时，也许希望以不同于标准的方式对它进行处理。可以在一个 “catch” 代码块中再次抛出异常。</p>
+<p>脚本应该对用户隐藏系统错误。对程序员来说，系统错误也许很重要，但是用户对它们并不感兴趣。为了让用户更容易使用，可以再次抛出带有对用户比较友好的消息的异常</p>
+<h2 id="设置顶层异常处理器"><a href="#设置顶层异常处理器" class="headerlink" title="设置顶层异常处理器"></a>设置顶层异常处理器</h2><p>set_exception_handler() 函数可设置处理所有未捕获异常的用户定义函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function myException($exception)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;&lt;b&gt;Exception:&lt;&#x2F;b&gt; &quot; , $exception-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">set_exception_handler(&#39;myException&#39;);</span><br><span class="line"> </span><br><span class="line">throw new Exception(&#39;Uncaught Exception occurred&#39;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：Exception: Uncaught Exception occurred</p>
+<p>触发顶层的异常处理程序。应该使用此函数来捕获所有未被捕获的异常。</p>
+<h2 id="异常的规则"><a href="#异常的规则" class="headerlink" title="异常的规则"></a>异常的规则</h2><ul>
+<li>需要进行异常处理的代码应该放入 try 代码块内，以便捕获潜在的异常。</li>
+<li>每个 try 或 throw 代码块必须至少拥有一个对应的 catch 代码块。</li>
+<li>使用多个 catch 代码块可以捕获不同种类的异常。</li>
+<li>可以在 try 代码块内的 catch 代码块中抛出（再次抛出）异常。</li>
+</ul>
+<p>简而言之：如果抛出了异常，就必须捕获它。</p>
+<h1 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h1><p>用于验证和过滤来自非安全来源的数据，比如用户的输入</p>
+<p>测试、验证和过滤用户输入或自定义数据是任何 Web 应用程序的重要组成部分。</p>
+<p>PHP 的过滤器扩展的设计目的是使数据过滤更轻松快捷。</p>
+<h2 id="使用过滤器的意义"><a href="#使用过滤器的意义" class="headerlink" title="使用过滤器的意义"></a>使用过滤器的意义</h2><p>几乎所有的 Web 应用程序都依赖外部的输入。这些数据通常来自用户或其他应用程序（比如 web 服务）。通过使用过滤器，能够确保应用程序获得正确的输入类型。</p>
+<p><strong>应该始终对外部数据进行过滤！</strong></p>
+<p>输入过滤是最重要的应用程序安全课题之一。</p>
+<p>什么是外部数据？</p>
+<ul>
+<li>来自表单的输入数据</li>
+<li>Cookies</li>
+<li>Web services data</li>
+<li>服务器变量</li>
+<li>数据库查询结果</li>
+</ul>
+<h2 id="函数和过滤器"><a href="#函数和过滤器" class="headerlink" title="函数和过滤器"></a>函数和过滤器</h2><p>如需过滤变量，使用过滤器函数：</p>
+<ul>
+<li>filter_var() - 通过一个指定的过滤器来过滤单一的变量</li>
+<li>filter_var_array() - 通过相同的或不同的过滤器来过滤多个变量</li>
+<li>filter_input - 获取一个输入变量，并对它进行过滤</li>
+<li>filter_input_array - 获取多个输入变量，并通过相同的或不同的过滤器对它们进行过滤</li>
+</ul>
+<h2 id="Validating-和-Sanitizing"><a href="#Validating-和-Sanitizing" class="headerlink" title="Validating 和 Sanitizing"></a>Validating 和 Sanitizing</h2><p>有两种过滤器：</p>
+<p>Validating 过滤器：</p>
+<ul>
+<li>用于验证用户输入</li>
+<li>严格的格式规则（比如 URL 或 E-Mail 验证）</li>
+<li>如果成功则返回预期的类型，如果失败则返回 FALSE</li>
+</ul>
+<p>Sanitizing 过滤器：</p>
+<ul>
+<li>用于允许或禁止字符串中指定的字符</li>
+<li>无数据格式规则</li>
+<li>始终返回字符串</li>
+</ul>
+<h2 id="选项和标志"><a href="#选项和标志" class="headerlink" title="选项和标志"></a>选项和标志</h2><p>用于向指定的过滤器添加额外的过滤选项。</p>
+<p>不同的过滤器有不同的选项和标志。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;用 filter_var() 和 &quot;min_range&quot; 以及 &quot;max_range&quot; 选项验证了一个整数</span><br><span class="line">&lt;?php</span><br><span class="line">$var&#x3D;300;</span><br><span class="line"> </span><br><span class="line">$int_options &#x3D; array(</span><br><span class="line">    &quot;options&quot;&#x3D;&gt;array</span><br><span class="line">    (</span><br><span class="line">        &quot;min_range&quot;&#x3D;&gt;0,</span><br><span class="line">        &quot;max_range&quot;&#x3D;&gt;256</span><br><span class="line">    )</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">if(!filter_var($var, FILTER_VALIDATE_INT, $int_options))</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;不是一个合法的整数&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;是个合法的整数&quot;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证输入"><a href="#验证输入" class="headerlink" title="验证输入"></a>验证输入</h2><p>试着验证来自表单的输入。</p>
+<p>首先，需要做的事情是确认是否存在正在查找的输入数据。</p>
+<p>然后，用 filter_input() 函数过滤输入的数据。</p>
+<p>在下面的实例中，输入变量 “email” 被传到 PHP 页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(!filter_has_var(INPUT_GET, &quot;email&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;没有 email 参数&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    if (!filter_input(INPUT_GET, &quot;email&quot;, FILTER_VALIDATE_EMAIL))</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;不是一个合法的 E-Mail&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;是一个合法的 E-Mail&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过 “GET” 方法传送的输入变量 (email)：</p>
+<ol>
+<li>检测是否存在 “GET” 类型的 “email” 输入变量</li>
+<li>如果存在输入变量，检测它是否是有效的 e-mail 地址</li>
+</ol>
+<h2 id="净化输入"><a href="#净化输入" class="headerlink" title="净化输入"></a>净化输入</h2><p>试着清理一下从表单传来的 URL。</p>
+<p>首先，要确认是否存在正在查找的输入数据。</p>
+<p>然后，用 filter_input() 函数来净化输入数据。</p>
+<p>在下面的实例中，输入变量 “url” 被传到 PHP 页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(!filter_has_var(INPUT_GET, &quot;url&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;没有 url 参数&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    $url &#x3D; filter_input(INPUT_GET, </span><br><span class="line">    &quot;url&quot;, FILTER_SANITIZE_URL);</span><br><span class="line">    echo $url;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过 “GET” 方法传送的输入变量 (url)：</p>
+<ol>
+<li>检测是否存在 “GET” 类型的 “url” 输入变量</li>
+<li>如果存在此输入变量，对其进行净化（删除非法字符），并将其存储在 $url 变量中</li>
+</ol>
+<h2 id="过滤多个输入"><a href="#过滤多个输入" class="headerlink" title="过滤多个输入"></a>过滤多个输入</h2><p>表单通常由多个输入字段组成。为了避免对 filter_var 或 filter_input 函数重复调用，可以使用 filter_var_array 或 the filter_input_array 函数。</p>
+<p>使用 filter_input_array() 函数来过滤三个 GET 变量。接收到的 GET 变量是一个名字、一个年龄以及一个 e-mail 地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$filters &#x3D; array</span><br><span class="line">(</span><br><span class="line">    &quot;name&quot; &#x3D;&gt; array</span><br><span class="line">    (</span><br><span class="line">        &quot;filter&quot;&#x3D;&gt;FILTER_SANITIZE_STRING</span><br><span class="line">    ),</span><br><span class="line">    &quot;age&quot; &#x3D;&gt; array</span><br><span class="line">    (</span><br><span class="line">        &quot;filter&quot;&#x3D;&gt;FILTER_VALIDATE_INT,</span><br><span class="line">        &quot;options&quot;&#x3D;&gt;array</span><br><span class="line">        (</span><br><span class="line">            &quot;min_range&quot;&#x3D;&gt;1,</span><br><span class="line">            &quot;max_range&quot;&#x3D;&gt;120</span><br><span class="line">        )</span><br><span class="line">    ),</span><br><span class="line">    &quot;email&quot;&#x3D;&gt; FILTER_VALIDATE_EMAIL</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">$result &#x3D; filter_input_array(INPUT_GET, $filters);</span><br><span class="line"> </span><br><span class="line">if (!$result[&quot;age&quot;])</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;年龄必须在 1 到 120 之间。&lt;br&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">elseif(!$result[&quot;email&quot;])</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;E-Mail 不合法&lt;br&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    echo(&quot;输入正确&quot;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>有三个通过 “GET” 方法传送的输入变量 (name、age 和 email)：</p>
+<ol>
+<li>设置一个数组，其中包含了输入变量的名称和用于指定的输入变量的过滤器</li>
+<li>调用 filter_input_array() 函数，参数包括 GET 输入变量及刚才设置的数组</li>
+<li>检测 $result 变量中的 “age” 和 “email” 变量是否有非法的输入。（如果存在非法输入，在使用 filter_input_array() 函数之后，输入变量为 FALSE。）</li>
+</ol>
+<p>filter_input_array() 函数的第二个参数可以是数组或单一过滤器的 ID。</p>
+<p>如果该参数是单一过滤器的 ID，那么这个指定的过滤器会过滤输入数组中所有的值。</p>
+<p>如果该参数是一个数组，那么此数组必须遵循下面的规则：</p>
+<ul>
+<li>必须是一个关联数组，其中包含的输入变量是数组的键（比如 “age” 输入变量）</li>
+<li>此数组的值必须是过滤器的 ID ，或者是规定了过滤器、标志和选项的数组</li>
+</ul>
+<h2 id="使用-Filter-Callback"><a href="#使用-Filter-Callback" class="headerlink" title="使用 Filter Callback"></a>使用 Filter Callback</h2><p>通过使用 FILTER_CALLBACK 过滤器，可以调用自定义的函数，把它作为一个过滤器来使用。这样，就拥有了数据过滤的完全控制权。</p>
+<p>可以创建自己的自定义函数，也可以使用已存在的 PHP 函数。</p>
+<p>将准备用到的过滤器的函数，按指定选项的规定方法进行规定。在关联数组中，带有名称 “options”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function convertSpace($string)</span><br><span class="line">&#123;</span><br><span class="line">    return str_replace(&quot;_&quot;, &quot;.&quot;, $string);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$string &#x3D; &quot;www_runoob_com!&quot;;</span><br><span class="line"> </span><br><span class="line">echo filter_var($string, FILTER_CALLBACK,</span><br><span class="line">array(&quot;options&quot;&#x3D;&gt;&quot;convertSpace&quot;));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>把所有 “_” 转换成 “.” ：</p>
+<ol>
+<li>创建一个把 “_” 替换为 “.” 的函数</li>
+<li>调用 filter_var() 函数，它的参数是 FILTER_CALLBACK 过滤器以及包含我们的函数的数组</li>
+</ol>
+<h1 id="高级过滤器"><a href="#高级过滤器" class="headerlink" title="高级过滤器"></a>高级过滤器</h1><h2 id="检测一个数字是否在一个范围内"><a href="#检测一个数字是否在一个范围内" class="headerlink" title="检测一个数字是否在一个范围内"></a>检测一个数字是否在一个范围内</h2><p>使用了 filter_var() 函数来检测一个 INT 型的变量是否在 1 到 200 内：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$int &#x3D; 122;$min &#x3D; 1;$max &#x3D; 200;</span><br><span class="line">if (filter_var($int, FILTER_VALIDATE_INT, array(&quot;options&quot; &#x3D;&gt; array(&quot;min_range&quot;&#x3D;&gt;$min, &quot;max_range&quot;&#x3D;&gt;$max))) &#x3D;&#x3D;&#x3D; false) &#123;</span><br><span class="line">	echo(&quot;变量值不在合法范围内&quot;);</span><br><span class="line">&#125; else &#123;    </span><br><span class="line">	echo(&quot;变量值在合法范围内&quot;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="检测-IPv6-地址"><a href="#检测-IPv6-地址" class="headerlink" title="检测 IPv6 地址"></a>检测 IPv6 地址</h2><p>使用了 filter_var() 函数来检测一个 $ip 变量是否是 IPv6 地址:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$ip &#x3D; &quot;2001:0db8:85a3:08d3:1319:8a2e:0370:7334&quot;;</span><br><span class="line">if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) &#x3D;&#x3D;&#x3D; false) &#123;    </span><br><span class="line">	echo(&quot;$ip 是一个 IPv6 地址&quot;);</span><br><span class="line">	&#125; else &#123;    </span><br><span class="line">	echo(&quot;$ip 不是一个 IPv6 地址&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="检测-URL-必须包含QUERY-STRING（查询字符串）"><a href="#检测-URL-必须包含QUERY-STRING（查询字符串）" class="headerlink" title="检测 URL - 必须包含QUERY_STRING（查询字符串）"></a>检测 URL - 必须包含QUERY_STRING（查询字符串）</h2><p>使用了 filter_var() 函数来检测 $url 是否包含查询字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$url &#x3D; &quot;http:&#x2F;&#x2F;www.runoob.com&quot;;</span><br><span class="line">if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED) &#x3D;&#x3D;&#x3D; false) &#123;    </span><br><span class="line">	echo(&quot;$url 是一个合法的 URL&quot;);</span><br><span class="line">	&#125; else &#123;    </span><br><span class="line">	echo(&quot;$url 不是一个合法的 URL&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="移除-ASCII-值大于-127-的字符"><a href="#移除-ASCII-值大于-127-的字符" class="headerlink" title="移除 ASCII 值大于 127 的字符"></a>移除 ASCII 值大于 127 的字符</h2><p>使用了 filter_var() 函数来移除字符串中 ASCII 值大于 127 的字符，同样它也能移除 HTML 标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$str &#x3D; &quot;&lt;h1&gt;Hello WorldÆØÅ!&lt;&#x2F;h1&gt;&quot;;</span><br><span class="line">$newstr &#x3D; filter_var($str, FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);</span><br><span class="line">echo $newstr;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/04/SQL-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          SQL
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/11/7-11%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">7-11学习记录</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

